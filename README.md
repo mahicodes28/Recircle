@@ -1,2 +1,2 @@
 # Recircle
-an resell application towards sustainable development
+A resell application towards sustainable development
