@@ -1,0 +1,28 @@
+
+.catContainer .swiper {
+  width: 100%;
+  height: 18vw;
+  
+  overflow: hidden;
+  padding: 2vw;
+}
+
+.catContainer .swiper-slide {
+  text-align: center;
+  font-size: 1.2vw;
+  border-radius: 10%;
+  
+    background-color: rgb(255, 255, 255);
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.catContainer .swiper-slide img {
+  display: block;
+  margin: auto;
+  width: 8vw;
+  height: 8vw;
+  object-fit: cover;
+}

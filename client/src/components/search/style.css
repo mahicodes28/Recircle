@@ -1,0 +1,17 @@
+.searchBox input::placeholder,.searchBox input::-moz-placeholder, .searchBox input::-webkit-input-placeholder{
+    color:gray;
+}
+.nav li .subMenu{
+    visibility: hidden;
+    z-index: 1000;
+    background-color: white;
+}
+.nav  li:hover .subMenu{
+    opacity: 1 !important;
+    visibility: inherit !important;
+}
+.nav li .subMenu Button:hover{
+    font-weight: 600;
+    background-color: rgb(196, 235, 247) !important;
+
+}

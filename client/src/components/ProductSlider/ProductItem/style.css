@@ -1,0 +1,14 @@
+.productItem .title{
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+.productItem{
+    background-color: rgb(255, 255, 255);
+    border-radius: 10%;
+    transition: transform 0.3s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1)
+}
+.productItem:hover {
+    transform: translateY(-5px);
+}

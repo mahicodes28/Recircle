@@ -1,0 +1,37 @@
+
+.ProductSlider .swiper {
+  width: 100%;
+  height: fit-content ;
+  align-items: center;
+}
+
+.ProductSlider .swiper-slide {
+  text-align: center;
+  font-size: 1.2vw;
+  
+    background-color: rgb(255, 255, 255);
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  
+}
+.container .swiper-slide{
+  background-color: transparent !important;
+  width: fit-content ;
+}
+.ProductSlider .swiper-wrapper{
+  padding: 2vw;
+  
+}
+.ProductSlider .swiper-slide img {
+  object-fit: cover;
+}
+
+:root {
+  --swiper-theme-color: #000;
+  --swiper-navigation-size: 2vw;
+  --swiper-pagination-bullet-inactive-color: #000;
+  user-select: none;
+}
