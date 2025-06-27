@@ -1,6 +1,6 @@
 import React from 'react'
 import { useAppContext } from '../context/AppProvider'
-import { useNavigate } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 
 const AdminDashboard = () => {
 
@@ -10,6 +10,8 @@ const AdminDashboard = () => {
 
   return (
   <div className='min-h-screen'>
+
+    {/* Navbar */}
      <div className='shadow py-4'>
             <div className='px-5 flex justify-between items-center'>
                 {/* logo here istead of h1 */}
@@ -28,6 +30,30 @@ const AdminDashboard = () => {
                 </div>
             </div>
         </div>
+
+        {/* sidebar for all functions of admin */}
+        <div className='flex items-start'>
+          {/* left side bar */}
+          <div className='inline-block  min-h-screen border-r-2 border-gray-200'> 
+            <ul className='flex flex-col items-start pt-5 text-gray-800  '>
+                <NavLink className={({isActive})=>`flex items-center p-3 sm:px-6 gap-2 w-full hover:bg-gray-100 ${isActive && 'bg-blue-100 border-r-4 border-blue-500'}`} to={'/admin/product-list'} >
+                    {/* <img className='min-w-4' src={assets.add_icon} alt="" /> */}
+                    <p className='max-sm:hidden'>All Products</p>
+                </NavLink>
+                <NavLink className={({isActive})=>`flex items-center p-3 sm:px-6 gap-2 w-full hover:bg-gray-100 ${isActive && ' bg-blue-100  border-r-4 border-blue-500'}`} to={'/admin/new-product'} >
+                    {/* <img className='min-w-4'  src={assets.home_icon} alt="" /> */}
+                    <p className='max-sm:hidden'>Product Requests</p>
+                </NavLink>
+                <NavLink className={({isActive})=>`flex items-center p-3 sm:px-6 gap-2 w-full hover:bg-gray-100 ${isActive && 'bg-blue-100 border-r-4 border-blue-500'}`}  to={'/admin/seller-list'} >
+                    {/* <img className='min-w-4' src={assets.person_tick_icon} alt="" /> */}
+                    <p className='max-sm:hidden'>See Sellers</p>
+                </NavLink>
+            </ul>
+          </div>
+          <div>
+            <Outlet/>
+          </div>
+      </div>
   </div>
   )
 }

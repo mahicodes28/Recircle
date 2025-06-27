@@ -4,6 +4,9 @@ import { Routes,Route } from 'react-router-dom'
 import AdminDashboard from './pages/AdminDashboard.jsx'
 import { useAppContext } from './context/AppProvider.jsx'
 import AdminLogin from './pages/AdminLogin.jsx'
+import AllProducts from './components/AllProducts.jsx'
+import AllSellers from './components/AllSellers.jsx'
+import ProductsRequests from './components/ProductsRequests.jsx'
 function App() {
 
   const {isAdmin}=useAppContext();
@@ -11,9 +14,9 @@ function App() {
   return (
    <Routes>
       <Route path='/admin' element={isAdmin ? <AdminDashboard/> : <AdminLogin/>}>
-        {/* <Route index element={isSeller ? <AddProducts/> : null} />
-        <Route path='product-list' element={<ProductList/>} />
-        <Route path='orders' element={<Orders/>} /> */}
+        <Route path='product-list' element={<AllProducts/>} />
+        <Route path='seller-list' element={<AllSellers/>} />
+        <Route path='new-product' element={<ProductsRequests/>}/>
       </Route>
    </Routes>
   )
