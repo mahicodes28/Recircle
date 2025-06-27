@@ -9,6 +9,8 @@ import AllSellers from './components/AllSellers.jsx'
 import ProductsRequests from './components/ProductsRequests.jsx'
 import Home from "./pages/Home.jsx"
 import Header from "./components/header"
+import ProductListing from './pages/ProductListing.jsx'
+import Footer from './components/Footer/index.jsx'
 function App() {
 
   const {isAdmin}=useAppContext();
@@ -16,14 +18,17 @@ function App() {
   return (
   <>
   
+      <Header/>
    <Routes>
-      <Route path="/" element={<Home/>}/>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/productListing" element={<ProductListing/>}></Route>
       <Route path='/admin' element={isAdmin ? <AdminDashboard/> : <AdminLogin/>}>
         <Route path='product-list' element={<AllProducts/>} />
         <Route path='seller-list' element={<AllSellers/>} />
         <Route path='new-product' element={<ProductsRequests/>}/>
       </Route>
    </Routes>
+      <Footer/>
   
   </>
   )
