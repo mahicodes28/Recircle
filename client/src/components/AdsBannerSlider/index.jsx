@@ -6,7 +6,7 @@ import 'swiper/css/navigation';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-import './styles.css';
+import '../AdsBannerSlider/styles.css';
 import { Link } from 'react-router-dom';
 import BannerBox from '../BannerBox';
 

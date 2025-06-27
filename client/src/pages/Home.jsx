@@ -1,13 +1,13 @@
 import React from 'react'
 import HomeSlider from '../components/HomeSlider'
-import CatSlider from '../Components/CatSlider'
-import Section from '../Components/section'
-import AdsBannerSlider from '../Components/AdsBannerSlider'
-import ScrollableTabs from '../Components/ScrollablTabs'
-import ProductSlider from '../Components/ProductSlider'
-import Footer from '../Components/Footer'
-import HomeSliderV2 from '../Components/HomesliderV2'
-import BannerBoxV2 from '../Components/BannerBoxV2'
+import CatSlider from '../components/CatSlider'
+import Section from '../components/Section'
+import AdsBannerSlider from '../components/AdsBannerSlider'
+import ScrollableTabs from '../components/ScrollablTabs'
+import ProductSlider from '../components/ProductSlider'
+import Footer from '../components/Footer'
+import HomeSliderV2 from '../components/HomesliderV2'
+import BannerBoxV2 from '../components/BannerBoxV2'
 import Header from "../components/header"
 
 function Home() {
