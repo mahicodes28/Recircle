@@ -20,8 +20,7 @@ function App() {
   
       <Header/>
    <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/productListing" element={<ProductListing/>}></Route>
+      <Route path="/" element={<Home/>}/>
       <Route path='/admin' element={isAdmin ? <AdminDashboard/> : <AdminLogin/>}>
         <Route path='product-list' element={<AllProducts/>} />
         <Route path='seller-list' element={<AllSellers/>} />

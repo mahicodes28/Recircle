@@ -1,6 +1,9 @@
 import React from 'react'
 import { useAppContext } from '../context/AppProvider'
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+import { MdInventory2 } from "react-icons/md";
+import { FaClipboardList } from "react-icons/fa";
+import { FaUserCheck } from "react-icons/fa6";
 
 const AdminDashboard = () => {
 
@@ -38,13 +41,16 @@ const AdminDashboard = () => {
             <ul className='flex flex-col items-start pt-5 text-gray-800  '>
                 <NavLink className={({isActive})=>`flex items-center p-3 sm:px-6 gap-2 w-full hover:bg-gray-100 ${isActive && 'bg-blue-100 border-r-4 border-blue-500'}`} to={'/admin/product-list'} >
                     {/* <img className='min-w-4' src={assets.add_icon} alt="" /> */}
+                    <MdInventory2 className='text-xl' />
                     <p className='max-sm:hidden'>All Products</p>
                 </NavLink>
                 <NavLink className={({isActive})=>`flex items-center p-3 sm:px-6 gap-2 w-full hover:bg-gray-100 ${isActive && ' bg-blue-100  border-r-4 border-blue-500'}`} to={'/admin/new-product'} >
+                    <FaClipboardList className='text-xl' />
                     {/* <img className='min-w-4'  src={assets.home_icon} alt="" /> */}
                     <p className='max-sm:hidden'>Product Requests</p>
                 </NavLink>
                 <NavLink className={({isActive})=>`flex items-center p-3 sm:px-6 gap-2 w-full hover:bg-gray-100 ${isActive && 'bg-blue-100 border-r-4 border-blue-500'}`}  to={'/admin/seller-list'} >
+                    <FaUserCheck className='text-xl' />
                     {/* <img className='min-w-4' src={assets.person_tick_icon} alt="" /> */}
                     <p className='max-sm:hidden'>See Sellers</p>
                 </NavLink>

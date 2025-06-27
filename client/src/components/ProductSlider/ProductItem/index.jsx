@@ -17,7 +17,8 @@ const ProductItem = () => {
     <>
         <div className="productItem bg-red-200 scale-90 !h-[22vw] !w-[15vw] transition-all hover:scale-95 overflow-hidden !rounded-md  ">
             <div className="imgWrapper relative !w-[100%]   !h-[14vw]">
-            <Link to="/product/1" className='link w-full h-full'>
+                {/* {`/product/${product._id}`} link per ye path dalega  */}
+            <Link to="/product/1" className='link w-full h-full'>  
                             <img src="/public/item1.webp" className='!w-full  overflow-hidden !h-[13vw] object-fit' alt="" />
 
             </Link>

@@ -9,6 +9,9 @@ import { IoIosGitCompare } from "react-icons/io";
 import { CiHeart } from "react-icons/ci";
 import Tooltip from '@mui/material/Tooltip';
 import Navigation from "./Navigation";
+import { useAppContext } from "../../context/AppProvider";
+import { UserButton, useClerk , useUser } from '@clerk/clerk-react'
+
 
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -20,6 +23,11 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 function header() {
+
+    const {openSignIn} = useClerk();
+    const {user}=useUser();
+
+
   return (
     <header>
       <div className="top-strip py-2 border-t-2 border-b-2 border-gray-200 bg-white">
@@ -64,7 +72,7 @@ function header() {
           <div className="col3 w-[30%]">
             <ul className="flex justify-end  items-center gap-5">
               <li >
-                <Link
+                {/* <Link
                   to="/login"
                   className="link transition duration-200 ease-in-out"
                 >
@@ -76,7 +84,15 @@ function header() {
                   className="link transition duration-200 ease-in-out"
                 >
                   Register
-                </Link>
+                </Link> */}
+                {user?<div className='flex items-center gap-3'>
+                <p className='max-sm:hidden'>Hi, {user.firstName +" "+user.lastName}</p>
+                <UserButton/>
+            </div>
+            :<div className='flex gap-4 mx-sm:text-xs'>
+                <button onClick={(e) => openSignIn()} className='bg-blue-600 text-white px-6 sm:px-9 py-2 rounded-full'>Login</button>
+            </div>
+            }
               </li>
               <li className="compare" >
                <Tooltip title="Compare" >
