@@ -80,10 +80,19 @@ CORS_ALLOWED_ORIGINS = [
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'djongo',
+        'NAME': 'ReCircle',
+        'ENFORCE_SCHEMA': False,  # Optional
+        'CLIENT': {
+            'host': 'mongodb://localhost:27017/',
+            'username': '',
+            'password': '',
+            'authSource': 'admin',
+            'authMechanism': 'SCRAM-SHA-1',
+        }
     }
 }
 
