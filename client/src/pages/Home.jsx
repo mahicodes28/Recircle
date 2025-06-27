@@ -13,6 +13,7 @@ import Header from "../components/header"
 function Home() {
   return (
     <>
+    <Header/>
      <div className="home  "> 
      
      <div className="bg-zinc-200 !pt-4">
