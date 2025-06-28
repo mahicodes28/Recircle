@@ -11,6 +11,7 @@ import Home from "./pages/Home.jsx"
 import Header from "./components/header"
 import ProductListing from './pages/ProductListing.jsx'
 import Footer from './components/Footer/index.jsx'
+import ProductDetails from './components/ProductDetail/index.jsx'
 
 function App() {
   const { isAdmin } = useAppContext();
@@ -26,6 +27,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path='/productListing' element={<ProductListing />} />
+          <Route path='productDetails' element={<ProductDetails/>}/>
           <Route path='/admin' element={isAdmin ? <AdminDashboard /> : <AdminLogin />}>
             <Route path='product-list' element={<AllProducts />} />
             <Route path='seller-list' element={<AllSellers />} />

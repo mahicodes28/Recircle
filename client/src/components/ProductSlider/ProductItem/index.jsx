@@ -18,7 +18,7 @@ const ProductItem = () => {
         <div className="productItem bg-red-200 scale-90 !h-[22vw] !w-[15vw] transition-all hover:scale-95 overflow-hidden !rounded-md  ">
             <div className="imgWrapper relative !w-[100%]   !h-[14vw]">
                 {/* {`/product/${product._id}`} link per ye path dalega  */}
-            <Link to="/product/1" className='link w-full h-full'>  
+            <Link to="/product/" className='link w-full h-full'>  
                             <img src="/public/item1.webp" className='!w-full  overflow-hidden !h-[13vw] object-fit' alt="" />
 
             </Link>
@@ -26,7 +26,7 @@ const ProductItem = () => {
 <div className="Actions opacity-0 hover:opacity-100 !gap-2 absolute top-[1vw] right-[1vw] w-[2vw] flex flex-col items-center justify-between px-2">
    <Tooltip title="Product Details" placement="left">
      <Button className='!w-[2vw]  transition-all  h-[4vw] scale-80 !bg-red-400  hover:opacity-100 opacity-40 !rounded-full !p-0 ' variant="contained">
-       <Link to="/product/1" className='link text-xl w-[2vw] h-[2vw]     text-zinc-600'>
+       <Link to="/productDetails" className='link text-xl w-[2vw] h-[2vw]     text-zinc-600'>
         <MdOutlineZoomOutMap className='!w-full !h-full  !text-white !hover:bg-blue-500  text-zinc-600 ' />
         </Link>     
     </Button>
