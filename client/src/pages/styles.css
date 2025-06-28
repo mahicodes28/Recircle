@@ -1,0 +1,13 @@
+.rightSection ::-webkit-scrollbar{
+    width: .2vw !important;
+}
+.rightSection ::-webkit-scrollbar-thumb{
+    background-color: red !important;
+}
+
+
+.ProductListing .rightSection .itemViewActions button.active svg{
+    color: blue !important; 
+    opacity: 1 !important;
+
+}

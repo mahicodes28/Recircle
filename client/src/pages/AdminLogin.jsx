@@ -15,35 +15,35 @@ const AdminLogin = () => {
     }
 
     return !isAdmin && (
-        <div className="flex items-center justify-center min-h-screen bg-gray-50">
+        <div className="flex p-4 items-center justify-center min-h-screen bg-gray-50">
             <form
                 onSubmit={onSubmitHandler}
-                className="flex flex-col gap-5 w-80 items-start p-8 py-12 rounded-lg shadow-xl border border-gray-200 bg-white"
+                className="flex flex-col !gap-5 w-80 !items-start !p-8 !py-12 rounded-lg shadow-xl !border !border-gray-200 bg-white"
             >
-                <p className="text-2xl font-medium m-auto">
-                    Admin<span className="text-red-300">Login</span>
+                <p className="!text-2xl !font-medium !m-auto">
+                    Admin<span className="text-blue-300">Login</span>
                 </p>
-                <div className="w-full">
+                <div className="!w-full">
                     <p>Email</p>
                     <input onChange={(e) => setEmail(e.target.value)}
                         value={email}
                         type="email"
                         placeholder="Enter Email Here"
-                        className="border border-gray-200 rounded w-full mt-1 p-2 outline-primary"
+                        className="!border !border-gray-200 !rounded !w-full !mt-1 !p-2 !outline-primary"
                         required
                     />
                 </div>
-                <div className="w-full">
+                <div className="!w-full">
                     <p>Password</p>
                     <input onChange={(e) => setPassword(e.target.value)}
                         value={password}
                         type="password"
                         placeholder="Enter Password"
-                        className="border border-gray-200 rounded w-full mt-1 p-2 outline-primary"
+                        className="!border !border-gray-200 !rounded !w-full !mt-1 !p-2 !outline-primary"
                         required
                     />
                 </div>
-                <button className="bg-red-300 text-black w-full py-2 rounded-md cursor-pointer">
+                <button className="!bg-blue-300 !text-black !w-full !py-2 !rounded-md !cursor-pointer">
                     Submit
                 </button>
             </form>

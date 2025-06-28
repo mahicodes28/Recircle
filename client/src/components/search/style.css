@@ -1,0 +1,64 @@
+.searchBox input::placeholder,.searchBox input::-moz-placeholder, .searchBox input::-webkit-input-placeholder{
+    color:gray;
+}
+.nav li .subMenu{
+    visibility: hidden;
+    z-index: 1000;
+    background-color: white;
+}
+.nav  li:hover .subMenu{
+    opacity: 1 !important;
+    visibility: inherit !important;
+}
+.nav li .subMenu Button:hover{
+    font-weight: 600;
+    background-color: rgb(196, 235, 247) !important;
+
+}
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+   font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 450;
+  font-style: normal;
+}
+
+.container {
+ width: 90%;
+ margin: auto;
+}
+
+.link:hover{
+  color: #1d4ed8;
+  text-decoration: none;
+  user-select: none;
+}
+.wishlist:hover,.cart:hover,.compare:hover{
+  color: rgb(220, 66, 66) !important;
+  text-decoration: none;
+}
+
+::-webkit-scrollbar{
+  width: .4vw;
+  height: 1vw;
+  color: #2d5de0 !important;
+}
+::-webkit-scrollbar-thumb{
+  background-color: #1d4ed8 !important;
+  
+}
+::-webkit-scrollbar-track{
+  background-color: #ffffff !important;
+}
+.btn-org{
+  background: #2d5de0 !important;
+color: white !important;
+  font-weight: 500 !important;
+  font-size: 1vw !important;
+}
