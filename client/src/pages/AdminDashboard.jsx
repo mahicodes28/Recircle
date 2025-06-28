@@ -24,9 +24,9 @@ const AdminDashboard = () => {
                     <div className='!relative group'>
                        {/* an admin image here or any profile image */}
                         <h1 className='!text-sm '>Admin Logo</h1>
-                        <div className='!absolute !hidden !group-hover:block !top-0 !right-0 !z-10 !text-black !rounded pt-12'>
-                            <ul className='!list-none !m-0 !p-2 !bg-white !rounded-md !border !border-gray-200 !text-sm'>
-                                <li onClick={()=>{setisAdmin(false);navigate('/admin')}} className='!py-1 !px-2 !cursor-pointer !pr-10'>LogOut</li>
+                        <div className='absolute  hidden group-hover:block !top-[50%] !right-[-80%] -translate-x-[50%] -translate-y-[50%] !z-10 !text-black !rounded pt-12'>
+                            <ul className='!list-none w-[fit] !m-0 !p-0 !bg-white !rounded-md !border !border-gray-200 !text-sm'>
+                                <li onClick={()=>{setisAdmin(false);navigate('/admin')}} className='link !py-1 !px-2 !cursor-pointer !pr-10'>LogOut</li>
                             </ul>
                         </div>
                     </div>

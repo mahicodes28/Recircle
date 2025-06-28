@@ -17,11 +17,10 @@ const AllProducts = () => {
                             <tr>
                                 <th className="!px-4 !py-3 !font-semibold">Product</th>
                                 <th className="!px-4 !py-3 !font-semibold">Category</th>
-                                <th className="!px-4 !py-3 !font-semibold !hidden !md:table-cell">Selling Price</th>
-                                <th className="!px-4 !py-3 !font-semibold !hidden !md:table-cell">MFD</th>
-                                <th className="!px-4 !py-3 !font-semibold !hidden !md:table-cell">Expiry Date</th>
-                                <th className="!px-4 !py-3 !font-semibold !hidden !md:table-cell">Seller</th>
-                                <th className="!px-4 !py-3 !font-semibold">In Stock</th>
+                                <th className="!px-4 !py-3 !font-semibold hidden md:table-cell lg:table-cell xl:table-cell">Selling Price</th>
+<th className="!px-4 !py-3 !font-semibold hidden md:table-cell lg:table-cell xl:table-cell">MFD</th>
+<th className="!px-4 !py-3 !font-semibold hidden md:table-cell lg:table-cell xl:table-cell">Expiry Date</th>
+<th className="!px-4 !py-3 !font-semibold hidden md:table-cell lg:table-cell xl:table-cell">Seller</th><th className="!px-4 !py-3 text-center !font-semibold">In Stock</th>
                             </tr>
                         </thead>
                         <tbody className="!text-sm !text-gray-500">
