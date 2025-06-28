@@ -115,11 +115,11 @@ const Footer = () => {
                   Register
                 </Link> */}
                 {user?<div className='flex items-center gap-3'>
-                <p className='max-sm:hidden'>Hi, {user.firstName +" "+user.lastName}</p>
+                <p className='max-sm:hidden'>Logout</p>
                 <UserButton/>
             </div>
             :<div className='flex gap-4 mx-sm:text-xs'>
-                <button onClick={(e) => openSignIn()} className='bg-blue-600 text-white px-6 sm:px-9 py-2 rounded-full'>Login</button>
+                <button onClick={(e) => openSignIn()} className='link text-gray-500 px-6 sm:px-9 py-2 rounded-full'>Login</button>
             </div>
             }
               </li>

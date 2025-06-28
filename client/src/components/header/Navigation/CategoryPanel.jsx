@@ -13,6 +13,7 @@ import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { FiMinusSquare } from "react-icons/fi";
+import CategoryCollapse from '../../CategoryCollapse';
 
 const CategoryPanel = (props) => {
   
@@ -66,54 +67,7 @@ const openInnerSubMenu=(index)=>{
         <IoCloseSharp className="!text-xl !cursor-pointer !absolute !top-6 !right-5" onClick={toggleDrawer(false)} />
       <div className='scroll !py-4 !px-2 '>
         {/* First level */}
-<ul className='w-full'>
-  {categoryData.map((cat, catIndex) => (
-    <li key={catIndex} className='list-none'>
-      <div className='flex justify-between items-center !pr-3'>
-        <Button className='w-full !text-md !capitalize !text-left !text-black !justify-between'>
-          {cat.title}
-        </Button>
-        {subMenuIndex === catIndex ? (
-          <FiMinusSquare onClick={() => openSubmenu(catIndex)} />
-        ) : (
-          <FaRegPlusSquare onClick={() => openSubmenu(catIndex)} />
-        )}
-      </div>
-
-      {/* Submenu appears BELOW and pushes content down */}
-      {subMenuIndex === catIndex && (
-        <ul className=' py-2'>
-          {cat.subcategories.map((sub, subIndex) => (
-            <li key={subIndex}>
-              <div className='flex justify-between items-center'>
-                <Button className='!text-left !text-md !pl-0 !text-black !capitalize !w-full'>
-                  {sub.title}
-                </Button>
-                {InnerSubMenuIndex === subIndex ? (
-                  <FiMinusSquare onClick={() => openInnerSubMenu(subIndex)} />
-                ) : (
-                  <FaRegPlusSquare onClick={() => openInnerSubMenu(subIndex)} />
-                )}
-              </div>
-
-              {InnerSubMenuIndex === subIndex && (
-                <ul className='pl-6 py-1'>
-                  {sub.items.map((item, idx) => (
-                    <li key={idx} className='!mb-1'>
-                      <Link to="/" className='link !text-sm w-full !pl-8 !justify-start'>
-                        {item}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </li>
-          ))}
-        </ul>
-      )}
-    </li>
-  ))}
-</ul>
+<CategoryCollapse/>
       </div>
     </Box>
   );

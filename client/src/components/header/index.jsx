@@ -85,14 +85,20 @@ function header() {
                 >
                   Register
                 </Link> */}
-                {user?<div className='flex items-center gap-3'>
-                <p className='max-sm:hidden'>Hi, {user.firstName +" "+user.lastName}</p>
-                <UserButton/>
-            </div>
-            :<div className='flex gap-4 mx-sm:text-xs'>
-                <button onClick={(e) => openSignIn()} className='bg-blue-600 text-white px-6 sm:px-9 py-2 rounded-full'>Login</button>
-            </div>
-            }
+               {user ? (
+  <div className='flex items-center gap-3'>
+    {user.firstName && (
+      <p className='max-sm:hidden'>
+        Hi, {user.firstName}{user.lastName ? ` ${user.lastName}` : ''}
+      </p>
+    )}
+    <UserButton />
+  </div>
+) : (
+  <div className='flex gap-4 mx-sm:text-xs'>
+    <button onClick={(e) => openSignIn()} className='link px-6 sm:px-9 py-2 rounded-full'>Login | Register</button>
+  </div>
+)}
               </li>
               <li className="compare" >
                <Tooltip title="Compare" >

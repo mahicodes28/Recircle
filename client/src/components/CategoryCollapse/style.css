@@ -1,0 +1,6 @@
+.categoryPanel{
+    text-transform: capitalize !important;
+}
+.ReactCollapse--collapse {
+  transition: height 500ms;
+}

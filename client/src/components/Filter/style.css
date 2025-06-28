@@ -1,0 +1,16 @@
+.Filter .scroll{
+    overflow-y: scroll !important;
+    overflow-x: hidden;
+    max-height: 12vw !important;
+}
+
+.Filter .scroll::-webkit-scrollbar-thumb{
+background-color: red !important;
+width: 1px !important;
+}
+.Filter .scroll::-webkit-scrollbar{
+    width: .2vw;
+}
+.ReactCollapse--collapse {
+  transition: height 400ms;
+}
