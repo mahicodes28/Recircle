@@ -1,22 +1,24 @@
-import { createContext, useState } from 'react'
-import './App.css'
-import { Routes, Route, useLocation } from 'react-router-dom'
-import AdminDashboard from './pages/AdminDashboard.jsx'
-import { useAppContext } from './context/AppProvider.jsx'
-import AdminLogin from './pages/AdminLogin.jsx'
-import AllProducts from './components/AllProducts.jsx'
-import AllSellers from './components/AllSellers.jsx'
-import ProductsRequests from './components/ProductsRequests.jsx'
-import Home from "./pages/Home.jsx"
-import Header from "./components/header"
-import ProductListing from './pages/ProductListing.jsx'
-import Footer from './components/Footer/index.jsx'
-import ProductDetails from './components/ProductDetail/index.jsx'
-import DialogContent from '@mui/material/DialogContent';
-import Dialog from '@mui/material/Dialog';
-import Slide from '@mui/material/Slide';
-import ProductInfo from './components/ProductDetail/ProductInfo';
+import { createContext, useState } from "react";
+import "./App.css";
+import { Routes, Route, useLocation, Link } from "react-router-dom";
+import AdminDashboard from "./pages/AdminDashboard.jsx";
+import { useAppContext } from "./context/AppProvider.jsx";
+import AdminLogin from "./pages/AdminLogin.jsx";
+import AllProducts from "./components/AllProducts.jsx";
+import AllSellers from "./components/AllSellers.jsx";
+import ProductsRequests from "./components/ProductsRequests.jsx";
+import Home from "./pages/Home.jsx";
+import Header from "./components/header";
+import ProductListing from "./pages/ProductListing.jsx";
+import Footer from "./components/Footer/index.jsx";
+import ProductDetails from "./components/ProductDetail/index.jsx";
+import DialogContent from "@mui/material/DialogContent";
+import Dialog from "@mui/material/Dialog";
+import Slide from "@mui/material/Slide";
+import ProductInfo from "./components/ProductDetail/ProductInfo";
 import { IoMdClose } from "react-icons/io";
+import CartPanel from "./components/CartPanel"; // <-- Import CartPanel
+import Cart from "./components/Cart/index.jsx";
 
 // Create context at top-level
 const MyContext = createContext();
@@ -26,22 +28,28 @@ function App() {
   const location = useLocation();
 
   // Hide header/footer on any /admin route
-  const hideHeaderFooter = location.pathname.startsWith('/admin');
+  const hideHeaderFooter = location.pathname.startsWith("/admin");
 
-  // Dialog state and transition
-  const [open, setOpen] = useState(false);
+  // Dialog state
+  const [dialogOpen, setDialogOpen] = useState(false);
 
-  const handleClose = () => {
-    setOpen(false);
+  // Drawer state
+  const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const handleDialogClose = () => {
+    setDialogOpen(false);
   };
-  const handleOpen = ()=>{
-    setOpen(true)
-  }
 
-  const Transition = (props, ref) => <Slide direction="up" ref={ref} {...props} />;
+  const handleDrawerOpen = () => {
+    setDrawerOpen(true);
+  };
 
-  // Provide setOpen in context so children can open the dialog
-  const values = { setOpen };
+  const handleDrawerClose = () => {
+    setDrawerOpen(false);
+  };
+
+  // Provide setOpen for dialog in context
+  const values = { setOpen: setDialogOpen, setDrawerOpen };
 
   return (
     <MyContext.Provider value={values}>
@@ -49,9 +57,13 @@ function App() {
         {!hideHeaderFooter && <Header />}
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/cart" element={<Cart/>}/>
           <Route path="/productListing" element={<ProductListing />} />
           <Route path="/productDetails" element={<ProductDetails />} />
-          <Route path="/admin" element={isAdmin ? <AdminDashboard /> : <AdminLogin />}>
+          <Route
+            path="/admin"
+            element={isAdmin ? <AdminDashboard /> : <AdminLogin />}
+          >
             <Route path="product-list" element={<AllProducts />} />
             <Route path="seller-list" element={<AllSellers />} />
             <Route path="new-product" element={<ProductsRequests />} />
@@ -59,25 +71,37 @@ function App() {
         </Routes>
         {!hideHeaderFooter && <Footer />}
 
+        {/* Product Detail Dialog */}
         <Dialog
-          open={open}
+          open={dialogOpen}
           keepMounted
-          onClose={handleClose}
+          onClose={handleDialogClose}
           aria-describedby="alert-dialog-slide-description"
           maxWidth="lg"
           fullWidth
         >
-          <DialogContent className='!rounded-xl !overflow-y-hidden'>
-            <div className='relative' style={{ width: "100%", height: "100%", overflowY: "hidden" }}>
-              <ProductInfo padding='!p-0' />
+          <DialogContent className="!rounded-xl !overflow-y-hidden">
+            <div
+              className="relative"
+              style={{ width: "100%", height: "100%", overflowY: "hidden" }}
+            >
+              <ProductInfo padding="!p-0" />
               <div className="close">
-                <h1 className='absolute top-0 right-0 pointer' onClick={handleClose}>
-                  <IoMdClose className='!text-4xl' />
+                <h1
+                  className="absolute top-0 right-0 cursor-pointer"
+                  onClick={handleDialogClose}
+                >
+                  <IoMdClose className="!text-4xl" />
                 </h1>
               </div>
             </div>
           </DialogContent>
         </Dialog>
+        {/* Product Detail Dialog end */}
+
+        {/* Cart Drawer */}
+        <CartPanel open={drawerOpen} onClose={handleDrawerClose} />
+        {/* Cart Drawer end */}
       </>
     </MyContext.Provider>
   );

@@ -11,6 +11,8 @@ import Tooltip from '@mui/material/Tooltip';
 import Navigation from "./Navigation";
 import { useAppContext } from "../../context/AppProvider";
 import { UserButton, useClerk , useUser } from '@clerk/clerk-react'
+import { useContext } from "react";
+import { MyContext } from "../../App";
 
 
 
@@ -22,8 +24,9 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
     padding: "0 4px",
   },
 }));
-function header() {
 
+function header() {
+    const context = useContext(MyContext)
     const {openSignIn} = useClerk();
     const {user}=useUser();
 
@@ -120,7 +123,7 @@ function header() {
               </li>
               < li>
                 <Tooltip title="Cart" >
-                  <IconButton aria-label="cart">
+                  <IconButton aria-label="cart" onClick={()=>context.setDrawerOpen(true)}>
                     <StyledBadge badgeContent={4} color="primary">
                       <MdOutlineShoppingCart className="cart" />
                     </StyledBadge>
