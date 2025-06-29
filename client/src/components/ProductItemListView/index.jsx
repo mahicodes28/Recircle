@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './style.css'
 import { Link } from 'react-router-dom'
 import Rating from '@mui/material/Rating';
@@ -9,6 +9,7 @@ import { FaRegHeart } from "react-icons/fa6";
 import { IoGitCompareOutline } from "react-icons/io5";
 import Tooltip from '@mui/material/Tooltip';
 import { MdOutlineShoppingCart } from "react-icons/md";
+import { MyContext } from '../../App';
 
 // Accept product as prop for API compatibility
 const ProductItemListView = ({
@@ -24,6 +25,8 @@ const ProductItemListView = ({
     link: "/product/1"
   }
 }) => {
+  const context = useContext(MyContext);
+
   return (
     <>
       <div className="productItem bg-red-200 scale-100 !h-[20vw] flex !shadow-lg items-center !w-[97%] transition-all !mt-5 !rounded-lg">
@@ -33,10 +36,12 @@ const ProductItemListView = ({
           </Link>
           <div className="Actions display-none opacity-0 hover:opacity-100 !gap-2 absolute top-[1vw] right-[1vw] w-[2vw] flex flex-col items-center justify-between px-2">
             <Tooltip title="Product Details" placement="left">
-              <Button className='!w-[2vw] transition-all h-[4vw] scale-80 !bg-red-400 hover:opacity-100 opacity-40 !rounded-full !p-0' variant="contained">
-                <Link to={product.link || `/product/${product._id}`} className='link text-xl w-[2vw] h-[2vw] text-zinc-600'>
-                  <MdOutlineZoomOutMap className='!w-full !h-full !text-white !hover:bg-blue-500 text-zinc-600' />
-                </Link>
+              <Button
+                className='!w-[2vw] transition-all h-[4vw] scale-80 !bg-red-400 hover:opacity-100 opacity-40 !rounded-full !p-0'
+                variant="contained"
+                onClick={() => context.setOpen(true)}
+              >
+                <MdOutlineZoomOutMap className='!w-[2vw] !h-[2vw] transition-all !text-white !hover:bg-blue-500 text-zinc-600' />
               </Button>
             </Tooltip>
             <Tooltip title="Compare" placement="left">

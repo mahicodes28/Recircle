@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './style.css'
 import { Link } from 'react-router-dom'
 import Rating from '@mui/material/Rating';
@@ -8,10 +8,11 @@ import { MdOutlineZoomOutMap } from "react-icons/md";
 import { FaRegHeart } from "react-icons/fa6";
 import { IoGitCompareOutline } from "react-icons/io5";
 import Tooltip from '@mui/material/Tooltip';
+import { MyContext } from '../../../App';
 
 const ProductItem = () => {
   
- 
+const context = useContext(MyContext) 
 
   return (
     <>
@@ -25,11 +26,13 @@ const ProductItem = () => {
 
 <div className="Actions opacity-0 hover:opacity-100 !gap-2 absolute top-[1vw] right-[1vw] w-[2vw] flex flex-col items-center justify-between px-2">
    <Tooltip title="Product Details" placement="left">
-     <Button className='!w-[2vw]  transition-all  h-[4vw] scale-80 !bg-red-400  hover:opacity-100 opacity-40 !rounded-full !p-0 ' variant="contained">
-       <Link to="/productDetails" className='link text-xl w-[2vw] h-[2vw]     text-zinc-600'>
-        <MdOutlineZoomOutMap className='!w-full !h-full  !text-white !hover:bg-blue-500  text-zinc-600 ' />
-        </Link>     
-    </Button>
+    <Button
+    className='!w-[2vw] transition-all h-[4vw] scale-80 !bg-red-400 hover:opacity-100 opacity-40 !rounded-full !p-0'
+    variant="contained"
+    onClick={() => context.setOpen(true)}
+  >
+    <MdOutlineZoomOutMap className='!w-[2vw] !h-[2vw] transition-all !text-white !hover:bg-blue-500 text-zinc-600' />
+  </Button>
     </Tooltip> 
        <Tooltip title="Compare" placement="left">
 <Button className='!w-[2vw] transition-all h-[4vw] scale-80 !bg-red-400 !hover:text-white hover:opacity-100 opacity-50 !rounded-full !p-0 ' variant="contained">

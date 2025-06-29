@@ -9,6 +9,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 import RangeSlider from 'react-range-slider-input';
 import 'react-range-slider-input/dist/style.css';
+
 const categories = [
   "Clothing",
   "Groceries",
@@ -33,7 +34,9 @@ const Filter = () => {
 
   return (
     <>
-      <aside className='Filter flex flex-col gap-2 '>
+     <aside
+  className="Filter flex flex-col gap-2 z-10 bg-white sticky top-0"
+>
         <div className="box !p-4 ">
           <div className="head !py-1 flex items-center justify-between">
             <h3 className='!text-xl font-[500]'>Product Categories</h3>
@@ -75,10 +78,10 @@ const Filter = () => {
                 />
               </FormGroup>
             </div>
-             {/* <div className="Price flex flex-col gap-4 !pb-2">< h1 className='!text-xl font-[500]'>
-             Filter by Price</h1>
-<RangeSlider />
-              </div>      */}
+            {/* <div className="Price flex flex-col gap-4 !pb-2">
+              <h1 className='!text-xl font-[500]'>Filter by Price</h1>
+              <RangeSlider />
+            </div> */}
           </Collapse>
         </div>
       </aside>

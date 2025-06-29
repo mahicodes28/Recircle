@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import { Link } from "react-router-dom";
 import ProductItem from "../components/ProductSlider/ProductItem/index";
-import ProductItemListView from "../components/ProductItemListView"; // <-- import your list view
+import ProductItemListView from "../components/ProductItemListView";
 import "../pages/styles.css";
 import { Button } from "@mui/material";
 import { IoGrid } from "react-icons/io5";
@@ -28,7 +28,7 @@ const ProductListing = () => {
 
   return (
     <>
-      <section className="bg-zinc-200 !py-5 !w-full !h-full">
+      <section className="bg-zinc-200 !py-5 !w-full">
         <div className="container !py-4 ">
           <Breadcrumbs aria-label="breadcrumb">
             <Link
@@ -49,13 +49,18 @@ const ProductListing = () => {
             </Link>
           </Breadcrumbs>
         </div>
-        <div className="bg-zinc-200 !w-[100%] h-[100%] !px-16 flex gap-4  p-4">
-          <div className="container !w-[20%] flex gap-4">
-            <div className="sidewrapper  !w-[100%] rounded-md !h-full bg-white">
-              <Filter />
-            </div>
-          </div>
-          <div className="rightSection !pl-8 sticky  !py-5 !w-[80%] bg-white h-full !rounded-lg">
+        <div className="!w-[100%]  !px-16 flex !items-start gap-4 p-4">
+          {/* Sidebar */}
+      <div className="!w-[20%]">
+    <div
+      className="sidewrapper !rounded-md !bg-blue-200 !sticky top-0"
+      style={{ minWidth: "220px" }}
+    >
+      <Filter />
+    </div>
+  </div>
+          {/* Main Content */}
+          <div className="rightSection !pl-8 !min-h-[20vw] !py-5 !w-[80%] bg-white h-full !rounded-lg">
             <div className="flex bg-zinc-200 !px-4 !py-3 w-[97%] rounded-md mb-3 items-center justify-between">
               <div className="col1 flex items-center itemViewActions">
                 <Button className={`!h-[40px] !w-[40px] !min-w-[40px] !text-black !rounded-full ${itemView==="list" && 'active'}`} onClick={() => setItemView("list")}><MdMenu /></Button>
@@ -92,10 +97,10 @@ const ProductListing = () => {
             </div>
             <div className={
               itemView === "list"
-                ? "flex flex-col grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols1 gap-4    w-full p-4"
+                ? "flex flex-col grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols1 gap-4 w-full p-4"
                 : itemView === "grid3"
-                  ? "grid mt-4 grid-cols-3 gap-4 overflow-y-auto h-[25vw] items-start !w-full p-4"
-                  : "grid mt-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4   items-start !w-full p-4"
+                  ? "grid mt-4 grid-cols-4 gap-4 overflow-y-auto h-[25vw] items-start !w-full p-4"
+                  : "grid mt-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 items-start !w-full p-4"
             }>
               {[...Array(23)].map((_, idx) =>
                 itemView === "list"
