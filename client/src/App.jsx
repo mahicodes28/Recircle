@@ -12,6 +12,7 @@ import Header from "./components/header"
 import ProductListing from './pages/ProductListing.jsx'
 import Footer from './components/Footer/index.jsx'
 import ProductDetails from './components/ProductDetail/index.jsx'
+import SmoothCursor from './components/smooth-cursor/index.jsx'
 
 function App() {
   const { isAdmin } = useAppContext();
@@ -22,16 +23,17 @@ function App() {
 
   return (
     <>
-      <div>
+      <SmoothCursor />
+      <div className='!cursor-hidden'>
         {!hideHeaderFooter && <Header />}
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path='/productListing' element={<ProductListing />} />
-          <Route path='productDetails' element={<ProductDetails/>}/>
-          <Route path='/admin' element={isAdmin ? <AdminDashboard /> : <AdminLogin />}>
-            <Route path='product-list' element={<AllProducts />} />
-            <Route path='seller-list' element={<AllSellers />} />
-            <Route path='new-product' element={<ProductsRequests />} />
+          <Route path="/productListing" element={<ProductListing />} />
+          <Route path="/productDetails" element={<ProductDetails />} />
+          <Route path="/admin" element={isAdmin ? <AdminDashboard /> : <AdminLogin />}>
+            <Route path="product-list" element={<AllProducts />} />
+            <Route path="seller-list" element={<AllSellers />} />
+            <Route path="new-product" element={<ProductsRequests />} />
           </Route>
         </Routes>
         {!hideHeaderFooter && <Footer />}
@@ -39,4 +41,5 @@ function App() {
     </>
   )
 }
+
 export default App
