@@ -12,14 +12,19 @@ import Header from "./components/header"
 import ProductListing from './pages/ProductListing.jsx'
 import Footer from './components/Footer/index.jsx'
 import ProductDetails from './components/ProductDetail/index.jsx'
+import SellerDashboard from './pages/SellerDashboard.jsx'
+import SellerLogin from './pages/SellerLogin.jsx'
+import SellerProducts from './components/Seller/SellerProducts.jsx'
+import SeeOrders from './components/Seller/SeeOrders.jsx'
+import AddProduct from './components/Seller/AddProduct.jsx'
 
 function App() {
-  const { isAdmin } = useAppContext();
+  const { isAdmin , isseller} = useAppContext();
   const location = useLocation();
 
-  // Hide header/footer on any /admin route
-  const hideHeaderFooter = location.pathname.startsWith('/admin');
 
+  // Hide header/footer on any /admin route
+const hideHeaderFooter = location.pathname.startsWith('/admin') || location.pathname.startsWith('/seller');
   return (
     <>
       <div>
@@ -32,6 +37,11 @@ function App() {
             <Route path='product-list' element={<AllProducts />} />
             <Route path='seller-list' element={<AllSellers />} />
             <Route path='new-product' element={<ProductsRequests />} />
+          </Route>
+          <Route path='/seller' element={isseller ? <SellerDashboard /> : <SellerLogin />}>
+            <Route path='product-list' element={<SellerProducts />} />
+            <Route path='orders' element={<SeeOrders/>} />
+            <Route path='add-product' element={<AddProduct />} />
           </Route>
         </Routes>
         {!hideHeaderFooter && <Footer />}
