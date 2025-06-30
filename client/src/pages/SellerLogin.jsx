@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { AppContext } from '../context/AppProvider';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const SellerLogin = () => {
   const {isseller , setIsSeller } =useContext(AppContext)
@@ -17,7 +17,7 @@ const SellerLogin = () => {
 
   return (
     <div className="flex relative min-h-screen items-center justify-center bg-gray-50">
-                <div className="logo absolute h-[fit] top-10  right-20 w-[12vw]"><img className='w-full h-full' src="/public/logo.png" alt="" /></div>
+                <div className="logo absolute h-[fit] top-10  right-20 w-[12vw]"><Link to={"/"}><img className='w-full h-full' src="/public/logo.png" alt="" /></Link></div>
 
       <form className="flex flex-col gap-6 w-80 sm:w-[352px] !p-8 !py-12 rounded-xl shadow-2xl border border-gray-200 bg-white">
         <p className="text-2xl font-semibold text-center !mb-2">
