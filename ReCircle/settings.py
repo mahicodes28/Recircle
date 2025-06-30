@@ -71,11 +71,11 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'ReCircle.wsgi.application'
-
+CORS_ALLOW_ALL_ORIGINS = True
 # React frontend
-CORS_ALLOWED_ORIGINS = [
+"""CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',  
-]
+]"""
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
@@ -85,13 +85,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'ReCircle',
-        'ENFORCE_SCHEMA': False,  # Optional
+        'ENFORCE_SCHEMA': False,
         'CLIENT': {
-            'host': 'mongodb://localhost:27017/',
-            'username': '',
-            'password': '',
-            'authSource': 'admin',
-            'authMechanism': 'SCRAM-SHA-1',
+            'host': 'mongodb+srv://mahich:<db_password>@cluster0.twh2p51.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',
         }
     }
 }
