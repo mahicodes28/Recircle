@@ -18,7 +18,8 @@ const AdminDashboard = () => {
      <div className='!shadow !py-4'>
             <div className='!px-5 !flex !justify-between !items-center'>
                 {/* logo here istead of h1 */}
-                <h1 className='!text-3xl'>Re<span className='!text-red-300'>Circle</span></h1>
+                                <div className="logo h-[100%] w-[9vw]"><img className='w-full h-full' src="/public/logo.png" alt="" /></div>
+
                 <div className='!flex !items-center !gap-3'>
                     <p className='!max-sm:hidden'>Welcome, Admin</p>
                     <div className='!relative group'>
@@ -56,7 +57,7 @@ const AdminDashboard = () => {
                 </NavLink>
             </ul>
           </div>
-          <div>
+          <div className=''>
             <Outlet/>
           </div>
       </div>

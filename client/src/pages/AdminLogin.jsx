@@ -15,7 +15,9 @@ const AdminLogin = () => {
     }
 
     return !isAdmin && (
-        <div className="flex p-4 items-center justify-center min-h-screen bg-gray-50">
+        <div className="flex p-4 relative items-center justify-center min-h-screen bg-gray-50">
+                <div className="logo absolute h-[fit] top-10  right-20 w-[12vw]"><img className='w-full h-full' src="/public/logo.png" alt="" /></div>
+
             <form
                 onSubmit={onSubmitHandler}
                 className="flex flex-col !gap-5 w-80 !items-start !p-8 !py-12 rounded-lg shadow-xl !border !border-gray-200 bg-white"
