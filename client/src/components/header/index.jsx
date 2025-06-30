@@ -114,7 +114,7 @@ function header() {
               </li>
               <li  >
                 <Tooltip title="Wishlist" >
-                  <IconButton  aria-label="cart">
+                  <IconButton  aria-label="Wishlist" onClick={()=>context.setWishListOpen(true)}>
                   <StyledBadge badgeContent={4} color="primary">
                     <CiHeart className="wishlist"/>
                   </StyledBadge>

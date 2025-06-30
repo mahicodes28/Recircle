@@ -109,14 +109,11 @@ const CartPanel = ({ open, onClose }) => {
               <span>${totalInc.toFixed(2)}</span>
             </div>
           </div>
-          <div className="w-full !p-5 !pb-10 flex gap-2 mt-2">
+          <div className="w-[100%] !p-5 !pb-10 mt-2">
             <Link to={"/cart"} onClick={()=>setOpenDrawer(false)} className="w-1/2">
-              <Button className="btn-org !font-[500] w-full !text-white">View to Cart</Button>
+              <Button className="btn-org hover:!bg-black !font-[500] !w-full !text-white">Go to Cart</Button>
             </Link>
-            <Link to={"/"} className="w-1/2">
-              <Button className="btn-org !font-[500] w-full !bg-red-500 !text-white">Checkout</Button>
-            </Link>
-          </div>
+ </div>
         </div>
       </div>
     </Drawer>

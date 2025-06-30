@@ -18,8 +18,10 @@ import Slide from "@mui/material/Slide";
 import ProductInfo from "./components/ProductDetail/ProductInfo";
 import { IoMdClose } from "react-icons/io";
 import CartPanel from "./components/CartPanel"; // <-- Import CartPanel
-import Cart from "./components/Cart/index.jsx";
-
+import Cart from "./pages/Cart.jsx";
+import WishListPanel from "./components/WishListPanel"
+import MyOrders from "./pages/MyOrders.jsx";
+import HelpCenter from "./pages/HelpCenter.jsx";
 // Create context at top-level
 const MyContext = createContext();
 
@@ -48,8 +50,18 @@ function App() {
     setDrawerOpen(false);
   };
 
+  //WishlistOpener
+  
+  const [wishLIstOpen, setWishListOpen] = useState(false);
+  const handleWishlistOpen =()=>{
+    setWishListOpen(true)
+  }
+  const handleWishlistClose = ()=>{
+    setWishListOpen(false)
+  }
   // Provide setOpen for dialog in context
-  const values = { setOpen: setDialogOpen, setDrawerOpen };
+  const values = { setOpen: setDialogOpen, setDrawerOpen,
+    setWishListOpen };
 
   return (
     <MyContext.Provider value={values}>
@@ -60,6 +72,8 @@ function App() {
           <Route path="/cart" element={<Cart/>}/>
           <Route path="/productListing" element={<ProductListing />} />
           <Route path="/productDetails" element={<ProductDetails />} />
+          <Route path="/help-center" element={<HelpCenter />} />
+          <Route path="/Order-tracking" element={<MyOrders/>}/>
           <Route
             path="/admin"
             element={isAdmin ? <AdminDashboard /> : <AdminLogin />}
@@ -102,6 +116,11 @@ function App() {
         {/* Cart Drawer */}
         <CartPanel open={drawerOpen} onClose={handleDrawerClose} />
         {/* Cart Drawer end */}
+
+        {/* wish list drawer */}
+        <WishListPanel open={wishLIstOpen} onClose={handleWishlistClose}/>
+        {/* wish list drawer end */}
+      
       </>
     </MyContext.Provider>
   );

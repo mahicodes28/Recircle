@@ -24,7 +24,7 @@ const menuItems = ['Milk', 'Bread', 'Eggs', 'Cheese']; // you can modify this ar
                 <Link to="/" className="text-[1.1vw] !font-semibold !capitalize   !transition duration-200 ease-in-out">Home</Link>
             </li>
               <li className='link relative'>
-                <Link to="/" className="text-[1.1vw] !font-semibold !capitalize   !transition duration-200 ease-in-out">Groceries</Link>
+                <Link to="/productListing" className="text-[1.1vw] !font-semibold !capitalize   !transition duration-200 ease-in-out">Groceries</Link>
               <div className='subMenu absolute top-[110%] opacity-0 !rounded-md left-0 min-w-[10vw] bg-white-400 shadow-lg transition-all'>
   <ul className='grid grid-cols-2 gap-2 px-4 py-3'>
     {menuItems.map((item, index) => (
@@ -43,19 +43,19 @@ const menuItems = ['Milk', 'Bread', 'Eggs', 'Cheese']; // you can modify this ar
             
             </li>
               <li className='link'>
-                <Link to="/" className="text-[1.1vw] !font-semibold !capitalize   !transition duration-200 ease-in-out">Clothing</Link>
+                <Link to="/productListing" className="text-[1.1vw] !font-semibold !capitalize   !transition duration-200 ease-in-out">Clothing</Link>
             </li>
               <li className='link'>
-                <Link to="/" className="text-[1.1vw] !font-semibold !capitalize   !transition duration-200 ease-in-out">Electronics</Link>
+                <Link to="/productListing" className="text-[1.1vw] !font-semibold !capitalize   !transition duration-200 ease-in-out">Electronics</Link>
             </li>
               <li className='link'>
-                <Link to="/" className="text-[1.1vw] !font-semibold !capitalize   !transition duration-200 ease-in-out">Art</Link>
+                <Link to="/productListing" className="text-[1.1vw] !font-semibold !capitalize   !transition duration-200 ease-in-out">Art</Link>
             </li>
               <li className='link'>
-                <Link to="/" className="text-[1.1vw] !font-semibold !capitalize   !transition duration-200 ease-in-out">Wellness</Link>
+                <Link to="/productListing" className="text-[1.1vw] !font-semibold !capitalize   !transition duration-200 ease-in-out">Wellness</Link>
             </li>
               <li className='link'>
-                <Link to="/" className="text-[1.1vw] !font-semibold !capitalize   !transition duration-200 ease-in-out">Beauty</Link>
+                <Link to="/productListing" className="text-[1.1vw] !font-semibold !capitalize   !transition duration-200 ease-in-out">Beauty</Link>
             </li>
         </ul>
     </div>
