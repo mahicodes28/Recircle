@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
-from .views import hello ,Message
+
 urlpatterns = [
-    path('api/', hello, name='end1'),
-    path('home/',Message,name='home'),
+    path("products/", views.get_all_products, name="getproducts"),
+    path("products/add/", views.create_product, name="addproduct"),
 ]
