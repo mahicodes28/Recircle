@@ -17,7 +17,7 @@ import Dialog from "@mui/material/Dialog";
 import Slide from "@mui/material/Slide";
 import ProductInfo from "./components/ProductDetail/ProductInfo";
 import { IoMdClose } from "react-icons/io";
-import CartPanel from "./components/CartPanel"; // <-- Import CartPanel
+import CartPanel from "./components/CartPanel";
 import Cart from "./pages/Cart.jsx";
 import WishListPanel from "./components/WishListPanel"
 import MyOrders from "./pages/MyOrders.jsx";
@@ -31,11 +31,11 @@ import AddProduct from './components/Seller/AddProduct.jsx'
 const MyContext = createContext();
 
 function App() {
-  const { isAdmin , isseller} = useAppContext();
+  const { isAdmin , isseller } = useAppContext();
   const location = useLocation();
 
-  // Hide header/footer on any /admin route
-  const hideHeaderFooter = location.pathname.startsWith("/admin") ||location.pathname.startsWith("/seller");
+  // Hide header/footer on any /admin or /seller route
+  const hideHeaderFooter = location.pathname.startsWith("/admin") || location.pathname.startsWith("/seller");
 
   // Dialog state
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -55,47 +55,47 @@ function App() {
     setDrawerOpen(false);
   };
 
-  //WishlistOpener
-  
+  // Wishlist state
   const [wishLIstOpen, setWishListOpen] = useState(false);
-  const handleWishlistOpen =()=>{
+  const handleWishlistOpen = () => {
     setWishListOpen(true)
   }
-  const handleWishlistClose = ()=>{
+  const handleWishlistClose = () => {
     setWishListOpen(false)
   }
   // Provide setOpen for dialog in context
-  const values = { setOpen: setDialogOpen, setDrawerOpen,
-    setWishListOpen };
+  const values = { setOpen: setDialogOpen, setDrawerOpen, setWishListOpen };
 
   return (
     <MyContext.Provider value={values}>
-      <>
+      <div className="min-h-screen flex flex-col bg-white">
         {!hideHeaderFooter && <Header />}
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/cart" element={<Cart/>}/>
-          <Route path="/productListing" element={<ProductListing />} />
-          <Route path="/productDetails" element={<ProductDetails />} />
-          <Route path="/help-center" element={<HelpCenter />} />
-          <Route path="/Order-tracking" element={<MyOrders/>}/>
-          <Route
-            path="/admin"
-            element={isAdmin ? <AdminDashboard /> : <AdminLogin />}
-          >
-            <Route path="product-list" element={<AllProducts />} />
-            <Route path="seller-list" element={<AllSellers />} />
-            <Route path="new-product" element={<ProductsRequests />} />
-          </Route>
-          <Route
-            path="/seller"
-            element={isseller ? < SellerDashboard/> : <SellerLogin />}
-          >
-            <Route path="product-list" element={<SellerProducts />} />
-            <Route path="orders" element={<SeeOrders />} />
-            <Route path="add-product" element={<AddProduct />} />
-          </Route>
-        </Routes>
+        <main className="flex-1 w-full max-w-[100vw] mx-auto px-2 sm:px-4 md:px-8">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/productListing" element={<ProductListing />} />
+            <Route path="/productDetails" element={<ProductDetails />} />
+            <Route path="/help-center" element={<HelpCenter />} />
+            <Route path="/Order-tracking" element={<MyOrders />} />
+            <Route
+              path="/admin"
+              element={isAdmin ? <AdminDashboard /> : <AdminLogin />}
+            >
+              <Route path="product-list" element={<AllProducts />} />
+              <Route path="seller-list" element={<AllSellers />} />
+              <Route path="new-product" element={<ProductsRequests />} />
+            </Route>
+            <Route
+              path="/seller"
+              element={isseller ? <SellerDashboard /> : <SellerLogin />}
+            >
+              <Route path="product-list" element={<SellerProducts />} />
+              <Route path="orders" element={<SeeOrders />} />
+              <Route path="add-product" element={<AddProduct />} />
+            </Route>
+          </Routes>
+        </main>
         {!hideHeaderFooter && <Footer />}
 
         {/* Product Detail Dialog */}
@@ -131,10 +131,9 @@ function App() {
         {/* Cart Drawer end */}
 
         {/* wish list drawer */}
-        <WishListPanel open={wishLIstOpen} onClose={handleWishlistClose}/>
+        <WishListPanel open={wishLIstOpen} onClose={handleWishlistClose} />
         {/* wish list drawer end */}
-      
-      </>
+      </div>
     </MyContext.Provider>
   );
 }

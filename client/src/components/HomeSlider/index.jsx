@@ -23,25 +23,31 @@ const slideImages = [
 
 function HomeSlider() {
   return (
-    <Swiper
-      spaceBetween={30}
-      effect="fade"
-      navigation={false}//swiper options(side arrows)
-      pagination={{ clickable: true }}
-      autoplay={{
-        delay: 2000,
-        disableOnInteraction: false,
-      }}
-      loop={true}
-      modules={[EffectFade, Navigation, Autoplay, Pagination]}
-      className="mySwiper"
-    >
-      {slideImages.map((src, index) => (
-        <SwiperSlide key={index}>
-          <img className="imageSlider !w-full !h-full" src={src} alt={`Slide ${index + 1}`} />
-        </SwiperSlide>
-      ))}
-    </Swiper>
+    <div className="w-full h-[40vw] max-h-[400px] min-h-[180px] sm:h-[28vw] sm:max-h-[500px] sm:min-h-[220px] rounded-lg overflow-hidden">
+      <Swiper
+        spaceBetween={30}
+        effect="fade"
+        navigation={false}
+        pagination={{ clickable: true }}
+        autoplay={{
+          delay: 2000,
+          disableOnInteraction: false,
+        }}
+        loop={true}
+        modules={[EffectFade, Navigation, Autoplay, Pagination]}
+        className="mySwiper"
+      >
+        {slideImages.map((src, index) => (
+          <SwiperSlide key={index}>
+            <img
+              className="imageSlider w-full h-[40vw] max-h-[400px] min-h-[180px] sm:h-[28vw] sm:max-h-[500px] sm:min-h-[220px] object-cover rounded-lg"
+              src={src}
+              alt={`Slide ${index + 1}`}
+            />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
   );
 }
 

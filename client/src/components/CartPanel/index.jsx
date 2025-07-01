@@ -43,39 +43,46 @@ const CartPanel = ({ open, onClose }) => {
       transitionDuration={200}
       anchor="right"
       onClose={onClose}
+      PaperProps={{
+        sx: {
+          width: { xs: '100vw', sm: '80vw', md: '30vw' },
+          maxWidth: '100vw',
+          borderRadius: { xs: 0, sm: '16px 0 0 16px' },
+        }
+      }}
     >
-      <div className="box w-[30vw] h-full !rounded-lg flex flex-col relative bg-[rgb(227,221,221)]">
-        <div className="heading shadow-md flex items-center justify-between  !px-4 rounded-lg !py-4 w-[full]">
-          <h1 className="!text-xl">Shopping Cart</h1>
+      <div className="box h-full flex flex-col relative bg-[rgb(227,221,221)]">
+        <div className="heading shadow-md flex items-center justify-between px-4 rounded-lg py-4 w-full">
+          <h1 className="text-lg md:text-xl">Shopping Cart</h1>
           <IoCloseOutline
             onClick={onClose}
-            className="text-3xl cursor-pointer link"
+            className="text-2xl md:text-3xl cursor-pointer link"
           />
         </div>
-        <div className="scroll w-full flex flex-col gap-2 !p-3 max-h-[60vh] overflow-y-auto overflow-x-hidden flex-1">
+        <div className="scroll w-full flex flex-col gap-2 p-3 max-h-[60vh] overflow-y-auto overflow-x-hidden flex-1">
           {cartItems.length === 0 ? (
             <div className="text-center text-gray-500 py-10">Your cart is empty.</div>
           ) : (
             cartItems.map((item) => (
-              <div key={item.id} className="cart rounded-md !bg-white shadow-md w-fit flex items-center w-full !px-3 !py-5">
-                <div className="imag !w-[20%] flex items-center justify-center">
+              <div key={item.id} className="cart rounded-md bg-white shadow-md flex flex-col sm:flex-row items-center w-full px-3 py-4 sm:py-5">
+                <div className="imag w-full sm:w-[20%] flex items-center justify-center mb-2 sm:mb-0">
                   <img
-                    className="w-[4vw] h-[4vw] border object-cover rounded"
+                    className="w-20 h-20 sm:w-[4vw] sm:h-[4vw] border object-cover rounded"
                     src={item.image}
                     alt="Product"
                   />
                 </div>
-                <div className="w-[80%] relative bg-white px-2 py-1 rounded">
+                <div className="w-full sm:w-[80%] relative bg-white px-2 py-1 rounded">
                   <Link className="link" to="/">
-                    <h1 className="!text-black !font-[500]">{item.name}</h1>
+                    <h1 className="text-black font-[500] text-base md:text-lg">{item.name}</h1>
                   </Link>
-                  <h2 className="!text-black !font-[500]">{item.category}</h2>
-                  <h3 className="!text-[.81vw]">
-                    Qty: <span className="!text-red-400">{item.qty} x</span>{" "}
-                    <span className="!text-red-400">${item.price}</span>
+                  <h2 className="text-black font-[500] text-sm md:text-base">{item.category}</h2>
+                  <h3 className="text-xs md:text-sm">
+                    Qty: <span className="text-red-400">{item.qty} x</span>{" "}
+                    <span className="text-red-400">${item.price}</span>
                   </h3>
                   <MdDelete
-                    className="absolute link text-black cursor-pointer !text-2xl top-0 right-5"
+                    className="absolute link text-black cursor-pointer text-xl md:text-2xl top-0 right-5"
                     onClick={() => handleDelete(item.id)}
                   />
                 </div>
@@ -84,36 +91,38 @@ const CartPanel = ({ open, onClose }) => {
           )}
         </div>
         {/* Fixed bottom panel */}
-        <div className="!bottom-10 !rounded-lg !shadow-md left-3 w-[95%] bg-white border-t !border-zinc-400 px-5 py-4 z-10"
-          style={{ position: "sticky", bottom: 0 }}>
-          <div className="bottomInfo gap-3 !py-5 !px-4 flex flex-col !items-center !justify-between w-full">
+        <div
+          className="bottom-0 rounded-lg shadow-md left-0 w-full bg-white border-t border-zinc-400 px-3 md:px-5 py-4 z-10"
+          style={{ position: "sticky", bottom: 0 }}
+        >
+          <div className="bottomInfo gap-3 py-5 px-2 md:px-4 flex flex-col items-center justify-between w-full">
             <div className="flex items-center w-full justify-between">
-              <h1 className="!text-md capitalize !font-[500]">Items</h1>
+              <h1 className="text-md capitalize font-[500]">Items</h1>
               <span>${itemsTotal.toFixed(2)}</span>
             </div>
             <div className="shipping flex items-center w-full justify-between">
-              <h1 className="!text-md capitalize !font-[500]">Shipping</h1>
+              <h1 className="text-md capitalize font-[500]">Shipping</h1>
               <span>${shipping.toFixed(2)}</span>
             </div>
             <hr />
-            <div className="flex border-t items-center !py-2 w-full justify-between">
-              <h1 className="!text-md capitalize !font-[500]">Total (tax inc.)</h1>
+            <div className="flex border-t items-center py-2 w-full justify-between">
+              <h1 className="text-md capitalize font-[500]">Total (tax inc.)</h1>
               <span>${totalInc.toFixed(2)}</span>
             </div>
             <div className="flex items-center w-full justify-between">
-              <h1 className="!text-md capitalize !font-[500]">Total (tax exc.)</h1>
+              <h1 className="text-md capitalize font-[500]">Total (tax exc.)</h1>
               <span>${totalExc.toFixed(2)}</span>
             </div>
-            <div className="flex border-t items-center !py-2 w-full justify-between">
-              <h1 className="!text-md capitalize !font-[600]">Total</h1>
+            <div className="flex border-t items-center py-2 w-full justify-between">
+              <h1 className="text-md capitalize font-[600]">Total</h1>
               <span>${totalInc.toFixed(2)}</span>
             </div>
           </div>
-          <div className="w-[100%] !p-5 !pb-10 mt-2">
-            <Link to={"/cart"} onClick={()=>setOpenDrawer(false)} className="w-1/2">
-              <Button className="btn-org hover:!bg-black !font-[500] !w-full !text-white">Go to Cart</Button>
+          <div className="w-full px-0 md:px-5 pb-8 mt-2">
+            <Link to={"/cart"} onClick={onClose} className="w-full">
+              <Button className="btn-org hover:!bg-black font-[500] w-full text-white">Go to Cart</Button>
             </Link>
- </div>
+          </div>
         </div>
       </div>
     </Drawer>
