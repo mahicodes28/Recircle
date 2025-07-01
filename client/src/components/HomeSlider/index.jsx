@@ -10,15 +10,15 @@ import { EffectFade, Navigation, Pagination, Autoplay } from 'swiper/modules';
 
 // Array of slide image paths
 const slideImages = [
-  '/public/Banner1.png',
-  '/public/sliderImage2.jpg',
-  '/public/sliderImage3.jpg',
-  '/public/sliderImage4.jpg',
-  '/public/5.jpg',
-  '/public/sliderImage6.jpg',
-  '/public/sliderImage7.jpg',
-  '/public/sliderImage8.jpg',
-  '/public/sliderImage9.jpg',
+  '/Banner1.png',
+  '/sliderImage2.jpg',
+  '/sliderImage3.jpg',
+  '/sliderImage4.jpg',
+  '/5.jpg',
+  '/sliderImage6.jpg',
+  '/sliderImage7.jpg',
+  '/sliderImage8.jpg',
+  '/sliderImage9.jpg',
 ];
 
 function HomeSlider() {
