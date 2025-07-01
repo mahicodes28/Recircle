@@ -1,4 +1,4 @@
- const mongoose = require ("mongoose");
+import mongoose from "mongoose";
 
  const orderSchema = new mongoose.Schema ({ 
     userID : {
@@ -32,12 +32,7 @@
         type : String , 
         enum : ["CASH" , "ONLINE"],
          default : "CASH",
-    }, 
-    PaytmentStatus : {
-        type : String,
-        enum : ["PAID"," ON DELIVERY"],
-        default : "PAID"
-    },
+    }
  },{timestamps : true }); 
 
 module.export = mongoose.model("Order",orderSchema);

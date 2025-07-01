@@ -1,22 +1,24 @@
-const express =  require('express');
+import express from 'express'
 const app = express();
-const fs = require('fs');
-const PORT = 8000;
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
+import SellerRoutes from './routes/seller.js'
 
+
+const PORT  = process.env.PORT || 5000;
+
+
+//connect this mongo from cloud 
 mongoose.connect('mongodb://127.0.0.1:27017/productdata')
    .then(() => {console.log("MongoDB connected ");})
    .catch((err) => {console.log("MongoDB connection error", err);
 });
 
-const sellerrouter = require('./routs/seller');
-const productrouter = require('./routs/product')
 
 app.use(express.json());
 app.use(express.urlencoded({extended : true }));
 
-app.use("/seller",sellerrouter);
-app.use("/product",productrouter);
+app.use("/api/seller",SellerRoutes);
+// app.use("/product",productrouter);
 
 app.listen(PORT,()=>{
     console.log('your server is running');

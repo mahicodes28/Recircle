@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 
 
@@ -28,7 +28,7 @@ const productSchema = new mongoose.Schema({
         reqiured : true ,
     },
     image : {
-       type : [],
+       type : Array,
        required : true ,
     },
     seller :{
