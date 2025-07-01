@@ -10,7 +10,7 @@ export const AppProvider = ({ children }) => {
   const [isAdmin ,setisAdmin ]= useState(false);
   const [products , setProducts] = useState([]);
   const [sellers , setSellers] = useState([]);
-
+  const [isseller , setIsSeller ] = useState(false);
 
    //function for Fetchig products
     const fetchProduct =async()=>{
@@ -22,7 +22,7 @@ export const AppProvider = ({ children }) => {
 
     }
 
-  const value = {isAdmin , setisAdmin , products , setProducts , fetchProduct , sellers , setSellers , fetchSellers}
+  const value = {isAdmin , setisAdmin , products , setProducts , fetchProduct , sellers , setSellers , fetchSellers , isseller , setIsSeller}
  
   return (
     <AppContext.Provider value={value}>

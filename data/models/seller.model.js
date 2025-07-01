@@ -1,4 +1,4 @@
-const mongoose = require ("mongoose");
+import mongoose from "mongoose";
 
 
 
@@ -16,8 +16,6 @@ const sellerSchema = new mongoose.Schema({
     password :{
         type : String,
         required : true ,
-        unique :true ,
-        min : 5 , max :15,
     },
     cartItems: {
         type : mongoose.Schema.Types.ObjectId , ref : "Order", 
