@@ -10,7 +10,7 @@ import { EffectFade, Navigation, Pagination, Autoplay } from 'swiper/modules';
 
 // Array of slide image paths
 const slideImages = [
-  '/public/sliderImage1.jpg',
+  '/public/Banner1.png',
   '/public/sliderImage2.jpg',
   '/public/sliderImage3.jpg',
   '/public/sliderImage4.jpg',
@@ -38,7 +38,7 @@ function HomeSlider() {
     >
       {slideImages.map((src, index) => (
         <SwiperSlide key={index}>
-          <img className="imageSlider" src={src} alt={`Slide ${index + 1}`} />
+          <img className="imageSlider !w-full !h-full" src={src} alt={`Slide ${index + 1}`} />
         </SwiperSlide>
       ))}
     </Swiper>
