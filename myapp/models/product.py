@@ -11,6 +11,5 @@ class Product(Document):
     image = ListField(URLField())  # List of image URLs
     seller = StringField(required=True)  
     isApproved = BooleanField(default=False)
-
     created_at = DateTimeField(default=datetime.utcnow)
     updated_at = DateTimeField(default=datetime.utcnow)

@@ -87,8 +87,11 @@ logging.basicConfig(level=logging.DEBUG)
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-
 DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'dummy.sqlite3',
+    }
 }
 
 
@@ -139,6 +142,7 @@ from mongoengine import connect
 
 connect(
     db="ReCircle",
-    host=os.getenv("MONGO_URI")
+    host="mongodb+srv://mahich:28122005@cluster0.twh2p51.mongodb.net/ReCircle?retryWrites=true&w=majority&ssl=true",
+         # mongodb+srv://<username>:<password>@ac-oomlojl-shard-00-00.twh2p51.mongodb.net/<dbname>?retryWrites=true&w=majority&
 )
 
