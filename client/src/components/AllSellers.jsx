@@ -1,9 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAppContext } from '../context/AppProvider'
 
 const AllSellers = () => {
     
-const {sellers, setSellers } = useAppContext();
+const {sellers, fetchSellers } = useAppContext();
+
+useEffect(()=>{
+fetchSellers();
+},[])
+
+
 
   return (
      <div className='container p-2 sm:p-4 mx-auto'>

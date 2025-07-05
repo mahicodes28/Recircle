@@ -12,7 +12,7 @@ import BannerBox from '../BannerBox';
 const AdsBannerSlider = (props) => {
   return (
     <>
-      <div className="box mx-auto px-2 md:px-10 lg:px-20 bg-transparent rounded-md p-2 md:p-4 mb-2 mt-2">
+      <div className="box mx-auto px-2 md:px-10 xl:px-20 bg-transparent md:rounded-md xl:rounded-md p-2 xl:p-4 md:p-4 mb-2 mt-2">
         <Swiper
           slidesPerView={props.items}
           spaceBetween={props.spaceBetween}

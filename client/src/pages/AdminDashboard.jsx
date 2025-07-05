@@ -4,11 +4,28 @@ import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { MdInventory2 } from "react-icons/md";
 import { FaClipboardList } from "react-icons/fa";
 import { FaUserCheck } from "react-icons/fa6";
+import { toast } from 'react-toastify';
+import { assets } from '../assets/asset';
 
 const AdminDashboard = () => {
 
-  const {isAdmin , setisAdmin} = useAppContext();
+  const {isAdmin , setisAdmin , axios} = useAppContext();
   const navigate = useNavigate();
+
+   const logout = async () => {
+        try{
+            const {data} = await axios.get('/api/admin/logout');
+            if (data.success) {
+                toast.success(data.message);
+                setisAdmin(false)
+                navigate("/");
+            }else{
+                toast.error(data.message);
+            }
+        }catch (error) {
+            toast.error("Something went wrong");
+        }
+    }
 
 
   return (
@@ -24,10 +41,10 @@ const AdminDashboard = () => {
                     <p className='!max-sm:hidden'>Welcome, Admin</p>
                     <div className='!relative group'>
                        {/* an admin image here or any profile image */}
-                        <h1 className='!text-sm '>Admin Logo</h1>
+                        <img className='w-4 h-4' src={assets.userProfile} alt="" />
                         <div className='absolute  hidden group-hover:block !top-[50%] !right-[-80%] -translate-x-[50%] -translate-y-[50%] !z-10 !text-black !rounded pt-12'>
                             <ul className='!list-none w-[fit] !m-0 !p-0 !bg-white !rounded-md !border !border-gray-200 !text-sm'>
-                                <li onClick={()=>{setisAdmin(false);navigate('/admin')}} className='link !py-1 !px-2 !cursor-pointer !pr-10'>LogOut</li>
+                                <li onClick={logout} className='link !py-1 !px-2 !cursor-pointer !pr-10'>LogOut</li>
                             </ul>
                         </div>
                     </div>
@@ -54,6 +71,11 @@ const AdminDashboard = () => {
                     <FaUserCheck className='!text-xl' />
                     {/* <img className='min-w-4' src={assets.person_tick_icon} alt="" /> */}
                     <p className='!max-sm:hidden'>See Sellers</p>
+                </NavLink>
+                <NavLink className={({isActive})=>`flex !items-center !p-3 !sm:px-6 !gap-2 !w-full !hover:bg-gray-100 ${isActive && '!bg-blue-100 !border-r-4 !border-blue-500'}`}  to={'/admin/banners'} >
+                    <FaUserCheck className='!text-xl' />
+                    {/* <img className='min-w-4' src={assets.person_tick_icon} alt="" /> */}
+                    <p className='!max-sm:hidden'>See Banners</p>
                 </NavLink>
             </ul>
           </div>

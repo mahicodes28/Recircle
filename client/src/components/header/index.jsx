@@ -6,13 +6,16 @@ import { styled } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { IoIosGitCompare } from "react-icons/io";
-import { CiHeart } from "react-icons/ci";
+import { FaRegHeart } from "react-icons/fa";
+
 import Tooltip from '@mui/material/Tooltip';
 import Navigation from "./Navigation";
 import { useAppContext } from "../../context/AppProvider";
 import { UserButton, useClerk , useUser } from '@clerk/clerk-react'
 import { useContext } from "react";
 import { MyContext } from "../../App";
+
+
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -28,21 +31,21 @@ function header() {
     const {openSignIn} = useClerk();
     const {user}=useUser();
 
+
   return (
     <header>
-      {/* Top Strip */}
-      <div className="top-strip py-2 border-t-2 border-b-2 border-gray-200 bg-white">
-        <div className="container !px-2 sm:px-4">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-2">
-            <div className="col1 !w-full sm:w-[50%] text-center sm:text-left">
-              <h1 className="text-xs sm:text-sm md:text-md">Get items at 50% price as original</h1>
+      <div className="top-strip  md:py-2 xl:py-2 2 text-white xl:border-b-1 border-white bg-black">
+        <div className="container !p-1 xl:!p-none md:!p-none">
+          <div className="block md:flex xl:flex justify-between xl:text-left text-center">
+            <div className="col1 w-[100%] md:w-[1/2]  xl:w-[50%]">
+              <h1 className="text-sm text-center md:text-left hidden xl:block md:block xl:text-left xl:text-md xl:text-md">Get items at 50% price as original</h1>
             </div>
-            <div className="col2 w-full sm:w-auto">
-              <ul className="flex justify-center sm:justify-end items-center gap-3 sm:gap-5 text-xs sm:text-sm">
+            <div className="col2  w-[100%] md:w-[50%] xl:w-[50%] ">
+              <ul className="flex justify-between md:justify-end xl:justify-end items-center gap-5">
                 <li className="list-none">
                   <Link
                     to="/help-center"
-                    className="link transition duration-200 ease-in-out"
+                    className="text-md link transition duration-200 ease-in-out"
                   >
                     Help Center
                   </Link>
@@ -50,7 +53,7 @@ function header() {
                 <li className="list-none">
                   <Link
                     to="/order-tracking"
-                    className="link transition duration-200 ease-in-out"
+                    className="text-md link transition duration-200 ease-in-out"
                   >
                     Order Tracking
                   </Link>
@@ -60,65 +63,99 @@ function header() {
           </div>
         </div>
       </div>
-      {/* Main Header */}
-      <div className="header border-b-2 border-gray-200 !py-2 bg-white">
-        <div className="container mt-2 md:!mt-2 flex flex-col sm:flex-row justify-between items-center h-auto sm:h-20 !px-2 sm:px-0 gap-3">
-          {/* Logo */}
-          <div className="col1 relative h-fit w-full sm:w-[25%] flex items-center justify-center sm:justify-start overflow-hidden mb-2 md:mb-0">
-            <Link to="/" className="logo object-fit">
-              <img className="h-14 sm:h-20 w-auto" src="/logo.png" alt="Logo" />
+      <div className="header  border-b-0 border-white !bg-black text-white xl:!py-2 bg-white ">
+        <div className="container m-auto xl:flex md:flex w-full xl:w-[full] md:w-[full] xl:flex-row flex-col md:flex-row  justify-between items-center min-h-20 md:h-20 xl:h-20">
+         <div className="flex  justify-between items-center xl:flex-row xl:w-[70%] md:w-[70%]  xl:py-none py-2">
+           <div className="col1 relative h-fit w-[full] md:w-[1/4] xl:w-[1/4]  flex items-center  overflow-hidden ">
+            <Link to="/" className="logo  object-fit ">
+              <img className="h-10 w-fit xl:h-20 md:h-20" src="/logo.png" alt="Logo" />
             </Link>
           </div>
-          {/* Search */}
-          <div className="col2 w-full sm:w-[45%] mb-2 sm:mb-0">
-            <Search />
+          <div className="col2 w-[60%] xl:w-[70%] md:w-[70%]">
+            <Search></Search>
           </div>
-          {/* User/Icons */}
-          <div className="col3 w-full sm:w-[30%]">
-            <ul className="flex justify-center sm:justify-end items-center gap-3 sm:gap-5">
-              <li>
-                {user ? (
-                  <div className='flex items-center gap-2 sm:gap-3'>
-                    {user.firstName && (
-                      <p className='hidden sm:block text-xs sm:text-sm'>
-                        Hi, {user.firstName}{user.lastName ? ` ${user.lastName}` : ''}
-                      </p>
-                    )}
-                    <UserButton />
-                  </div>
-                ) : (
-                  <div className='flex gap-2 sm:gap-4 text-xs'>
-                    <button onClick={openSignIn} className='link px-4 sm:px-6 py-2 rounded-full'>Login | Register</button>
-                  </div>
-                )}
+         </div>
+          <div className="col3 scale:80 w-[100%] md:w-[30%] xl:p-none p-3 md:p-none xl:w-[30%]">
+            <ul className="flex justify-end xl:justify-end  items-center gap-5">
+              <li >
+                {/* <Link
+                  to="/login"
+                  className="link transition duration-200 ease-in-out"
+                >
+                  Login
+                </Link>{" "}
+                |{" "}
+                <Link
+                  to="/register"
+                  className="link transition duration-200 ease-in-out"
+                >
+                  Register
+                </Link> */}
+               {user ? (
+  <div className='flex items-center gap-3'>
+    {user.firstName && (
+      <p className='max-sm:hidden'>
+        Hi, {user.firstName}{user.lastName ? ` ${user.lastName}` : ''}
+      </p>
+    )}
+    <UserButton />
+  </div>
+) : (
+  <div className='flex gap-4 mx-sm:text-xs'>
+    <button onClick={(e) => openSignIn()} className='link px-6 sm:px-9 py-2 rounded-full'>Login | Register</button>
+  </div>
+)}
               </li>
-              <li className="compare">
-                <Tooltip title="Compare">
-                  <IconButton aria-label="cart">
-                    <StyledBadge badgeContent={4} color="primary">
-                      <IoIosGitCompare className="compare" />
-                    </StyledBadge>
-                  </IconButton>
+              <li className="compare  hidden xl:block md:block "  >
+               <Tooltip title="Compare" >
+                 <IconButton aria-label="cart" className="!text-white">
+                  <StyledBadge badgeContent={4} sx={{
+    '& .MuiBadge-badge': {
+      backgroundColor: 'white',
+      color: 'black',
+      fontWeight: "600",
+      border: "none"
+    },
+  }}
+>
+                    <IoIosGitCompare className="compare " />
+                  </StyledBadge>
+                </IconButton>
+               </Tooltip>
+              </li>
+              <li  >
+                <Tooltip title="Wishlist" >
+                  <IconButton  aria-label="Wishlist" className="!text-white !font-bold" onClick={()=>context.setWishListOpen(true)}>
+                  <StyledBadge badgeContent={4} sx={{
+    '& .MuiBadge-badge': {
+      backgroundColor: 'white',
+      color: 'black',
+      fontWeight: "600",
+      border: "none"
+    },
+  }}>
+                    <FaRegHeart className="wishlist"/>
+                  </StyledBadge>
+                </IconButton>
                 </Tooltip>
               </li>
-              <li>
-                <Tooltip title="Wishlist">
-                  <IconButton aria-label="Wishlist" onClick={() => context.setWishListOpen(true)}>
-                    <StyledBadge badgeContent={4} color="primary">
-                      <CiHeart className="wishlist" />
-                    </StyledBadge>
-                  </IconButton>
-                </Tooltip>
-              </li>
-              <li>
-                <Tooltip title="Cart">
-                  <IconButton aria-label="cart" onClick={() => context.setDrawerOpen(true)}>
-                    <StyledBadge badgeContent={4} color="primary">
+              < li>
+                <Tooltip title="Cart" >
+                  <IconButton aria-label="cart" className="!text-white" onClick={()=>context.setDrawerOpen(true)}>
+                    <StyledBadge badgeContent={4}  sx={{
+    '& .MuiBadge-badge': {
+      backgroundColor: 'white',
+      color: 'black',
+      fontWeight: "600",
+      border: "none"
+    },
+  }}>
                       <MdOutlineShoppingCart className="cart" />
                     </StyledBadge>
                   </IconButton>
                 </Tooltip>
               </li>
+              
             </ul>
           </div>
         </div>

@@ -27,6 +27,8 @@ import SellerDashboard from './pages/SellerDashboard.jsx';
 import SellerProducts from './components/Seller/SellerProducts.jsx'
 import SeeOrders from './components/Seller/SeeOrders.jsx'
 import AddProduct from './components/Seller/AddProduct.jsx'
+import BannnerDetails from "./components/BannnerDetails.jsx";
+import { ToastContainer , toast } from "react-toastify";
 // Create context at top-level
 const MyContext = createContext();
 
@@ -67,35 +69,36 @@ function App() {
   const values = { setOpen: setDialogOpen, setDrawerOpen, setWishListOpen };
 
   return (
+    
     <MyContext.Provider value={values}>
-      <div className="min-h-screen flex flex-col bg-white">
+      <ToastContainer/>
+      <div className="min-h-screen flex flex-col bg-black !text-white">
         {!hideHeaderFooter && <Header />}
-        <main className="flex-1 w-full max-w-[100vw] mx-auto px-2 sm:px-4 md:px-8">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/productListing" element={<ProductListing />} />
-            <Route path="/productDetails" element={<ProductDetails />} />
-            <Route path="/help-center" element={<HelpCenter />} />
-            <Route path="/Order-tracking" element={<MyOrders />} />
-            <Route
-              path="/admin"
-              element={isAdmin ? <AdminDashboard /> : <AdminLogin />}
-            >
-              <Route path="product-list" element={<AllProducts />} />
-              <Route path="seller-list" element={<AllSellers />} />
-              <Route path="new-product" element={<ProductsRequests />} />
-            </Route>
-            <Route
-              path="/seller"
-              element={isseller ? <SellerDashboard /> : <SellerLogin />}
-            >
-              <Route path="product-list" element={<SellerProducts />} />
-              <Route path="orders" element={<SeeOrders />} />
-              <Route path="add-product" element={<AddProduct />} />
-            </Route>
-          </Routes>
-        </main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/cart" element={<Cart/>}/>
+          <Route path="/productListing" element={<ProductListing />} />
+          <Route path="/productDetails" element={<ProductDetails />} />
+          <Route path="/help-center" element={<HelpCenter />} />
+          <Route path="/Order-tracking" element={<MyOrders/>}/>
+          <Route
+            path="/admin"
+            element={isAdmin ? <AdminDashboard /> : <AdminLogin />}
+          >
+            <Route path="product-list" element={<AllProducts />} />
+            <Route path="seller-list" element={<AllSellers />} />
+            <Route path="new-product" element={<ProductsRequests />} />
+            <Route path="banners" element={<BannnerDetails/>}/>
+          </Route>
+          <Route
+            path="/seller"
+            element={isseller ? < SellerDashboard/> : <SellerLogin />}
+          >
+            <Route path="product-list" element={<SellerProducts />} />
+            <Route path="orders" element={<SeeOrders />} />
+            <Route path="add-product" element={<AddProduct />} />
+          </Route>
+        </Routes>
         {!hideHeaderFooter && <Footer />}
 
         {/* Product Detail Dialog */}

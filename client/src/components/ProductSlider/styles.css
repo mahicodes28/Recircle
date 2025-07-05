@@ -19,11 +19,11 @@
 }
 .container .swiper-slide{
   background-color: transparent !important;
+  height: fit-content !important;
   width: fit-content ;
 }
 .ProductSlider .swiper-wrapper{
   padding: 2vw;
-  
 }
 .ProductSlider .swiper-slide img {
   object-fit: cover;
@@ -34,4 +34,18 @@
   --swiper-navigation-size: 2vw;
   --swiper-pagination-bullet-inactive-color: #000;
   user-select: none;
+}
+
+@media (max-width:600px) {
+  
+  .productSlider .swiper {
+    height: 50vh !important;
+    
+  }
+  .productSlider .swiper-wrapper{
+    height: 50vh !important ;
+  }
+  .productSlider .imgWrapper{
+    height: fit-content;
+  }
 }
