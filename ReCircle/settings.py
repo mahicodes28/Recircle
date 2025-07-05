@@ -136,13 +136,34 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+import os
+from dotenv import load_dotenv
+from mongoengine import connect, connection
+from pymongo.mongo_client import MongoClient
+from pymongo.server_api import ServerApi
+
+# Load environment variables from .env file
 load_dotenv()
 
-from mongoengine import connect
+# Set default MongoDB URI
+MONGO_URI = os.getenv("MONGO_URI", "mongodb+srv://mahich:28122005@cluster0.twh2p51.mongodb.net/ReCircle?retryWrites=true&w=majority&ssl=true")
 
-connect(
-    db="ReCircle",
-    host="mongodb+srv://mahich:28122005@cluster0.twh2p51.mongodb.net/ReCircle?retryWrites=true&w=majority&ssl=true",
-         # mongodb+srv://<username>:<password>@ac-oomlojl-shard-00-00.twh2p51.mongodb.net/<dbname>?retryWrites=true&w=majority&
-)
+# Attempt to connect with mongoengine if not already connected
+try:
+    connection.get_connection(alias='default')
+except Exception:
+    connect(
+        db="ReCircle",
+        host=MONGO_URI,
+        alias="default"
+    )
 
+# Test MongoDB connectivity using pymongo
+try:
+    # Use the same URI or a generic one for admin commands
+    mongo_uri = os.getenv("MONGO_URI", "mongodb+srv://mahich:28122005@cluster0.twh2p51.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+    client = MongoClient(mongo_uri, server_api=ServerApi('1'))
+    client.admin.command('ping')
+    print("Pinged your deployment. You successfully connected to MongoDB!")
+except Exception as e:
+    print(f"Error connecting to MongoDB: {e}")

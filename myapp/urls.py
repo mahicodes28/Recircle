@@ -1,22 +1,25 @@
 from django.urls import path
-from . import views
+from myapp import views
 
 urlpatterns = [
-     path("products/", views.get_all_products, name="getproducts"),
-     path("products/add/", views.create_product, name="addproduct"),
+    path('products/', views.get_all_products),
+    path('products/create/', views.create_product),
 
-    # path("addresses/", views.get_all_addresses, name="getaddresses"),
-    # path("addresses/create/", views.create_address, name="addaddress"),
+    path('addresses/', views.get_all_addresses),
+    path('addresses/create/', views.create_address),
 
-    # path("orders/", views.get_all_orders, name="getorders"),
-    # path("orders/create/", views.create_order, name="addorder"),
+    path('orders/', views.get_all_orders),
+    path('orders/create/', views.create_order),
 
-    # path("sellers/", views.get_all_sellers, name="get_sellers"),
-    # path("sellers/create/", views.create_seller, name="add_seller"),
+    path('sellers/', views.get_all_sellers),
+    path('sellers/create/', views.create_seller),
 
-    # path("reviews/", views.get_all_reviews, name="get_reviews"),
-    # path("reviews/create/", views.create_review, name="add_review"),
+    path('reviews/', views.get_all_reviews),
+    path('reviews/create/', views.create_review),
 
-    # path("product-details/", views.get_all_product_details, name="get_product_details"),
-    # path("product-details/create/", views.create_product_detail, name="add_product_detail"),
+    path('product-details/', views.get_all_product_details),
+    path('product-details/create/', views.create_product_detail),
+
+    path('help/', views.get_all_help_requests),
+    path('help/create/', views.create_help_request),
 ]
