@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { NavLink, Outlet } from 'react-router-dom';
 import { MdInventory2, MdAddBox, MdListAlt } from "react-icons/md";
 import { FaBoxOpen } from "react-icons/fa";
+import { AppContext } from '../context/AppProvider';
 
 const SellerDashboard = () => {
+
+    const {isseller,setIsSeller} = useContext(AppContext);
   return (
+
     <div className='sellerDashboard '>
 
     {/* Navbar */}
@@ -19,7 +23,7 @@ const SellerDashboard = () => {
                         <h1 className='!text-sm '>Seller Logo</h1>
                         <div className='absolute hidden group-hover:block !top-0 cursor-pointer !right-0 !z-10 !text-black !rounded !pt-10'>
                             <ul className='!list-none !m-0 !p-2 !bg-indigo-500 !text-white !rounded-md !border hover:!bg-black hover:!text-white !border-gray-200 !text-sm'>
-                                <li onClick={()=>{setisAdmin(false);navigate('/admin')}} className='!py-1 !px-2 !cursor-pointer !pr-10'>LogOut</li>
+                                <li onClick={()=>{setIsSeller(false);navigate('/seller')}} className='!py-1 !px-2 !cursor-pointer !pr-10'>LogOut</li>
                             </ul>
                         </div>
                     </div>

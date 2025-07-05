@@ -27,6 +27,7 @@ import SellerDashboard from './pages/SellerDashboard.jsx';
 import SellerProducts from './components/Seller/SellerProducts.jsx'
 import SeeOrders from './components/Seller/SeeOrders.jsx'
 import AddProduct from './components/Seller/AddProduct.jsx'
+import BannnerDetails from "./components/BannnerDetails.jsx";
 // Create context at top-level
 const MyContext = createContext();
 
@@ -86,6 +87,7 @@ function App() {
             <Route path="product-list" element={<AllProducts />} />
             <Route path="seller-list" element={<AllSellers />} />
             <Route path="new-product" element={<ProductsRequests />} />
+            <Route path="banners" element={<BannnerDetails/>}/>
           </Route>
           <Route
             path="/seller"

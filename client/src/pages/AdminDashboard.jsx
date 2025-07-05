@@ -55,6 +55,11 @@ const AdminDashboard = () => {
                     {/* <img className='min-w-4' src={assets.person_tick_icon} alt="" /> */}
                     <p className='!max-sm:hidden'>See Sellers</p>
                 </NavLink>
+                <NavLink className={({isActive})=>`flex !items-center !p-3 !sm:px-6 !gap-2 !w-full !hover:bg-gray-100 ${isActive && '!bg-blue-100 !border-r-4 !border-blue-500'}`}  to={'/admin/banners'} >
+                    <FaUserCheck className='!text-xl' />
+                    {/* <img className='min-w-4' src={assets.person_tick_icon} alt="" /> */}
+                    <p className='!max-sm:hidden'>See Banners</p>
+                </NavLink>
             </ul>
           </div>
           <div className=''>
