@@ -56,7 +56,7 @@ body{
   
 }
 ::-webkit-scrollbar-track{
-  background-color: #ffffff !important;
+  background-color: transparent !important;
 }
 .btn-org{
   background: #2d5de0 !important;

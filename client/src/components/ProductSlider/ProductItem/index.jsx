@@ -15,11 +15,11 @@ const ProductItem = () => {
 
   return (
     <>
-      <div className="productItem scale-90  transition-all hover:scale-95 overflow-hidden !rounded-sm xl:rounded-sm w-full min-h-[50vh] xl:min-h-[22vw] md:min-h-[22vw]">
+      <div className="productItem scale-90 bg-[#27272A] transition-all hover:text-black hover:bg-white hover:scale-95 overflow-hidden !rounded-sm xl:rounded-sm w-full min-h-[50vh] xl:min-h-[22vw] md:min-h-[22vw]">
         <div className="imgWrapper relative w-full !h-[35vh]  md:!h-[10vw] bg-red-200 xl:!h-[12vw]">
           {/* {`/product/${product._id}`} link per ye path dalega  */}
           <Link to="/productDetails" className='link w-full h-[35vh] xl:h-[13vw] block'>
-            <img src="/public/item1.webp" className='w-full h-[100%] xl:h-[100%] md:h-[100%] bg-red-600  md:h-[full]   object-cover rounded-md' alt="" />
+            <img src="/public/item1.webp" className='w-full h-[100%] xl:h-[100%] md:h-[100%] bg-red-600  md:h-[full]   object-cover rounded-none' alt="" />
           </Link>
           <div className="Actions hidden md:flex opacity-0 hover:opacity-100 gap-2 absolute top-2 right-2 md:top-[1vw] md:right-[1vw] w-10 md:w-[2vw] flex-col items-center justify-between px-2">
             <Tooltip title="Product Details" placement="left">

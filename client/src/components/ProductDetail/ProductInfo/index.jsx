@@ -26,7 +26,7 @@ const ProductInfo = ({ padding = "" }) => {
   const [thumbnail, setThumbnail] = useState(product.images[0]);
 
   return (
-    <div className={`flex !select-none !bg-red-200 !rounded-md !shadow-md flex-col md:flex-row gap-8 md:gap-16 xl:gap-16 ${padding}`}>
+    <div className={`flex !select-none  !rounded-md !shadow-md flex-col md:flex-row gap-8 md:gap-16 xl:gap-16 ${padding}`}>
       {/* Images Section */}
       <div className="flex flex-col md:flex-row gap-3 w-full md:w-auto">
         <div className="flex flex-row sm:flex-col gap-3 order-2 sm:order-1 justify-center sm:justify-start">
@@ -34,7 +34,7 @@ const ProductInfo = ({ padding = "" }) => {
             <div
               key={index}
               onClick={() => setThumbnail(image)}
-              className={`border border-gray-500/30 rounded overflow-hidden cursor-pointer w-16 h-16 sm:w-20 sm:h-20 md:w-[70px] md:h-[70px] flex items-center justify-center ${
+              className={`border  rounded overflow-hidden cursor-pointer w-16 h-16 sm:w-20 sm:h-20 md:w-[70px] md:h-[70px] flex items-center justify-center ${
                 thumbnail === image ? "ring-2 ring-indigo-500" : ""
               }`}
             >
@@ -47,13 +47,13 @@ const ProductInfo = ({ padding = "" }) => {
             </div>
           ))}
         </div>
-        <div className="border border-gray-500/30 rounded overflow-hidden flex items-center justify-center w-full sm:w-[220px] md:w-[300px] h-[180px] sm:h-[260px] md:h-[340px] order-1 sm:order-2 mx-auto">
+        <div className="border  rounded overflow-hidden flex items-center justify-center w-full sm:w-[220px] md:w-[300px] h-[180px] sm:h-[260px] md:h-[340px] order-1 sm:order-2 mx-auto">
           <img src={thumbnail} alt="Selected product" className="object-contain w-full h-full" />
         </div>
       </div>
 
       {/* Info Section */}
-      <div className="text-lg w-full md:w-1/2 flex flex-col gap-5">
+      <div className="text-lg w-full !bg-[#27272A] md:w-1/2 flex flex-col gap-5">
         <div className="flex mb-4 items-center gap-0.5 mt-1">
           <Stack spacing={1}>
             <Rating

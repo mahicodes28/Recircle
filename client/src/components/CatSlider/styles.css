@@ -10,9 +10,9 @@
 .catContainer .swiper-slide {
   text-align: center;
   font-size: 1.2vw;
-  border-radius: 10%;
+  border-radius: 2%;
   
-    background-color: rgb(255, 255, 255);
+    background-color: #27272A;
   /* Center slide text vertically */
   display: flex;
   justify-content: center;

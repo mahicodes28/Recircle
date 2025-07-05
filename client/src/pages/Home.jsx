@@ -15,7 +15,7 @@ function Home() {
   return (
     <>
       <div className="home">
-        <div className="  xl:bg-gradient-to-br xl:from-indigo-100 xl:to-white pt-4">
+        <div className=" bg-black text-white pt-4">
           <HomeSlider />
           <CatSlider />
         </div>

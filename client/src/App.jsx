@@ -68,7 +68,7 @@ function App() {
 
   return (
     <MyContext.Provider value={values}>
-      <div className="min-h-screen flex flex-col bg-white">
+      <div className="min-h-screen flex flex-col bg-black !text-white">
         {!hideHeaderFooter && <Header />}
         <main className="flex-1 w-full max-w-[100vw] mx-auto px-2 sm:px-4 md:px-8">
           <Routes>
