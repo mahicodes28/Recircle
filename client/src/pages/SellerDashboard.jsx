@@ -3,10 +3,27 @@ import { NavLink, Outlet } from 'react-router-dom';
 import { MdInventory2, MdAddBox, MdListAlt } from "react-icons/md";
 import { FaBoxOpen } from "react-icons/fa";
 import { AppContext } from '../context/AppProvider';
+import { assets } from '../assets/asset';
 
 const SellerDashboard = () => {
 
-    const {isseller,setIsSeller} = useContext(AppContext);
+    const {seller,setIsSeller} = useContext(AppContext);
+
+    const logout = async () => {
+        try {
+            const { data } = await axios.get('/api/seller/logout');
+            if (data.success) {
+                toast.success(data.message);
+                setIsSeller(false)
+                navigate("/seller");
+            } else {
+                toast.error(data.message);
+            }
+        } catch (error) {
+            toast.error("Something went wrong");
+        }
+    }
+
   return (
 
     <div className='sellerDashboard '>
@@ -17,13 +34,13 @@ const SellerDashboard = () => {
                 {/* logo here istead of h1 */}
                 <div className="logo h-[100%] w-[9vw]"><img className='w-full h-full' src="/public/logo.png" alt="" /></div>
                 <div className='!flex !items-center !gap-3'>
-                    <p className='!max-sm:hidden'>Welcome, Seller</p>
+                    <p className='!max-sm:hidden'>Welcome {seller.name}</p>
                     <div className='!relative group'>
                        {/* an admin image here or any profile image */}
-                        <h1 className='!text-sm '>Seller Logo</h1>
+                       <img className='h-4 w-4' src={assets.userProfile} alt="" />
                         <div className='absolute hidden group-hover:block !top-0 cursor-pointer !right-0 !z-10 !text-black !rounded !pt-10'>
                             <ul className='!list-none !m-0 !p-2 !bg-indigo-500 !text-white !rounded-md !border hover:!bg-black hover:!text-white !border-gray-200 !text-sm'>
-                                <li onClick={()=>{setIsSeller(false);navigate('/seller')}} className='!py-1 !px-2 !cursor-pointer !pr-10'>LogOut</li>
+                                <li onClick={logout} className='!py-1 !px-2 !cursor-pointer !pr-10'>LogOut</li>
                             </ul>
                         </div>
                     </div>

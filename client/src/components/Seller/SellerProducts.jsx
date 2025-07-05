@@ -1,13 +1,21 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { AppContext } from '../../context/AppProvider'
 
 const SellerProducts = () => {
 
-  const {products, fetchProduct }=useContext(AppContext)
-  // Dummy toggleStock for demonstration; replace with your actual function
+  const { sellerProducts , fetchSellerProducts}=useContext(AppContext)
+  
   const toggleStock = (id, inStock) => {
-    // ...your logic here
+    
   };
+
+  useEffect(()=>{
+    fetchSellerProducts();
+  },[])
+
+  const products = sellerProducts;
+
+
 
   return (
      <div className="!no-scrollbar flex-1 h-[95vh] w-full flex flex-col justify-between">

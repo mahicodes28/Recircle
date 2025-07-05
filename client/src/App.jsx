@@ -28,6 +28,7 @@ import SellerProducts from './components/Seller/SellerProducts.jsx'
 import SeeOrders from './components/Seller/SeeOrders.jsx'
 import AddProduct from './components/Seller/AddProduct.jsx'
 import BannnerDetails from "./components/BannnerDetails.jsx";
+import { ToastContainer , toast } from "react-toastify";
 // Create context at top-level
 const MyContext = createContext();
 
@@ -68,7 +69,9 @@ function App() {
   const values = { setOpen: setDialogOpen, setDrawerOpen, setWishListOpen };
 
   return (
+    
     <MyContext.Provider value={values}>
+      <ToastContainer/>
       <div className="min-h-screen flex flex-col bg-black !text-white">
         {!hideHeaderFooter && <Header />}
         <Routes>

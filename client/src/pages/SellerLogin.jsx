@@ -1,18 +1,36 @@
 import React, { useContext, useState } from 'react'
 import { AppContext } from '../context/AppProvider';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const SellerLogin = () => {
-  const {isseller , setIsSeller } =useContext(AppContext)
+  const {setIsSeller , axios } =useContext(AppContext)
   const navigate = useNavigate();
   const [state, setState] = useState("login");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = ()=>{
-    setIsSeller(true);
-  navigate('/seller');
+  const handleLogin = async (e)=>{
+     e.preventDefault();
+        try {
+          const { data } = await axios.post(`/api/user/${state}`, {
+                name,
+                email,
+                password,
+            });
+            if (data.success) {
+                toast.success("Login Success");
+                navigate("/");
+                setIsSeller(data.seller);
+                
+            } else {
+                toast.error(data.message);
+            }
+        } catch (err) {
+            
+            toast.error("Something went wrong");
+        }
   }
 
   return (

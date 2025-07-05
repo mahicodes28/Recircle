@@ -1,9 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useAppContext } from '../context/AppProvider';
 
 const ProductsRequests = () => {
 
     const { products, fetchProduct } = useAppContext();
+
+
+    const acceptProduct = async (id) => {
+    await fetch(`/api/product/${id}/accept`, { method: 'PATCH' });
+    fetchProduct(); 
+    };
+
+    const rejectProduct = async (id) => {
+    await fetch(`/api/product/${id}/reject`, { method: 'PATCH' });
+    fetchProduct(); 
+    };
+
+    useEffect(()=>{
+        fetchProduct();
+    },[])
 
   return (
     <div className='!container p-2 sm:p-4 mx-auto'>
@@ -35,8 +50,8 @@ const ProductsRequests = () => {
                                 <div className='relative inline-block text-left group'>
                                     <button className='text-gray-500 action-button' >...</button>
                                     <div className='z-10 hidden absolute right-0 left-0 top-0 w-32 bg-white border border-gray-200 rounded shadow group-hover:block'>
-                                        <button className='block w-full text-left px-4 py-2 text-blue-500 hover:bg-gray-100'>Accept</button>
-                                        <button className='block w-full text-left px-4 py-2 text-red-500 hover:bg-gray-100'>Reject</button>
+                                        <button onClick={()=>{acceptProduct(product._id)}} className='block w-full text-left px-4 py-2 text-blue-500 hover:bg-gray-100'>Accept</button>
+                                        <button onClick={()=>{rejectProduct(product._id)}} className='block w-full text-left px-4 py-2 text-red-500 hover:bg-gray-100'>Reject</button>
                                     </div>
                                 </div>
                             </td>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useAppContext } from '../context/AppProvider'
 import { NavLink } from 'react-router-dom';
 
@@ -6,11 +6,17 @@ const AllProducts = () => {
 
     const { products, fetchProduct } = useAppContext();
 
+
+
+
     // Dummy toggleStock for demonstration; replace with your actual function if needed
     const toggleStock = (id, inStock) => {
         // ...your logic here
     };
 
+    useEffect(()=>{
+        fetchProduct();
+    },[])
     return (
         <div className="!no-scrollbar flex-1 h-[95vh] w-full flex flex-col justify-between">
             <div className="w-full md:p-10 p-2 sm:p-4">
