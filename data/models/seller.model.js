@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 
 const sellerSchema = new mongoose.Schema({
-    user :{
+    name :{
         type : String,
         required : true ,
     },
@@ -22,4 +22,5 @@ const sellerSchema = new mongoose.Schema({
     },
 },{timestamps : true});
 
-module.exports = mongoose.model("User", sellerSchema);
+const Seller = mongoose.model("seller", sellerSchema);
+export default Seller;
