@@ -15,11 +15,11 @@ const ProductItem = () => {
 
   return (
     <>
-      <div className="productItem bg-red-200 scale-90 transition-all hover:scale-95 overflow-hidden rounded-md w-full max-w-xs sm:max-w-[45vw] md:max-w-[15vw] h-auto md:!h-[22vw]">
-        <div className="imgWrapper relative w-full h-[50vw] max-h-[220px] sm:h-[30vw] sm:max-h-[180px] md:!h-[14vw] md:max-h-none">
+      <div className="productItem scale-90  transition-all hover:scale-95 overflow-hidden !rounded-sm xl:rounded-sm w-full min-h-[50vh] xl:min-h-[22vw] md:min-h-[22vw]">
+        <div className="imgWrapper relative w-full !h-[35vh]  md:!h-[10vw] bg-red-200 xl:!h-[12vw]">
           {/* {`/product/${product._id}`} link per ye path dalega  */}
-          <Link to="/productDetails" className='link w-full h-full block'>
-            <img src="/public/item1.webp" className='w-full h-[48vw] max-h-[200px] sm:h-[28vw] sm:max-h-[160px] md:!h-[13vw] object-cover rounded-md' alt="" />
+          <Link to="/productDetails" className='link w-full h-[35vh] xl:h-[13vw] block'>
+            <img src="/public/item1.webp" className='w-full h-[100%] xl:h-[100%] md:h-[100%] bg-red-600  md:h-[full]   object-cover rounded-md' alt="" />
           </Link>
           <div className="Actions hidden md:flex opacity-0 hover:opacity-100 gap-2 absolute top-2 right-2 md:top-[1vw] md:right-[1vw] w-10 md:w-[2vw] flex-col items-center justify-between px-2">
             <Tooltip title="Product Details" placement="left">
@@ -47,9 +47,9 @@ const ProductItem = () => {
             </Tooltip>
           </div>
         </div>
-        <div className="info px-2 py-2 md:!h-[8vw] text-left w-full flex flex-col justify-center items-start">
-          <h6 className='Brand w-full text-left text-sm md:text-base transition-all'><Link className='link' to="/">Brand Name</Link></h6>
-          <h3 className='Title w-full text-left text-lg md:text-xl transition-all'><Link className='link' to="/">Product Name</Link></h3>
+        <div className="!info !px-2 !pt-2 !pb-2 xl:!px-4 xl:!pt-4 min-h-[15vh]   xl:min-h-[12vw]  md:min-h-[12vw]  text-left w-full flex flex-col justify-center items-start">
+          <h6 className='Brand w-full text-left text-md xl:text-md  md:text-base transition-all'><Link className='link' to="/">Brand Name</Link></h6>
+          <h3 className='Title w-full text-left text-xl md:text-xl transition-all'><Link className='link' to="/">Product Name</Link></h3>
           <Stack spacing={1}>
             <Rating name="half-rating-read" defaultValue={2.5} precision={0.5} readOnly />
           </Stack>

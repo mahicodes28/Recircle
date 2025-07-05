@@ -23,7 +23,7 @@ const slideImages = [
 
 function HomeSlider() {
   return (
-    <div className="w-full h-[40vw] max-h-[400px] min-h-[180px] sm:h-[28vw] sm:max-h-[500px] sm:min-h-[220px] rounded-lg overflow-hidden">
+    <div className="w-full h-[fit] max-h-[400px] min-h-[fit] sm:h-[28vw] md:max-h-[500px] md:min-h-[220px] xl:max-h-[500px] xl:min-w-[220px] rounded-lg overflow-hidden">
       <Swiper
         spaceBetween={30}
         effect="fade"
@@ -35,12 +35,12 @@ function HomeSlider() {
         }}
         loop={true}
         modules={[EffectFade, Navigation, Autoplay, Pagination]}
-        className="mySwiper"
+        className="mySwiper md:!p-4 !p-2 xl:!p-4"
       >
         {slideImages.map((src, index) => (
           <SwiperSlide key={index}>
             <img
-              className="imageSlider w-full h-[40vw] max-h-[400px] min-h-[180px] sm:h-[28vw] sm:max-h-[500px] sm:min-h-[220px] object-cover rounded-lg"
+              className="imageSlider w-full h-[fit] max-h-[400px] min-h-[fit] md:h-[28vw] md:h-[28vw] md:max-h-[500px] xl:h-[fit] xl:max-h-[fit] xl:min-h-[fit] object-cover rounded-lg"
               src={src}
               alt={`Slide ${index + 1}`}
             />

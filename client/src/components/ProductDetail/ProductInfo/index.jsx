@@ -26,9 +26,9 @@ const ProductInfo = ({ padding = "" }) => {
   const [thumbnail, setThumbnail] = useState(product.images[0]);
 
   return (
-    <div className={`flex !select-none !rounded-md !shadow-md flex-col md:flex-row gap-8 md:gap-16 ${padding}`}>
+    <div className={`flex !select-none !bg-red-200 !rounded-md !shadow-md flex-col md:flex-row gap-8 md:gap-16 xl:gap-16 ${padding}`}>
       {/* Images Section */}
-      <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+      <div className="flex flex-col md:flex-row gap-3 w-full md:w-auto">
         <div className="flex flex-row sm:flex-col gap-3 order-2 sm:order-1 justify-center sm:justify-start">
           {product.images.map((image, index) => (
             <div

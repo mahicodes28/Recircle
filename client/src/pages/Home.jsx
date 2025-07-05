@@ -9,12 +9,13 @@ import Footer from '../components/Footer'
 import HomeSliderV2 from '../components/HomesliderV2'
 import BannerBoxV2 from '../components/BannerBoxV2'
 import Header from "../components/header"
+import AdBannerSlider from "../components/AdsBannerSlider"
 
 function Home() {
   return (
     <>
       <div className="home">
-        <div className="bg-gradient-to-br from-indigo-100 to-white pt-4">
+        <div className="  xl:bg-gradient-to-br xl:from-indigo-100 xl:to-white pt-4">
           <HomeSlider />
           <CatSlider />
         </div>
@@ -35,23 +36,23 @@ function Home() {
         <section className="!py-6 !w-full px-2 md:!px-14 md:!pl-19">
           <div className="containerHome flex flex-col md:flex-row gap-8">
             <div className="part1 w-full md:w-[70%]">
-              <HomeSliderV2 />
+              <HomeSliderV2 width={"1/2"} />
             </div>
-            <div className="part2 flex w-full md:w-[30%] flex-col !px-0 md:!px-6 gap-4 justify-center !mt-6 md:!mt-0">
-              <BannerBoxV2 info={"right"} title="Buy Men's Footwear at low price" link={"/"} price={"$12"} src={"/public/BannerBoxV2Img1.jpg"} />
-              <BannerBoxV2 info={"left"} title="Buy Apple's Iphone" link={"/"} price={"$100"} src={"/public/BannerBoxV2Img2.jpg"} />
+            <div className="part2 flex w-full md:w[30%] xl:w-[30%] xl:flex-col md:flex-col !px-0 md:!px-6 gap-4 justify-center !mt-6 md:!mt-0">
+              <BannerBoxV2  height="14vh" width={1/2} info={"right"} title="Buy Men's Footwear at low price" link={"/"} price={"$12"} src={"/public/BannerBoxV2Img1.jpg"} />
+              <BannerBoxV2 height="14vh" width={1/2} info={"left"} title="Buy Apple's Iphone" link={"/"} price={"$100"} src={"/public/BannerBoxV2Img2.jpg"} />
             </div>
           </div>
         </section>
         <Section className="flex flex-col mx-auto bg-white items-center !pt-5 justify-center" />
-        <AdBannerSliderV2 items={[3]} spaceBetween={15} />
+        <AdBannerSlider  />
       </div>
       <section className="container bg-gradient-to-br to-indigo-50 from-white !pt-5 px-2 md:!px-10 !w-full mx-auto">
-        <h1 className="text-3xl md:text-5xl text-left font-semibold px-2 md:!px-7">Latest Products</h1>
+        <h1 className="text-2xl xl:text-5xl md:text-5xl text-left font-semibold !px-6 xl:!px-8 md:!px-7">Latest Products</h1>
         <ProductSlider items={6} />
       </section>
       <section className="!pt-2 px-2 md:!px-6 shadow-lg bg-gradient-to-tr to-indigo-50 from-white rounded-b-[2vw] !w-full mx-auto">
-        <AdBannerSliderV2 items={[2]} spaceBetween={5} />
+        <AdBannerSliderV2 width={"full"} items={[2]} spaceBetween={5} />
       </section>
     </>
   )

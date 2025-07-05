@@ -12,11 +12,11 @@ import BannerBoxV2 from '../BannerBoxV2';
 const AdBannerSliderV2 = (props) => {
   return (
     <>
-      <div className="box mx-auto px-2 md:px-10 lg:px-20 bg-transparent rounded-md p-2 md:p-4 mb-2 mt-2">
+      <div className="box mx-auto px-2 md:px-10 xl:px-20 bg-transparent rounded-md p-2 md:p-4 mb-2 mt-2">
         <Swiper
           slidesPerView={props.items}
           spaceBetween={props.spaceBetween}
-          pagination={{ clickable: true }}
+          
           navigation={false}
           autoplay={{
             delay: 2000,
@@ -44,22 +44,22 @@ const AdBannerSliderV2 = (props) => {
           }}
         >
           <SwiperSlide>
-            <BannerBoxV2 info={"right"} title="Buy Men's Footwear at low price" link={"/"} price={"$12"} src={"/public/BannerBoxV2Img1.jpg"} />
+            <BannerBoxV2 width={props.width} height={"20vh"} info={"right"} title="Buy Men's Footwear at low price" link={"/"} price={"$12"} src={"/public/BannerBoxV2Img1.jpg"} />
           </SwiperSlide>
           <SwiperSlide>
-            <BannerBoxV2 info={"left"} title="Buy Apple's Iphone" link={"/"} price={"$100"} src={"/public/BannerBoxV2Img2.jpg"} />
+            <BannerBoxV2 width={props.width} height={"20vh"} info={"left"} title="Buy Apple's Iphone" link={"/"} price={"$100"} src={"/public/BannerBoxV2Img2.jpg"} />
           </SwiperSlide>
           <SwiperSlide>
-            <BannerBoxV2 info={"right"} title="Buy Men's Footwear at low price" link={"/"} price={"$12"} src={"/public/BannerBoxV2Img1.jpg"} />
+            <BannerBoxV2 width={props.width} height={"20vh"} info={"right"} title="Buy Men's Footwear at low price" link={"/"} price={"$12"} src={"/public/BannerBoxV2Img1.jpg"} />
           </SwiperSlide>
           <SwiperSlide>
-            <BannerBoxV2 info={"left"} title="Buy Apple's Iphone" link={"/"} price={"$100"} src={"/public/BannerBoxV2Img2.jpg"} />
+            <BannerBoxV2 width={props.width} height={"20vh"} info={"left"} title="Buy Apple's Iphone" link={"/"} price={"$100"} src={"/public/BannerBoxV2Img2.jpg"} />
           </SwiperSlide>
           <SwiperSlide>
-            <BannerBoxV2 info={"right"} title="Buy Men's Footwear at low price" link={"/"} price={"$12"} src={"/public/BannerBoxV2Img1.jpg"} />
+            <BannerBoxV2 width={props.width} height={"20vh"} info={"right"} title="Buy Men's Footwear at low price" link={"/"} price={"$12"} src={"/public/BannerBoxV2Img1.jpg"} />
           </SwiperSlide>
           <SwiperSlide>
-            <BannerBoxV2 info={"left"} title="Buy Apple's Iphone" link={"/"} price={"$100"} src={"/public/BannerBoxV2Img2.jpg"} />
+            <BannerBoxV2 width={props.width} height={"20vh"} info={"left"} title="Buy Apple's Iphone" link={"/"} price={"$100"} src={"/public/BannerBoxV2Img2.jpg"} />
           </SwiperSlide>
         </Swiper>
       </div>

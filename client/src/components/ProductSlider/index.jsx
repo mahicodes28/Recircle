@@ -13,7 +13,7 @@ import ProductItem from './ProductItem';
 const ProductSlider = (props) => {
   return (
     <>
-      <div className="productSlider select-none pt-6 sm:pt-10">
+      <div className="productSlider  h-[50vh] select-none pt-6 sm:pt-10">
         <Swiper
           // Responsive breakpoints for slidesPerView
           breakpoints={{
@@ -23,9 +23,8 @@ const ProductSlider = (props) => {
             1024: { slidesPerView: props.items || 4, spaceBetween: 30 },
           }}
           navigation={{ clickable: true }}
-          pagination={{ clickable: true }}
           modules={[Pagination, Navigation]}
-          className="mySwiper"
+          className="productSlider "
         >
           <SwiperSlide>
             <ProductItem />

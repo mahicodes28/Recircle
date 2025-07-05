@@ -14,10 +14,10 @@ function Navigation() {
 
     return (
         <>
-            <nav className='py-2 w-full'>
+            <nav className='py-2 bg-black text-white border-b-0 border-white w-full'>
                 <div className="container m-auto flex flex-col md:flex-row justify-between gap-2 items-center h-auto md:h-15 px-2 md:px-0">
                     {/* Category Button */}
-                    <div className="col1 w-full md:w-[25%] mb-2 md:mb-0">
+                    <div className="col1 w-full hidden xl:block xl:w-[25%] md:w-[25%] mb-2 md:mb-0">
                         <Button
                             className="btn flex w-full text-black font-semibold capitalize text-base md:text-[1.1vw]"
                             onClick={openCatPanel}
@@ -28,13 +28,13 @@ function Navigation() {
                         </Button>
                     </div>
                     {/* Navigation Links */}
-                    <div className="col2 w-full md:w-[60%] flex justify-center">
-                        <ul className='nav flex flex-wrap md:flex-nowrap justify-center md:justify-between gap-4 md:gap-10'>
-                            <li className='link'>
+                    <div className="col2 w-full flex flex-col !py-2  md:w-[60%] xl:w-[60%]  flex justify-center">
+                    <h1 className='text-left w-full pt-2 text-[1.5rem] font-[600] xl:hidden md:hidden'>Category</h1>
+                        <ul className='nav flex flex-nowrap !px-4 overflow-x-scroll md:overflow-x-hidden xl:overflow-x-hidden overflow-y-hidden md:flex-nowrap xl:flex-nowrap justify-center md:justify-between xl:justify-between gap-4 xl:gap-10 md:gap-10'>                            <li className='link'>
                                 <NavLink
                                     to="/"
                                     className={({ isActive }) =>
-                                        `text-base md:text-[1.1vw] font-semibold capitalize transition duration-200 ease-in-out ${isActive ? "text-indigo-600 underline" : ""}`
+                                        `text-[1rem] xl-text-[1.1vw] md:text-[1.1vw] font-[500] md:font-semibold xl:font-semibold capitalize transition duration-200 ease-in-out ${isActive ? "text-indigo-600 underline" : ""}`
                                     }
                                 >
                                     Home
@@ -44,7 +44,7 @@ function Navigation() {
                                 <NavLink
                                     to="/productListing"
                                     className={({ isActive }) =>
-                                        `text-base md:text-[1.1vw] font-semibold capitalize transition duration-200 ease-in-out ${isActive ? "text-blue-600 underline" : ""}`
+                                        `text-[1rem] xl:text-[1.1vw] md:text-[1.1vw] font-[500] md:font-semibold xl:font-semibold capitalize transition duration-200 ease-in-out ${isActive ? "text-blue-600 underline" : ""}`
                                     }
                                 >
                                     Groceries
@@ -67,7 +67,7 @@ function Navigation() {
                                 <NavLink
                                     to="/productListing"
                                     className={({ isActive }) =>
-                                        `text-base md:text-[1.1vw] font-semibold capitalize transition duration-200 ease-in-out ${isActive ? "text-blue-600 underline" : ""}`
+                                        `text-[1rem] xl:text-[1.1vw] md:text-[1.1vw] font-[500] md:font-semibold xl:font-semibold capitalize transition duration-200 ease-in-out ${isActive ? "text-blue-600 underline" : ""}`
                                     }
                                 >
                                     Clothing
@@ -77,7 +77,7 @@ function Navigation() {
                                 <NavLink
                                     to="/productListing"
                                     className={({ isActive }) =>
-                                        `text-base md:text-[1.1vw] font-semibold capitalize transition duration-200 ease-in-out ${isActive ? "text-blue-600 underline" : ""}`
+                                        `text-[1rem] xl:text-[1.1vw] md:text-[1.1vw] font-[500] md:font-semibold xl:font-semibold capitalize transition duration-200 ease-in-out ${isActive ? "text-blue-600 underline" : ""}`
                                     }
                                 >
                                     Electronics
@@ -87,7 +87,7 @@ function Navigation() {
                                 <NavLink
                                     to="/productListing"
                                     className={({ isActive }) =>
-                                        `text-base md:text-[1.1vw] font-semibold capitalize transition duration-200 ease-in-out ${isActive ? "text-blue-600 underline" : ""}`
+                                        `text-[1rem] xl:text-[1.1vw] md:text-[1.1vw] font-[500] md:font-semibold xl:font-semibold capitalize transition duration-200 ease-in-out ${isActive ? "text-blue-600 underline" : ""}`
                                     }
                                 >
                                     Art
@@ -97,7 +97,7 @@ function Navigation() {
                                 <NavLink
                                     to="/productListing"
                                     className={({ isActive }) =>
-                                        `text-base md:text-[1.1vw] font-semibold capitalize transition duration-200 ease-in-out ${isActive ? "text-blue-600 underline" : ""}`
+                                        `text-[1rem] xl:text-[1.1vw] md:text-[1.1vw] font-[500] md:font-semibold xl:font-semibold capitalize transition duration-200 ease-in-out ${isActive ? "text-blue-600 underline" : ""}`
                                     }
                                 >
                                     Wellness
@@ -107,7 +107,7 @@ function Navigation() {
                                 <NavLink
                                     to="/productListing"
                                     className={({ isActive }) =>
-                                        `text-base md:text-[1.1vw] font-semibold capitalize transition duration-200 ease-in-out ${isActive ? "text-blue-600 underline" : ""}`
+                                        `text-[1rem] xl:text-[1.1vw] md:text-[1.1vw] font-[500] md:font-semibold xl:font-semibold capitalize transition duration-200 ease-in-out ${isActive ? "text-blue-600 underline" : ""}`
                                     }
                                 >
                                     Beauty

@@ -8,7 +8,7 @@ const BannerBox = (props) => {
         <img
           src={props.img}
           alt={props.alt}
-          className="w-full h-auto max-h-[120px] sm:max-h-[180px] md:max-h-[220px] object-contain rounded-md"
+          className="w-full h-auto min-h-[24vh] md:max-h-[30vw] xl:max-h-[30vw] object-contain rounded-md"
         />
       </Link>
     </div>

@@ -21,13 +21,13 @@ function CatSlider() {
   ];
   return (
     <>
-      <div className='catContainer m-auto py-6 sm:py-10'>
+      <div className='catContainer hidden xl:block md:block   m-auto py-6 xl:py-10'>
         <Swiper
-          slidesPerView={2}
-          spaceBetween={12}
+          slidesPerView={6}
+          spaceBetween={6}
           pagination={{ clickable: true }}
           modules={[Pagination]}
-          className="mySwiper"
+          className="mySwiper "
           breakpoints={{
             640: {
               slidesPerView: 3,
@@ -44,11 +44,11 @@ function CatSlider() {
           }}
         >
           {categoryItems.map((item, index) => (
-            <SwiperSlide key={index}>
+            <SwiperSlide key={index} className='!w-fit scale-90'>
               <Link to={item.link} className="block">
-                <div className="item hover:scale-105 hover:text-blue-500 p-2 sm:p-3 h-[80px] w-[80px] sm:h-[8vw] sm:w-[8vw] bg-white rounded-md flex flex-col items-center justify-center transition-all">
+                <div className="item hover:scale-105 hover:text-blue-500 p-2 sm:p-3 h-[80px] w-[80px] md:h-[13vw] md:w-[13vw] xl:h-[14vw] xl:w-[14vw] bg-white rounded-md flex flex-col items-center justify-center transition-all">
                   <img
-                    className="w-[36px] h-[36px] sm:w-[3vw] sm:h-[3vw] select-none hover:scale-110 transition-all object-cover mb-2"
+                    className="w-[36px] h-[36px]  select-none hover:scale-110 transition-all object-cover mb-2"
                     src={item.image}
                     alt={item.label}
                   />
