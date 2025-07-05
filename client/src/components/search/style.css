@@ -23,10 +23,12 @@
   box-sizing: border-box;
 }
 body{
-   font-family: "Montserrat", sans-serif;
+     /* font-family: "Work Sans", sans-serif; */
+      font-family: "Noto Sans", sans-serif;
   font-optical-sizing: auto;
   font-weight: 450;
   font-style: normal;
+  background-color: black !important;
 }
 
 .container {
@@ -54,11 +56,21 @@ body{
   
 }
 ::-webkit-scrollbar-track{
-  background-color: #ffffff !important;
+  background-color: transparent !important;
 }
 .btn-org{
   background: #2d5de0 !important;
 color: white !important;
   font-weight: 500 !important;
   font-size: 1vw !important;
+}
+
+.btn-black{
+  background-color: white !important;
+  padding: 3vw 4vw !important;
+  color: black !important;
+  font-weight: 600 !important;
+  height: 35px;
+  border-radius: 17.5px !important;
+  
 }

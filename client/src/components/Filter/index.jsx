@@ -34,52 +34,52 @@ const Filter = () => {
 
   return (
     <>
-     <aside
-  className="Filter flex flex-col gap-2 z-10 bg-white sticky top-0"
->
-        <div className="box !p-4 ">
-          <div className="head !py-1 flex items-center justify-between">
-            <h3 className='!text-xl font-[500]'>Product Categories</h3>
-            <Button onClick={DropDown} className='flex transition-all duration-100 items-center !min-w-0 !p-0' disableRipple>
-              {down ? <IoIosArrowUp className='!text-xl' /> : <IoIosArrowDown className='!text-xl' />}
+      <aside
+        className="Filter flex flex-col gap-2 z-10 bg-white sticky top-0 w-full sm:w-auto px-2 sm:px-0"
+      >
+        <div className="box p-3 sm:p-4">
+          <div className="head py-1 flex items-center justify-between">
+            <h3 className='text-lg sm:text-xl font-[500]'>Product Categories</h3>
+            <Button onClick={DropDown} className='flex transition-all duration-100 items-center min-w-0 p-0' disableRipple>
+              {down ? <IoIosArrowUp className='text-lg sm:text-xl' /> : <IoIosArrowDown className='text-lg sm:text-xl' />}
             </Button>
           </div>
           <Collapse isOpened={down}>
-            <div className="scroll w-full !px-2 flex flex-col">
+            <div className="scroll w-full px-1 sm:px-2 flex flex-col">
               <FormGroup>
                 {categories.map((cat, idx) => (
                   <FormControlLabel
                     key={idx}
                     control={<Checkbox size="small" />}
-                    label={cat}
+                    label={<span className="text-sm sm:text-base">{cat}</span>}
                   />
                 ))}
               </FormGroup>
             </div>
           </Collapse>
         </div>
-        <div className="Avail !px-4 !pb-4 ">
-          <div className="head !py-1 flex items-center justify-between">
-            <h3 className='!text-xl font-[500]'>Availability</h3>
-            <Button onClick={Available} className='flex transition-all duration-100 items-center !min-w-0 !p-0' disableRipple>
-              {availability ? <IoIosArrowUp className='!text-xl' /> : <IoIosArrowDown className='!text-xl' />}
+        <div className="Avail px-3 sm:px-4 pb-3 sm:pb-4">
+          <div className="head py-1 flex items-center justify-between">
+            <h3 className='text-lg sm:text-xl font-[500]'>Availability</h3>
+            <Button onClick={Available} className='flex transition-all duration-100 items-center min-w-0 p-0' disableRipple>
+              {availability ? <IoIosArrowUp className='text-lg sm:text-xl' /> : <IoIosArrowDown className='text-lg sm:text-xl' />}
             </Button>
           </div>
           <Collapse isOpened={availability}>
-            <div className="scroll w-full !px-2 flex flex-col">
+            <div className="scroll w-full px-1 sm:px-2 flex flex-col">
               <FormGroup>
                 <FormControlLabel
                   control={<Checkbox size="small" />}
-                  label="In Stock"
+                  label={<span className="text-sm sm:text-base">In Stock</span>}
                 />
                 <FormControlLabel
                   control={<Checkbox size="small" />}
-                  label="Out of Stock"
+                  label={<span className="text-sm sm:text-base">Out of Stock</span>}
                 />
               </FormGroup>
             </div>
-            {/* <div className="Price flex flex-col gap-4 !pb-2">
-              <h1 className='!text-xl font-[500]'>Filter by Price</h1>
+            {/* <div className="Price flex flex-col gap-4 pb-2">
+              <h1 className='text-lg sm:text-xl font-[500]'>Filter by Price</h1>
               <RangeSlider />
             </div> */}
           </Collapse>

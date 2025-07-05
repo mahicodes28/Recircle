@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from mongoengine import connect
+import os
+from dotenv import load_dotenv
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -77,18 +81,16 @@ CORS_ALLOW_ALL_ORIGINS = True
     'http://localhost:3000',  
 ]"""
 
+import logging
+logging.basicConfig(level=logging.DEBUG)
+
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'ReCircle',
-        'ENFORCE_SCHEMA': False,
-        'CLIENT': {
-            'host': 'mongodb+srv://mahich:<db_password>@cluster0.twh2p51.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',
-        }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'dummy.sqlite3',
     }
 }
 
@@ -133,3 +135,14 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+load_dotenv()
+
+from mongoengine import connect
+
+connect(
+    db="ReCircle",
+    host="mongodb+srv://mahich:28122005@cluster0.twh2p51.mongodb.net/ReCircle?retryWrites=true&w=majority&ssl=true",
+         # mongodb+srv://<username>:<password>@ac-oomlojl-shard-00-00.twh2p51.mongodb.net/<dbname>?retryWrites=true&w=majority&
+)
+

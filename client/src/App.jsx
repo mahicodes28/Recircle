@@ -17,7 +17,7 @@ import Dialog from "@mui/material/Dialog";
 import Slide from "@mui/material/Slide";
 import ProductInfo from "./components/ProductDetail/ProductInfo";
 import { IoMdClose } from "react-icons/io";
-import CartPanel from "./components/CartPanel"; // <-- Import CartPanel
+import CartPanel from "./components/CartPanel";
 import Cart from "./pages/Cart.jsx";
 import WishListPanel from "./components/WishListPanel"
 import MyOrders from "./pages/MyOrders.jsx";
@@ -32,11 +32,11 @@ import BannnerDetails from "./components/BannnerDetails.jsx";
 const MyContext = createContext();
 
 function App() {
-  const { isAdmin , isseller} = useAppContext();
+  const { isAdmin , isseller } = useAppContext();
   const location = useLocation();
 
-  // Hide header/footer on any /admin route
-  const hideHeaderFooter = location.pathname.startsWith("/admin") ||location.pathname.startsWith("/seller");
+  // Hide header/footer on any /admin or /seller route
+  const hideHeaderFooter = location.pathname.startsWith("/admin") || location.pathname.startsWith("/seller");
 
   // Dialog state
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -56,22 +56,20 @@ function App() {
     setDrawerOpen(false);
   };
 
-  //WishlistOpener
-  
+  // Wishlist state
   const [wishLIstOpen, setWishListOpen] = useState(false);
-  const handleWishlistOpen =()=>{
+  const handleWishlistOpen = () => {
     setWishListOpen(true)
   }
-  const handleWishlistClose = ()=>{
+  const handleWishlistClose = () => {
     setWishListOpen(false)
   }
   // Provide setOpen for dialog in context
-  const values = { setOpen: setDialogOpen, setDrawerOpen,
-    setWishListOpen };
+  const values = { setOpen: setDialogOpen, setDrawerOpen, setWishListOpen };
 
   return (
     <MyContext.Provider value={values}>
-      <>
+      <div className="min-h-screen flex flex-col bg-black !text-white">
         {!hideHeaderFooter && <Header />}
         <Routes>
           <Route path="/" element={<Home />} />
@@ -133,10 +131,9 @@ function App() {
         {/* Cart Drawer end */}
 
         {/* wish list drawer */}
-        <WishListPanel open={wishLIstOpen} onClose={handleWishlistClose}/>
+        <WishListPanel open={wishLIstOpen} onClose={handleWishlistClose} />
         {/* wish list drawer end */}
-      
-      </>
+      </div>
     </MyContext.Provider>
   );
 }

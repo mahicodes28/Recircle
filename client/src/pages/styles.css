@@ -1,3 +1,6 @@
+
+
+
 .rightSection ::-webkit-scrollbar{
     width: .2vw !important;
 }
@@ -10,7 +13,4 @@
     color: blue !important; 
     opacity: 1 !important;
 
-}
-.help{
-    border-radius: 0 0 4vw 4vw;
 }

@@ -38,12 +38,12 @@ const WishListPanel = ({ open, onClose }) => {
       anchor="right"
       onClose={onClose}
     >
-      <div className="box w-[30vw] h-full !rounded-lg flex flex-col relative bg-[rgb(227,221,221)]">
-        <div className="heading shadow-md flex items-center justify-between  !px-4 rounded-lg !py-4 w-[full]">
-          <h1 className="!text-xl">Wishlist</h1>
+      <div className="box w-full sm:w-[80vw] md:w-[50vw] lg:w-[30vw] h-full !rounded-lg flex flex-col relative bg-[rgb(227,221,221)]">
+        <div className="heading shadow-md flex items-center justify-between !px-4 rounded-lg !py-4 w-full">
+          <h1 className="!text-lg sm:!text-xl">Wishlist</h1>
           <IoCloseOutline
             onClick={onClose}
-            className="text-3xl cursor-pointer link"
+            className="text-2xl sm:text-3xl cursor-pointer link"
           />
         </div>
         <div className="scroll w-full flex flex-col gap-2 !p-3 max-h-[60vh] overflow-y-auto overflow-x-hidden flex-1">
@@ -52,38 +52,42 @@ const WishListPanel = ({ open, onClose }) => {
           ) : (
             Array.isArray(wishListItems) &&
             wishListItems.map((item) => (
-              <div key={item.id} className="cart rounded-md !bg-white shadow-md w-fit flex items-center w-full !px-3 !py-5">
-                <div className="imag !w-[20%] flex items-center justify-center">
+              <div key={item.id} className="cart rounded-md !bg-white shadow-md w-full flex flex-col sm:flex-row items-center !px-3 !py-4 gap-3">
+                <div className="imag w-full sm:w-[20%] flex items-center justify-center mb-2 sm:mb-0">
                   <img
-                    className="w-[4vw] h-[4vw] border object-cover rounded"
+                    className="w-20 h-20 sm:w-[4vw] sm:h-[4vw] border object-cover rounded"
                     src={item.image}
                     alt="Product"
                   />
                 </div>
-                <div className="w-[80%] relative gap-10 items-center justify-between flex bg-white px-2 py-1 rounded">
-                  <div className="info">
+                <div className="w-full sm:w-[80%] relative gap-4 items-center justify-between flex flex-col sm:flex-row bg-white px-2 py-1 rounded">
+                  <div className="info w-full sm:w-auto text-center sm:text-left">
                     <Link className="link" to="/productDetails">
-                      <h1 className="!text-black !font-[500]">{item.name}</h1>
+                      <h1 className="!text-black !font-[500] text-base sm:text-lg">{item.name}</h1>
                     </Link>
-                    <h2 className="!text-black !font-[500]">{item.category}</h2>
-                    <h3 className="!text-[.81vw]">
+                    <h2 className="!text-black !font-[500] text-sm sm:text-base">{item.category}</h2>
+                    <h3 className="!text-xs sm:!text-[.81vw]">
                       <span className="!text-red-400">${item.price}</span>
                     </h3>
                   </div>
-                  <MdDelete
-                    className="absolute link text-black cursor-pointer !text-2xl -top-3 right-5"
-                    onClick={() => handleDelete(item.id)}
-                  />
-                  <Button className="w-[40%] h-[50%] btn-org">Add to Cart</Button>
+                  <div className="flex items-center gap-2 w-full sm:w-auto justify-between sm:justify-end">
+                    <MdDelete
+                      className="link text-black cursor-pointer !text-xl sm:!text-2xl"
+                      onClick={() => handleDelete(item.id)}
+                    />
+                    <Button className="w-1/2 sm:w-[40%] h-8 sm:h-[50%] btn-org text-xs sm:text-sm">Add to Cart</Button>
+                  </div>
                 </div>
               </div>
             ))
           )}
         </div>
         {/* Fixed bottom panel */}
-        <div className="!bottom-10 !rounded-lg !shadow-md left-3 w-[95%] bg-white border-t !border-zinc-400 px-5 py-4 z-10"
-          style={{ position: "sticky", bottom: 0 }}>
-          <div className="bottomInfo gap-3 !py-5 !px-4 flex flex-col !items-center !justify-between w-full">
+        <div
+          className="!bottom-10 !rounded-lg !shadow-md left-3 w-[98%] sm:w-[95%] bg-white border-t !border-zinc-400 px-3 sm:px-5 py-3 sm:py-4 z-10"
+          style={{ position: "sticky", bottom: 0 }}
+        >
+          <div className="bottomInfo gap-3 !py-3 sm:!py-5 !px-2 sm:!px-4 flex flex-col !items-center !justify-between w-full">
             <div className="flex items-center w-full justify-between">
               <h1 className="!text-md capitalize !font-[500]">Items</h1>
               <span>{Array.isArray(wishListItems) ? wishListItems.length : 0}</span>
@@ -93,9 +97,9 @@ const WishListPanel = ({ open, onClose }) => {
               <span>${total.toFixed(2)}</span>
             </div>
           </div>
-          <div className="w-[100%] !p-5 !pb-10 mt-2">
-            <Link to={"/cart"} onClick={() => setWishListItems(false)} className="w-1/2">
-              <Button className="btn-org hover:!bg-black !font-[500] !w-full !text-white">Go to Cart</Button>
+          <div className="w-full !p-2 sm:!p-5 !pb-6 sm:!pb-10 mt-2">
+            <Link to={"/cart"} onClick={() => setWishListItems(false)} className="w-full sm:w-1/2">
+              <Button className="btn-org hover:!bg-black !font-[500] !w-full !text-white text-sm sm:text-base">Go to Cart</Button>
             </Link>
           </div>
         </div>
