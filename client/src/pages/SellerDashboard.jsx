@@ -4,14 +4,15 @@ import { MdInventory2, MdAddBox, MdListAlt } from "react-icons/md";
 import { FaBoxOpen } from "react-icons/fa";
 import { AppContext } from '../context/AppProvider';
 import { assets } from '../assets/asset';
-
+import {toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 const SellerDashboard = () => {
 
-    const {seller,setIsSeller} = useContext(AppContext);
-
+    const {seller,setIsSeller,axios} = useContext(AppContext);
+    const navigate = useNavigate();
     const logout = async () => {
         try {
-            const { data } = await axios.get('/api/seller/logout');
+            const { data } = await axios.post('http://127.0.0.1:8000/seller/logout');
             if (data.success) {
                 toast.success(data.message);
                 setIsSeller(false)
@@ -26,7 +27,7 @@ const SellerDashboard = () => {
 
   return (
 
-    <div className='sellerDashboard '>
+    <div className='sellerDashboard xl:!text-white '>
 
     {/* Navbar */}
      <div className='!shadow !py-4'>
@@ -38,7 +39,7 @@ const SellerDashboard = () => {
                     <div className='!relative group'>
                        {/* an admin image here or any profile image */}
                        <img className='h-4 w-4' src={assets.userProfile} alt="" />
-                        <div className='absolute hidden group-hover:block !top-0 cursor-pointer !right-0 !z-10 !text-black !rounded !pt-10'>
+                        <div className='absolute hidden group-hover:block !top-0 cursor-pointer !right-0 !z-10 !text-white !rounded !pt-10'>
                             <ul className='!list-none !m-0 !p-2 !bg-indigo-500 !text-white !rounded-md !border hover:!bg-black hover:!text-white !border-gray-200 !text-sm'>
                                 <li onClick={logout} className='!py-1 !px-2 !cursor-pointer !pr-10'>LogOut</li>
                             </ul>
@@ -52,7 +53,7 @@ const SellerDashboard = () => {
         <div className='!flex !items-start'>
           {/* left side bar */}
           <div className='!inline-block  !min-h-screen !border-r-2 !border-gray-200'> 
-            <ul className='!flex !flex-col !items-start !pt-5 !text-gray-800  '>
+            <ul className='!flex !flex-col !items-start !pt-5 !text-white  '>
                 <NavLink className={({isActive})=>`flex !items-center !p-3 !sm:px-6 !gap-2 !w-full !hover:bg-gray-100 ${isActive && 'bg-blue-100 border-r-4 border-blue-500'}`} to={'/seller/product-list'} >
                     {/* <img className='min-w-4' src={assets.add_icon} alt="" /> */}
                     <MdInventory2 className='!text-xl' />

@@ -69,7 +69,9 @@ export const AppProvider = ({ children }) => {
     //fetching all seller details
     const fetchSellers = async ()=>{
       try{
-      const {data} = await axios.get('/api/admin/all-sellers');
+      // const {data} = await axios.get('/api/admin/all-sellers');/
+      const {data} = await axios.get('/sellers');
+
       if(data.success){
         setSellers(data.sellers);
       }else{
@@ -82,25 +84,25 @@ export const AppProvider = ({ children }) => {
     }
 
 
-    const fetchSeller = async() =>{
-      try {
-        const data = await axios.get('/api/seller/is-auth')
-        if(data.success){
-          setSeller(data.seller)
-        }else{
-          toast.error(data.message)
-        }
+    // const fetchSeller = async() =>{
+    //   try {
+    //     const {data} = await axios.get('/api/seller/is-auth')
+    //     if(data.success){
+    //       setSeller(data.seller)
+    //     }else{
+    //       toast.error(data.message)
+    //     }
         
-      } catch (error) {
-        toast.error(data.error)
-      }
-    } 
+    //   } catch (error) {
+    //     toast.error(data.error)
+    //   }
+    // } 
 
-  const value = {isAdmin , setisAdmin , products , setProducts , fetchProduct , sellers , setSellers , fetchSellers , isseller , setIsSeller , axios , fetchSeller, seller , setSeller , sellerProducts , fetchSellerProducts , fetchOrders , setOrders , orders }
+  const value = {isAdmin , setisAdmin , products , setProducts , fetchProduct , sellers , setSellers , fetchSellers , isseller , setIsSeller , axios, seller , setSeller , sellerProducts , fetchSellerProducts , fetchOrders , setOrders , orders }
 
-  useEffect(()=>{
-    fetchSeller();
-  },[])
+  // useEffect(()=>{
+  //   fetchSeller();
+  // },[])
  
   return (
     <AppContext.Provider value={value}>

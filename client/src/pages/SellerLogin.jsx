@@ -12,24 +12,27 @@ const SellerLogin = () => {
   const [password, setPassword] = useState("");
 
   const handleLogin = async (e)=>{
+    
      e.preventDefault();
         try {
-          const { data } = await axios.post(`/api/user/${state}`, {
-                name,
+          const { data } = await axios.post(`http://127.0.0.1:8000/seller/${state}`, {
+                user:name,
                 email,
                 password,
-            });
+            },
+          { withCredentials: true});
+            console.log(data);
             if (data.success) {
                 toast.success("Login Success");
-                navigate("/");
-                setIsSeller(data.seller);
+                navigate("/seller");
+                setIsSeller(true);
                 
             } else {
                 toast.error(data.message);
             }
         } catch (err) {
             
-            toast.error("Something went wrong");
+            toast.error(err.response?.data?.message || "Something went wrong");
         }
   }
 
@@ -48,7 +51,7 @@ const SellerLogin = () => {
               onChange={(e) => setName(e.target.value)}
               value={name}
               placeholder="Enter your name"
-              className="border border-gray-300 rounded-md w-full !p-2 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
+              className="border text-black border-gray-300 rounded-md w-full !p-2 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
               type="text"
               required
             />
@@ -60,7 +63,7 @@ const SellerLogin = () => {
             onChange={(e) => setEmail(e.target.value)}
             value={email}
             placeholder="Enter your email"
-            className="border border-gray-300 rounded-md w-full !p-2 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
+            className="border border-gray-300 xl:!text-black rounded-md w-full !p-2 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
             type="email"
             autoComplete="username"
             required
@@ -72,7 +75,7 @@ const SellerLogin = () => {
             onChange={(e) => setPassword(e.target.value)}
             value={password}
             placeholder="Enter your password"
-            className="border border-gray-300 rounded-md w-full !p-2 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
+            className="border text-black border-gray-300 rounded-md w-full !p-2 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
             type="password"
             autoComplete="current-password"
             required
