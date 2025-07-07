@@ -4,12 +4,12 @@ import "../pages/styles.css"
 const HelpCenter = () => {
   return (
     <div className="help min-h-screen flex flex-col shadow-md  items-center justify-center bg-black !rounded-0 !px-6">
-      <form className="flex !bg-[#432DD7] flex-col items-center text-sm text-white bg-white !shadow-xl rounded-xl !p-8 w-full max-w-xl ">
+      <form className="flex !bg-gradient-to-tr from-[#00FFFF] via-[#001F3F] to-[#008080]   flex-col items-center text-sm text-white bg-white !shadow-xl rounded-xl !p-8 w-full max-w-xl ">
         <p className="text-md bg-white text-indigo-600 font-medium !px-3 !py-1 rounded-full !mb-2">Contact Us</p>
-        <h1 className="!text-4xl text-black md:text-4xl font-bold !py-2 text-center">Let’s Get In Touch.</h1>
+        <h1 className="!text-4xl text-white md:text-4xl font-bold !py-2 text-center">Let’s Get In Touch.</h1>
         <p className="max-md:text-sm text-white !pb-8 text-center">
           Or just reach out manually to us at{" "}
-          <a href="mailto@gmail.com" className="text-black hover:underline">mailto@gmail.com</a>
+          <a href="mailto@gmail.com" className="text-black font-bold hover:underline">mailto@gmail.com</a>
         </p>
 
         <div className="!w-full text-white !space-y-5">
@@ -60,7 +60,7 @@ const HelpCenter = () => {
             type="submit"
             className="flex items-center justify-center gap-2 !mt-2 bg-white  hover:!scale-105 text-white !py-3 w-full rounded-full transition font-semibold !text-black shadow"
           >
-            Submit Form
+            Send Message
             <svg className="mt-0.5" width="21" height="20" viewBox="0 0 21 20" fill="none">
               <path d="m18.038 10.663-5.625 5.625a.94.94 0 0 1-1.328-1.328l4.024-4.023H3.625a.938.938 0 0 1 0-1.875h11.484l-4.022-4.025a.94.94 0 0 1 1.328-1.328l5.625 5.625a.935.935 0 0 1-.002 1.33" fill="#fff"/>
             </svg>

@@ -4,8 +4,50 @@ import { NavLink } from 'react-router-dom';
 
 const AllProducts = () => {
 
-    const { products, fetchProduct } = useAppContext();
+    // const { products, fetchProduct } = useAppContext();
 
+const products = [
+  {
+    _id: "1",
+    name: "Organic Green Tea",
+    category: "Beverage",
+    offerPrice: "₹199",
+    mfd: "2025-01-15",
+    exp: "2026-01-15",
+    seller: "Nature's Basket",
+    inStock: true,
+  },
+  {
+    _id: "2",
+    name: "Bluetooth Headphones",
+    category: "Electronics",
+    offerPrice: "₹2,499",
+    mfd: "2024-12-01",
+    exp: "N/A",
+    seller: "TechZone India",
+    inStock: false,
+  },
+  {
+    _id: "3",
+    name: "Daily Multivitamins",
+    category: "Health",
+    offerPrice: "₹899",
+    mfd: "2025-03-20",
+    exp: "2026-03-20",
+    seller: "Wellness Co.",
+    inStock: true,
+  },
+  {
+    _id: "4",
+    name: "Cotton T-Shirt",
+    category: "Clothing",
+    offerPrice: "₹499",
+    mfd: "2025-06-01",
+    exp: "N/A",
+    seller: "Urban Threads",
+    inStock: true,
+  }
+];
 
 
 
@@ -14,41 +56,41 @@ const AllProducts = () => {
         // ...your logic here
     };
 
-    useEffect(()=>{
-        fetchProduct();
-    },[])
+    // useEffect(()=>{
+    //     fetchProduct();
+    // },[])
     return (
-        <div className="!no-scrollbar flex-1 h-[95vh] w-full flex flex-col justify-between">
-            <div className="w-full md:p-10 p-2 sm:p-4">
-                <h2 className="pb-4 text-lg font-medium">All Products</h2>
+        <div className="!no-scrollbar flex-1 !border-l-2 !border-gray-200 min-h-screen w-full flex flex-col justify-between">
+            <div className="w-full md:p-6 !p-2 md:!p-4 xl:!p-4">
+                <h2 className="pb-4 text-lg font-medium xl:!pb-4 xl:text-4xl xl:font-[500] md:!pb-4 md:text-4xl md:font-[500]">All Products</h2>
                 <div className="flex flex-col items-center w-full overflow-x-auto rounded-md bg-white border border-gray-500/20">
-                    <table className="min-w-[600px] md:table-auto table-fixed w-full overflow-hidden">
+                    <table className="!max-w-screen xl:min-w-[85vw] xl:!max-w-screen md:table-auto table-fixed w-full overflow-hidden">
                         <thead className="text-gray-900 text-xs sm:text-sm text-left">
                             <tr>
-                                <th className="px-2 sm:px-4 py-3 font-semibold">Product</th>
-                                <th className="px-2 sm:px-4 py-3 font-semibold">Category</th>
-                                <th className="px-2 sm:px-4 py-3 font-semibold hidden md:table-cell">Selling Price</th>
-                                <th className="px-2 sm:px-4 py-3 font-semibold hidden md:table-cell">MFD</th>
-                                <th className="px-2 sm:px-4 py-3 font-semibold hidden md:table-cell">Expiry Date</th>
-                                <th className="px-2 sm:px-4 py-3 font-semibold hidden md:table-cell">Seller</th>
-                                <th className="px-2 sm:px-4 py-3 text-center font-semibold">In Stock</th>
+                                <th className="!px-2 xl:!px-4 xl:!py-4 !py-3 font-semibold">Product</th>
+                                <th className="!px-2 xl:!px-4 xl:!py-4 !py-3 font-semibold">Category</th>
+                                <th className="!px-2 xl:!px-4 xl:!py-4 !py-3 font-semibold hidden md:table-cell">Selling Price</th>
+                                <th className="!px-2 xl:!px-4 xl:!py-4 !py-3 font-semibold hidden md:table-cell">MFD</th>
+                                <th className="!px-2 xl:!px-4 xl:!py-4 !py-3 font-semibold hidden md:table-cell">Expiry Date</th>
+                                <th className="!px-2 xl:!px-4 xl:!py-4 !py-3 font-semibold hidden md:table-cell">Seller</th>
+                                <th className="!px-2 xl:!px-4 xl:!py-4 !py-3 text-left font-semibold">In Stock</th>
                             </tr>
                         </thead>
-                        <tbody className="text-xs sm:text-sm text-gray-500">
+                        <tbody className="text-xs :text-sm !text-black">
                             {products.map((product, index) => (
                                 <tr key={product._id} className="border-t border-gray-500/20">
-                                    <td className="md:px-4 pl-2 md:pl-4 py-3 flex items-center space-x-3">
+                                    <td className="xl:!px-4 !pl-2 xl:!pl-4 xl:!py-6 md:!py-4 !px-4 !py-5 flex items-center space-x-3">
                                         <span className="truncate w-full">{product.name}</span>
                                     </td>
-                                    <td className="px-2 sm:px-4 py-3">{product.category}</td>
-                                    <td className="px-2 sm:px-4 py-3 hidden md:table-cell">{product.offerPrice}</td>
-                                    <td className="px-2 sm:px-4 py-3 hidden md:table-cell">{product.mfd}</td>
-                                    <td className="px-2 sm:px-4 py-3 hidden md:table-cell">{product.exp}</td>
-                                    <td className="px-2 sm:px-4 py-3 hidden md:table-cell">{product.seller}</td>
-                                    <td className="px-2 sm:px-4 py-3">
-                                        <label className="relative inline-flex items-center cursor-pointer text-gray-900 gap-3">
+                                    <td className="!px-2 xl:!px-4 xl:!py-4 !py-3 ">{product.category}</td>
+                                    <td className="!px-2 xl:!px-4 xl:!py-4 !py-3  hidden md:table-cell">{product.offerPrice}</td>
+                                    <td className="!px-2 xl:!px-4 xl:!py-4 !py-3  hidden md:table-cell">{product.mfd}</td>
+                                    <td className="!px-2 xl:!px-4 xl:!py-4 !py-3  hidden md:table-cell">{product.exp}</td>
+                                    <td className="!px-2 xl:!px-4 xl:!py-4 !py-3  hidden md:table-cell">{product.seller}</td>
+                                    <td className="!px-2 xl:!px-4 xl:!py-4 !py-3 ">
+                                        <label className="relative flex justify-center inline-flex items-center cursor-pointer text-gray-900 gap-3">
                                             <input onClick={() => toggleStock(product._id, !product.inStock)} defaultChecked={product.inStock} type="checkbox" className="sr-only peer" />
-                                            <div className="w-12 h-7 bg-slate-300 rounded-full peer peer-checked:bg-blue-600 transition-colors duration-200"></div>
+                                            <div className="w-12 h-7 bg-red-500 rounded-full peer peer-checked:bg-green-600 transition-colors duration-200"></div>
                                             <span className="dot absolute left-1 top-1 w-5 h-5 bg-white rounded-full transition-transform duration-200 ease-in-out peer-checked:translate-x-5"></span>
                                         </label>
                                     </td>

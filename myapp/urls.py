@@ -12,8 +12,13 @@ urlpatterns = [
     path('orders/create/', views.create_order),
 
     path('sellers/', views.get_all_sellers),
-    path('sellers/create/', views.create_seller),
-
+    path('seller/register', views.create_seller),
+    path('seller/login', views.login_seller),
+    path('seller/logout', views.logout_seller),
+    
+     path('admmin/login', views.admin_login),
+     path('admmin/logout', views.admin_logout),
+     
     path('reviews/', views.get_all_reviews),
     path('reviews/create/', views.create_review),
 

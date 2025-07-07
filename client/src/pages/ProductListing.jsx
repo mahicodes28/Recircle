@@ -10,8 +10,8 @@ import { Button } from "@mui/material";
 import { IoGrid } from "react-icons/io5";
 import { BsFillGrid3X3GapFill } from "react-icons/bs";
 import { MdMenu } from "react-icons/md";
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 import { MdOutlineShoppingCart } from "react-icons/md";
 
 const ProductListing = () => {
@@ -28,19 +28,19 @@ const ProductListing = () => {
 
   return (
     <>
-      <section className="bg-zinc-200 !py-5 !w-full">
-        <div className="container !py-4 ">
+      <section className="   !py-5 !w-[100vw] xl:!w-full">
+        <div className="container  !py-4 !text-zinc-400 ">
           <Breadcrumbs aria-label="breadcrumb">
             <Link
               underline="hover"
-              className="link transition-all"
+              className="link text-zinc-400 transition-all"
               color="inherit"
               to="/"
             >
               Home
             </Link>
             <Link
-              className="link transition-all"
+              className="link transition-all text-zinc-400"
               underline="hover"
               color="inherit"
               to={"/"}
@@ -49,42 +49,55 @@ const ProductListing = () => {
             </Link>
           </Breadcrumbs>
         </div>
-        <div className="!w-[100%]  !px-16 flex !items-start gap-4 p-4">
+        <div className="!w-[100%]  xl:!px-3 xl:!px-16 flex !items-start gap-4 p-4">
           {/* Sidebar */}
-      <div className="!w-[20%]">
-    <div
-      className="sidewrapper !rounded-md !bg-blue-200 !sticky top-0"
-      style={{ minWidth: "220px" }}
-    >
-      <Filter />
-    </div>
-  </div>
+            <Filter />
           {/* Main Content */}
-          <div className="rightSection !pl-8 !min-h-[20vw] !py-5 !w-[80%] bg-white h-full !rounded-lg">
-            <div className="flex bg-zinc-200 !px-4 !py-3 w-[97%] rounded-md mb-3 items-center justify-between">
+          <div className="rightSection !px-1 xl:!pl-8 !min-h-[20vw]  !py-2 xl:!py-5 w-full xl:!w-[80%]  bg-white h-full !rounded-lg">
+            <div className="flex bg-zinc-900 px-4 xl:!px-4 !py-3 w-[98%] xl:!w-[99%] rounded-md mb-3 items-center justify-between">
               <div className="col1 flex items-center itemViewActions">
-                <Button className={`!h-[40px] !w-[40px] !min-w-[40px] !text-black !rounded-full ${itemView==="list" && 'active'}`} onClick={() => setItemView("list")}><MdMenu /></Button>
-                <Button className={`!h-[40px] !w-[40px] !min-w-[40px] !text-black !rounded-full ${itemView==="grid" && 'active'}`} onClick={() => setItemView("grid3")}><IoGrid /></Button>
-                <span className="text-md font-[500] !ml-2">There are <span className="font-semibold text-blue-600">23</span> Products</span>
+                <Button
+                  className={`scale-0 xl:scale-100 flex xl:flex flex-col items-center justify-center xl:h-[40px] xl:w-[40px] xl:min-w-[40px] text-white rounded-full ${
+                    itemView === "list" ? "bg-blue-500" : ""
+                  }`}
+                  onClick={() => setItemView("list")}
+                >
+                  <MdMenu />
+                </Button>
+                <Button
+                  className={`flex flex-col items-center justify-center xl:h-[40px] xl:w-[40px] xl:min-w-[40px] text-white rounded-full ${
+                    itemView === "grid3" ? "bg-blue-500" : ""
+                  }`}
+                  onClick={() => setItemView("grid3")}
+                >
+                  <IoGrid />
+                </Button>
+                <span className="text-xs xl:text-md font-[500] !ml-2">
+                  There are{" "}
+                  <span className="font-semibold text-blue-600">23</span>{" "}
+                  Products
+                </span>
               </div>
               <div className="col2">
-                <Button className="link !font-[500] !shadow-md !text-black !bg-white"
+                <Button
+                  className="link !text-xs xl:text-auto !font-[500] !shadow-md !text-black !bg-white"
                   id="basic-button"
-                  aria-controls={open ? 'basic-menu' : undefined}
+                  aria-controls={open ? "basic-menu" : undefined}
                   aria-haspopup="true"
-                  aria-expanded={open ? 'true' : undefined}
+                  aria-expanded={open ? "true" : undefined}
                   onClick={handleClick}
                 >
                   Sort By
                 </Button>
-                <Menu className="!mt-2"
+                <Menu
+                  className="!mt-2"
                   id="basic-menu"
                   anchorEl={anchorEl}
                   open={open}
                   onClose={handleClose}
                   slotProps={{
                     list: {
-                      'aria-labelledby': 'basic-button',
+                      "aria-labelledby": "basic-button",
                     },
                   }}
                 >
@@ -95,17 +108,21 @@ const ProductListing = () => {
                 </Menu>
               </div>
             </div>
-            <div className={
-              itemView === "list"
-                ? "flex flex-col grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols1 gap-4 w-full p-4"
-                : itemView === "grid3"
-                  ? "grid mt-4 grid-cols-4 gap-4 overflow-y-auto h-[25vw] items-start !w-full p-4"
-                  : "grid mt-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 items-start !w-full p-4"
-            }>
-              {[...Array(23)].map((_, idx) =>
-                itemView === "list"
-                  ? <ProductItemListView key={idx} />
-                  : <ProductItem key={idx} />
+           <div
+  className={
+    itemView === "list"
+      ? "hidden md:flex xl:flex flex-col gap-4 !mt-4 w-full p-4"
+      : itemView === "grid3"
+      ? "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 w-full p-4"
+      : "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 w-full p-4"
+  }
+>
+              {[...Array(15)].map((_, idx) =>
+                itemView === "list" ? (
+                  <ProductItemListView key={idx} />
+                ) : (
+                  <ProductItem key={idx} />
+                )
               )}
             </div>
           </div>
@@ -115,4 +132,4 @@ const ProductListing = () => {
   );
 };
 
-export default ProductListing
+export default ProductListing;

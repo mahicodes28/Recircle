@@ -3,6 +3,7 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 from mongoengine.errors import DoesNotExist, ValidationError
 from myapp.models import Product, Address, Order, Seller, Review, ProductDetail, HelpRequest
+from django.conf import settings
 
 
 def serialize_queryset(queryset):
@@ -82,7 +83,7 @@ def create_order(request):
             return JsonResponse({"error": str(e)}, status=400)
     return JsonResponse({"error": "Method not allowed"}, status=405)
 
-
+# For admin panel sellers list
 @csrf_exempt
 def get_all_sellers(request):
     if request.method == 'GET':
@@ -97,10 +98,52 @@ def create_seller(request):
             data = json.loads(request.body)
             seller = Seller(**data)
             seller.save()
-            return JsonResponse({"message": "Seller created", "id": str(seller.id)}, status=201)
+            return JsonResponse({"success":True,"message": "Seller created", "id": str(seller.id)}, status=201)
         except Exception as e:
             return JsonResponse({"error": str(e)}, status=400)
     return JsonResponse({"error": "Method not allowed"}, status=405)
+@csrf_exempt
+def login_seller(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            email = data.get('email')
+            password = data.get('password')
+
+            if not email or not password:
+                return JsonResponse({"success": False, "message": "Email and password are required"}, status=400)
+
+            seller = Seller.objects.filter(email=email).first()
+
+            if not seller or seller.password != password:
+                return JsonResponse({"success": False, "message": "Invalid Credentials"}, status=401)
+
+            # You can set a session or token here if needed
+            request.session['seller_id'] = str(seller.id)
+
+            return JsonResponse({
+                "success": True,
+                "message": "Login successful",
+                "id": str(seller.id),
+                "user": seller.user
+            }, status=200)
+
+        except Exception as e:
+            return JsonResponse({"success": False, "message": str(e)}, status=500)
+
+    return JsonResponse({"success": False, "message": "Method not allowed"}, status=405)
+
+@csrf_exempt
+def logout_seller(request):
+    if request.method == 'POST':
+        try:
+            # Remove seller ID from session
+            if 'seller_id' in request.session:
+                del request.session['seller_id']
+            return JsonResponse({"success": True, "message": "Logged out successfully"}, status=200)
+        except Exception as e:
+            return JsonResponse({"success": False, "message": str(e)}, status=500)
+    return JsonResponse({"success": False, "message": "Method not allowed"}, status=405)
 
 
 @csrf_exempt
@@ -180,4 +223,24 @@ def create_help_request(request):
         except Exception as e:
             return JsonResponse({"error": str(e)}, status=400)
     return JsonResponse({"error": "Method not allowed"}, status=405)
-    
+
+@csrf_exempt
+def admin_login(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        if data.get('email') == settings.ADMIN_EMAIL and data.get('password') == settings.ADMIN_PASSWORD:
+            request.session['is_admin'] = True
+            return JsonResponse({"success": True, "message": "Logged in"})
+        return JsonResponse({"success": False, "message": "Invalid credentials"}, status=401)
+    return JsonResponse({"message": "Only POST allowed"}, status=405)
+
+@csrf_exempt
+def admin_logout(request):
+    if request.method == 'POST':
+        try:
+            if 'is_admin' in request.session:
+                del request.session['is_admin']
+            return JsonResponse({"success": True, "message": "Admin logged out successfully"}, status=200)
+        except Exception as e:
+            return JsonResponse({"success": False, "message": str(e)}, status=500)
+    return JsonResponse({"success": False, "message": "Method not allowed"}, status=405)

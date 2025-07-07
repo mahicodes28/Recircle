@@ -71,12 +71,12 @@ const Cart = () => {
     const navigate = useNavigate();
 
     return (
-        <div className="flex flex-col md:flex-row !py-10 w-full gap-10 !px-20 relative">
+        <div className="flex flex-col xl:flex-row  !py-10 w-full !gap-10 !px-20 relative">
             {/* Scrollable items section */}
-            <div className="flex-1 px-4 rounded-xl max-w-4xl" style={{ maxHeight: "calc(100% - 4rem)" }}>
+            <div className="flex-1 !px-4 overflow-hidden !rounded-xl  xl:!max-w-4xl" style={{ maxHeight: "calc(100% - 4rem)" }}>
                 {/* Sticky Shopping Cart Title */}
                 <div
-                    className="!bg-white z-10 shadow-md !px-2"
+                    className="!bg-white rounded-t-xl !mb-2 z-10 shadow-md !px-2"
                     style={{
                         position: "sticky",
                         top: 0,
@@ -84,12 +84,12 @@ const Cart = () => {
                         paddingBottom: "1rem",
                     }}
                 >
-                    <h1 className="!text-[4vw] font-medium px-4 !mb-4">
+                    <h1 className="!text-[4vw] !text-black font-medium !px-4 !mb-4">
                         Your Cart <span className="text-[1.2vw] text-indigo-500">{totalItems} Items</span>
                     </h1>
                     {/* Sticky Product Details Header */}
                     <div
-                        className="grid grid-cols-[2fr_1fr_1fr] text-gray-500 text-xl font-medium pb-2 bg-white"
+                        className="grid grid-cols-[2fr_1fr_1fr] text-gray-500 text-xl font-medium !pb-2 bg-white"
                         style={{
                             position: "sticky",
                             top: "5.5rem",
@@ -104,9 +104,9 @@ const Cart = () => {
 
                 <div>
                     {products.map((product, index) => (
-                        <div key={index} className="grid mb-2 shadow-md grid-cols-[2fr_1fr_1fr] text-gray-500 items-center text-xl md:text-base font-medium pt-6 bg-white">
-                            <div className="flex items-center md:gap-6 gap-8">
-                                <div className="cursor-pointer w-35 h-35 flex items-center justify-center shadow-lg rounded-md">
+                        <div key={index} className="grid !mb-2 shadow-md grid-cols-[2fr_1fr_1fr] text-gray-500 items-center text-xl xl:text-base font-medium !pt-6 bg-white">
+                            <div className="flex items-center xl:gap-6 gap-8">
+                                <div className="cursor-pointer w-30 h-30 xl:w-35 xl:h-35 flex items-center justify-center shadow-lg rounded-md">
                                     <img className="max-w-full h-full object-cover" src={product.image} alt={product.name} />
                                 </div>
                                 <div>
@@ -149,7 +149,7 @@ const Cart = () => {
                     ))}
                 </div>
 
-                <Button onClick={() => navigate(-1)} className="group btn-org w-full cursor-pointer flex items-center !mt-8 gap-2 hover:!bg-black font-medium">
+                <Button onClick={() => navigate(-1)} className="group btn-org w-full cursor-pointer flex !bg-black items-center !mt-8 !gap-2 hover:!bg-blue-600 font-medium">
                     <svg width="20" height="11" viewBox="0 0 15 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M14.09 5.5H1M6.143 10 1 5.5 6.143 1" stroke="#f5f5f5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
@@ -159,7 +159,7 @@ const Cart = () => {
 
             {/* Sticky order summary within cart section */}
             <div
-                className="max-w-[35%] w-full bg-gray-100/40 rounded-lg !p-5 border border-gray-300/70"
+                className="max-w-[35%] w-full bg-gray-900 rounded-lg !p-5 border border-gray-300/70"
                 style={{
                     position: "sticky",
                     top: "2rem",
@@ -173,7 +173,7 @@ const Cart = () => {
                 <div className="!mb-6">
                     <p className="text-md font-medium uppercase">Delivery Address</p>
                     <div className="relative flex justify-between items-start !mt-2">
-                        <div className="text-gray-500 w-full pr-2">
+                        <div className="text-gray-500 w-full !pr-2">
                             {address ? (
                                 <div className="space-y-1">
                                     <div className="font-semibold text-black">{address.name}</div>
@@ -354,9 +354,9 @@ const Cart = () => {
                         )}
                     </div>
 
-                    <p className="!text-sm !font-medium !uppercase !mt-6">Payment Method</p>
+                    <p className="!text-sm  !font-medium !uppercase !mt-6">Payment Method</p>
 
-                    <select className="w-full border border-gray-300 bg-white !px-3 !py-2 !mt-2 rounded-md outline-none">
+                    <select className="w-full border !text-black border-gray-300 bg-white !px-3 !py-2 !mt-2 rounded-md outline-none">
                         <option value="COD">Cash On Delivery</option>
                         <option value="Online">Online Payment</option>
                     </select>
