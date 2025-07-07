@@ -4,12 +4,12 @@ import "../pages/styles.css"
 const HelpCenter = () => {
   return (
     <div className="help min-h-screen flex flex-col shadow-md  items-center justify-center bg-black !rounded-0 !px-6">
-      <form className="flex !bg-[#432DD7] flex-col items-center text-sm text-white bg-white !shadow-xl rounded-xl !p-8 w-full max-w-xl ">
+      <form className="flex !bg-gradient-to-tr from-[#00FFFF] via-[#001F3F] to-[#008080]   flex-col items-center text-sm text-white bg-white !shadow-xl rounded-xl !p-8 w-full max-w-xl ">
         <p className="text-md bg-white text-indigo-600 font-medium !px-3 !py-1 rounded-full !mb-2">Contact Us</p>
-        <h1 className="!text-4xl text-black md:text-4xl font-bold !py-2 text-center">Let’s Get In Touch.</h1>
+        <h1 className="!text-4xl text-white md:text-4xl font-bold !py-2 text-center">Let’s Get In Touch.</h1>
         <p className="max-md:text-sm text-white !pb-8 text-center">
           Or just reach out manually to us at{" "}
-          <a href="mailto@gmail.com" className="text-black hover:underline">mailto@gmail.com</a>
+          <a href="mailto@gmail.com" className="text-black font-bold hover:underline">mailto@gmail.com</a>
         </p>
 
         <div className="!w-full text-white !space-y-5">

@@ -14,7 +14,11 @@ from pathlib import Path
 from mongoengine import connect
 import os
 from dotenv import load_dotenv
+from decouple import config
 
+ADMIN_EMAIL = config('ADMIN_EMAIL')
+ADMIN_PASSWORD = config('ADMIN_PASSWORD')
+# Importing CORS headers for handling cross-origin requests
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -35,6 +39,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,19 +47,19 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'myapp',
-    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',             # ✅ must be first
+    'django.middleware.common.CommonMiddleware',         # ✅ before CSRF
+    'django.contrib.sessions.middleware.SessionMiddleware',  # ✅ before CSRF
+    'django.middleware.csrf.CsrfViewMiddleware',         # ✅ CSRF comes after session
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-     'corsheaders.middleware.CorsMiddleware',
 ]
+
 
 ROOT_URLCONF = 'ReCircle.urls'
 
@@ -75,11 +80,16 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'ReCircle.wsgi.application'
-CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ALLOW_ALL_ORIGINS = True  # Allow all origins for development purposes
 # React frontend
-"""CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',  
-]"""
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',  
+]
+CORS_ALLOW_CREDENTIALS = True
+# If you're using Django CSRF protection with Axios/fetch
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:5173",
+]
 
 import logging
 logging.basicConfig(level=logging.DEBUG)
@@ -136,13 +146,35 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+from mongoengine import connect, connection
+from pymongo import MongoClient
+from pymongo.server_api import ServerApi
+from dotenv import load_dotenv
+import os
+
+
+# Load environment variables from .env file
 load_dotenv()
 
-from mongoengine import connect
+# Set default MongoDB URI
+MONGO_URI = os.getenv("MONGO_URI", "mongodb+srv://mahich:28122005@cluster0.twh2p51.mongodb.net/ReCircle?retryWrites=true&w=majority&ssl=true")
 
-connect(
-    db="ReCircle",
-    host="mongodb+srv://mahich:28122005@cluster0.twh2p51.mongodb.net/ReCircle?retryWrites=true&w=majority&ssl=true",
-         # mongodb+srv://<username>:<password>@ac-oomlojl-shard-00-00.twh2p51.mongodb.net/<dbname>?retryWrites=true&w=majority&
-)
+# Attempt to connect with mongoengine if not already connected
+try:
+    connection.get_connection(alias='default')
+except Exception:
+    connect(
+        db="ReCircle",
+        host=MONGO_URI,
+        alias="default"
+    )
 
+# Test MongoDB connectivity using pymongo
+try:
+    # Use the same URI or a generic one for admin commands
+    mongo_uri = os.getenv("MONGO_URI", "mongodb+srv://mahich:28122005@cluster0.twh2p51.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+    client = MongoClient(mongo_uri, server_api=ServerApi('1'))
+    client.admin.command('ping')
+    print("Pinged your deployment. You successfully connected to MongoDB!")
+except Exception as e:
+    print(f"Error connecting to MongoDB: {e}")

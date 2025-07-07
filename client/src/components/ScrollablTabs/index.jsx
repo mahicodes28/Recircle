@@ -21,21 +21,22 @@ const ScrollableTabs = () => {
   };
 
   return (
-    <div className="w-full px-2 sm:px-4 md:px-8">
+    <div className="w-full  px-2 sm:px-4 md:px-8">
       <Tabs
         value={value}
         onChange={handleChange}
+        c
         variant="scrollable"
         scrollButtons="auto"
         aria-label="scrollable auto tabs example"
-        className="w-full"
+        className="w-full !text-white"
         TabIndicatorProps={{ style: { height: 3 } }}
       >
         {tabLabels.map((label, index) => (
           <Tab
             key={index}
             label={label}
-            className="text-xs sm:text-base md:text-lg font-medium"
+            className="text-xs sm:text-base !text-white md:text-lg font-medium"
             sx={{
               minWidth: { xs: 80, sm: 120, md: 140 },
               px: { xs: 1, sm: 2, md: 3 },

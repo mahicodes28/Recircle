@@ -20,13 +20,13 @@ function Home() {
           <CatSlider />
         </div>
         <section>
-          <div className="container !pt-6 w-full mx-auto">
+          <div className="container !mb-[-50%] xl:!mb-0 sm:!mb-0 md:!mb-0 !pt-6 w-full mx-auto">
             <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
               <div className="leftSec w-full md:w-[40%]">
                 <h1 className="text-3xl md:text-5xl text-left font-semibold">Popular Products</h1>
                 <p className="text-left text-md">Do not miss the current offers until the end of this Month</p>
               </div>
-              <div className="rightSec w-full md:w-[60%] mt-4 md:mt-0">
+              <div className="rightSec !text-white w-full md:w-[60%] mt-4 md:mt-0">
                 <ScrollableTabs className="w-full" />
               </div>
             </div>
@@ -45,13 +45,13 @@ function Home() {
           </div>
         </section>
         <Section className="flex flex-col mx-auto bg-white items-center !pt-5 justify-center" />
-        <AdBannerSlider  />
+        <AdBannerSlider spaceBetween={"15"} items={"2"}  />
       </div>
-      <section className="container bg-gradient-to-br to-indigo-50 from-white !pt-5 px-2 md:!px-10 !w-full mx-auto">
+      <section className="container bg-black !mb-[-50%] xl:!mb-0 sm:!mb-0 md:!mb-0 !pt-5 px-2 md:!px-10 !w-full mx-auto">
         <h1 className="text-2xl xl:text-5xl md:text-5xl text-left font-semibold !px-6 xl:!px-8 md:!px-7">Latest Products</h1>
-        <ProductSlider items={6} />
+        <ProductSlider items={5} />
       </section>
-      <section className="!pt-2 px-2 md:!px-6 shadow-lg bg-gradient-to-tr to-indigo-50 from-white rounded-b-[2vw] !w-full mx-auto">
+      <section className="!pt-2 px-2 md:!px-6 shadow-lg bg-black rounded-b-[2vw] !w-full mx-auto">
         <AdBannerSliderV2 width={"full"} items={[2]} spaceBetween={5} />
       </section>
     </>

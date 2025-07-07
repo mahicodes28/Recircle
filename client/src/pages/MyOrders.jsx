@@ -15,9 +15,9 @@ const MyOrders = () => {
     ];
     return (
         <div className="md:p-10 !p-4 !w-[100%]  !px-20 space-y-4">
-            <h2 className="text-3xl  flex flex-col gap-5 !font-medium !mb-5">My Orders </h2>
+            <h2 className="text-4xl  flex flex-col gap-5 !font-medium !mb-5">My Orders </h2>
             {orders.map((order, index) => (
-                <div key={index} className="flex !mb-5 flex-col md:grid md:grid-cols-[2fr_1fr_1fr_1fr] md:items-center !gap-20 !p-5 !w-full !rounded-md border border-gray-300 !text-gray-800">
+                <div key={index} className="flex bg-zinc-900 !mb-5 flex-col md:grid md:grid-cols-[2fr_1fr_1fr_1fr] md:items-center !gap-10 md:!gap-20 xl:!gap-20 !p-5 !w-full !rounded-md border border-gray-800 !text-white">
                     <div className="flex !gap-10">
                         <img className="!w-25 !h-25 !object-cover border !opacity-60" src={boxIcon} alt="boxIcon" />
                         <>
@@ -36,12 +36,12 @@ const MyOrders = () => {
                         <p>{order.address.street}, {order.address.city}, {order.address.state},{order.address.zipcode}, {order.address.country}</p>
                     </div>
 
-                    <p className="font-medium !text-base !my-auto !font-bold !text-black/70">${order.amount}</p>
+                    <p className="font-medium !text-base !my-auto !font-bold !text-white/70">${order.amount}</p>
 
                     <div className="flex flex-col text-sm">
                         <p>Method: {order.paymentType}</p>
                         <p>Date: {order.orderDate}</p>
-                        <p className={`${order.isPaid? "text-green-500":"text-red-600"}`}> <span className='text-black'>Payment:</span> {order.isPaid ? "Paid" : "Pending"}</p>
+                        <p className={`${order.isPaid? "text-green-500":"text-red-600"}`}> <span className='text-white'>Payment:</span> {order.isPaid ? "Paid" : "Pending"}</p>
                     </div>
                 </div>
             ))}

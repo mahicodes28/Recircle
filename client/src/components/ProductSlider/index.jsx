@@ -17,7 +17,7 @@ const ProductSlider = (props) => {
         <Swiper
           // Responsive breakpoints for slidesPerView
           breakpoints={{
-            0: { slidesPerView: 1, spaceBetween: 12 },
+            0: { slidesPerView: 2, spaceBetween: 12 },
             480: { slidesPerView: 2, spaceBetween: 16 },
             768: { slidesPerView: 3, spaceBetween: 20 },
             1024: { slidesPerView: props.items || 4, spaceBetween: 30 },

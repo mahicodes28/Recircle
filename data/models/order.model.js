@@ -22,10 +22,10 @@ import mongoose from "mongoose";
     status :{
         type : String ,
         enum : ["DELIVERED", "PENDING", "CANCELLED"],
-        default : " DELIVERED",
+        default : "DELIVERED",
     },
     customer : {
-        type : mongoose.Schema.Types.ObjectId , ref : " Address" ,
+        type : mongoose.Schema.Types.ObjectId , ref : "Address" ,
         required : true ,
     },
     PaymentType : {
@@ -35,4 +35,5 @@ import mongoose from "mongoose";
     }
  },{timestamps : true }); 
 
-module.export = mongoose.model("Order",orderSchema);
+const Order = mongoose.model("Order",orderSchema);
+export default Order ;

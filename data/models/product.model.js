@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 
 
-
 const productSchema = new mongoose.Schema({
     product_name :{
         type: String,
@@ -33,7 +32,7 @@ const productSchema = new mongoose.Schema({
     },
     seller :{
         type : mongoose.Schema.Types.ObjectId,
-        ref : "User",
+        ref : "seller",// same (user or seller ) ke liye user 
         required :true ,
     },
     isApproved :{
@@ -43,4 +42,5 @@ const productSchema = new mongoose.Schema({
 },{timestamps : true });
 
 
-module.export = mongoose.model("Product", productSchema) ;
+const Product = mongoose.model("Product", productSchema) ;
+export default Product;

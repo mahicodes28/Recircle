@@ -35,10 +35,10 @@ const Filter = () => {
   return (
     <>
       <aside
-        className="Filter flex flex-col gap-2 z-10 bg-white sticky top-0 w-full sm:w-auto px-2 sm:px-0"
+        className="Filter  flex flex-col  gap-2 z-10 bg-white sticky top-4 xl:block hidden md:w-auto xl:w-auto px-2 rounded-xl md:px-2 xl:px-0"
       >
-        <div className="box p-3 sm:p-4">
-          <div className="head py-1 flex items-center justify-between">
+        <div className="box  !p-3 xl:p-4">
+          <div className="head py-1 flex items-center !text-black  justify-between">
             <h3 className='text-lg sm:text-xl font-[500]'>Product Categories</h3>
             <Button onClick={DropDown} className='flex transition-all duration-100 items-center min-w-0 p-0' disableRipple>
               {down ? <IoIosArrowUp className='text-lg sm:text-xl' /> : <IoIosArrowDown className='text-lg sm:text-xl' />}
@@ -51,14 +51,14 @@ const Filter = () => {
                   <FormControlLabel
                     key={idx}
                     control={<Checkbox size="small" />}
-                    label={<span className="text-sm sm:text-base">{cat}</span>}
+                    label={<span className="text-sm text-black sm:text-base">{cat}</span>}
                   />
                 ))}
               </FormGroup>
             </div>
           </Collapse>
         </div>
-        <div className="Avail px-3 sm:px-4 pb-3 sm:pb-4">
+        <div className="Avail !px-3 md:!px-4 xl:!px-4 pb-3 text-black">
           <div className="head py-1 flex items-center justify-between">
             <h3 className='text-lg sm:text-xl font-[500]'>Availability</h3>
             <Button onClick={Available} className='flex transition-all duration-100 items-center min-w-0 p-0' disableRipple>
