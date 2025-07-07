@@ -2,92 +2,92 @@ import React, { useEffect } from 'react'
 import { useAppContext } from '../context/AppProvider'
 
 const AllSellers = () => {
-//   const { sellers, fetchSellers } = useAppContext()
+  const { sellers, fetchSellers } = useAppContext()
 
-//   useEffect(() => {
-//     fetchSellers()
-//   }, [])
-const sellers = [
-  {
-    _id: "s1",
-    name: "EcoMart Retailers",
-    totalproducts: 15
-  },
-  {
-    _id: "s2",
-    name: "Urban Threads",
-    totalproducts: 32
-  },
-  {
-    _id: "s3",
-    name: "GreenGlow Organics",
-    totalproducts: 12
-  },
-  {
-    _id: "s4",
-    name: "TechZone India",
-    totalproducts: 8
-  },
-  {
-    _id: "s5",
-    name: "Wellness Co.",
-    totalproducts: 24
-  },
-  {
-    _id: "s6",
-    name: "GadgetGarage",
-    totalproducts: 17
-  },
-  {
-    _id: "s7",
-    name: "FreshBasket Pvt Ltd",
-    totalproducts: 29
-  },
-  {
-    _id: "s8",
-    name: "ClothCulture",
-    totalproducts: 11
-  }, {
-    _id: "s1",
-    name: "EcoMart Retailers",
-    totalproducts: 15
-  },
-  {
-    _id: "s2",
-    name: "Urban Threads",
-    totalproducts: 32
-  },
-  {
-    _id: "s3",
-    name: "GreenGlow Organics",
-    totalproducts: 12
-  },
-  {
-    _id: "s4",
-    name: "TechZone India",
-    totalproducts: 8
-  },
-  {
-    _id: "s5",
-    name: "Wellness Co.",
-    totalproducts: 24
-  },
-  {
-    _id: "s6",
-    name: "GadgetGarage",
-    totalproducts: 17
-  },
-  {
-    _id: "s7",
-    name: "FreshBasket Pvt Ltd",
-    totalproducts: 29
-  },
-  {
-    _id: "s8",
-    name: "ClothCulture",
-    totalproducts: 11
-  }
-]
+  useEffect(() => {
+    fetchSellers()
+  }, [fetchSellers])
+// const sellers = [
+//   {
+//     _id: "s1",
+//     name: "EcoMart Retailers",
+//     totalproducts: 15
+//   },
+//   {
+//     _id: "s2",
+//     name: "Urban Threads",
+//     totalproducts: 32
+//   },
+//   {
+//     _id: "s3",
+//     name: "GreenGlow Organics",
+//     totalproducts: 12
+//   },
+//   {
+//     _id: "s4",
+//     name: "TechZone India",
+//     totalproducts: 8
+//   },
+//   {
+//     _id: "s5",
+//     name: "Wellness Co.",
+//     totalproducts: 24
+//   },
+//   {
+//     _id: "s6",
+//     name: "GadgetGarage",
+//     totalproducts: 17
+//   },
+//   {
+//     _id: "s7",
+//     name: "FreshBasket Pvt Ltd",
+//     totalproducts: 29
+//   },
+//   {
+//     _id: "s8",
+//     name: "ClothCulture",
+//     totalproducts: 11
+//   }, {
+//     _id: "s1",
+//     name: "EcoMart Retailers",
+//     totalproducts: 15
+//   },
+//   {
+//     _id: "s2",
+//     name: "Urban Threads",
+//     totalproducts: 32
+//   },
+//   {
+//     _id: "s3",
+//     name: "GreenGlow Organics",
+//     totalproducts: 12
+//   },
+//   {
+//     _id: "s4",
+//     name: "TechZone India",
+//     totalproducts: 8
+//   },
+//   {
+//     _id: "s5",
+//     name: "Wellness Co.",
+//     totalproducts: 24
+//   },
+//   {
+//     _id: "s6",
+//     name: "GadgetGarage",
+//     totalproducts: 17
+//   },
+//   {
+//     _id: "s7",
+//     name: "FreshBasket Pvt Ltd",
+//     totalproducts: 29
+//   },
+//   {
+//     _id: "s8",
+//     name: "ClothCulture",
+//     totalproducts: 11
+//   }
+// ]
   return (
     <div className="!no-scrollbar flex-1 !border-l-2 !border-gray-200  w-full flex flex-col justify-between">
       <div className="w-full md:p-6 !p-2 md:!p-4 xl:!p-4">
