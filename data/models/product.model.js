@@ -28,12 +28,19 @@ const productSchema = new mongoose.Schema({
     },
     image : {
        type : Array,
-       required : true ,
+    //    required : true ,
     },
     seller :{
-        type : mongoose.Schema.Types.ObjectId,
-        ref : "seller",// same (user or seller ) ke liye user 
-        required :true ,
+        // type : mongoose.Schema.Types.ObjectId,
+        // ref : "seller",// same (user or seller ) ke liye user 
+        // required :true ,
+        type:String
+    },
+    mfd:{
+        type:String,
+    },
+    exp:{
+        type:String,
     },
     isApproved :{
         type : Boolean,

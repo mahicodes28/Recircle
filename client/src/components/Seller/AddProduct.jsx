@@ -1,50 +1,51 @@
 import { Button } from '@mui/material'
 import React, { useContext, useState } from 'react'
 import { AppContext } from '../../context/AppProvider'
+import { toast } from 'react-toastify';
 
 const AddProduct = () => {
 
-  const {seller , axios }=useContext(AppContext);
+  const {seller , axios ,backendUrl}=useContext(AppContext);
 
-  const [files, setFiles] = useState([]); // Initialize as an empty array
-    const [name, setName] = useState('');
-    const [description, setDescription] = useState('');
-    const [category, setCategory] = useState('');
-    const [price, setPrice] = useState(0);
-    const [offerPrice, setOfferPrice] = useState(0);
-    const [mfd,setMfd]=useState('')
-  const[exp,setExp]=('');
-  const [manufacturer , setManufacturer] = ('');
-
+  const [files, setFiles] = useState([]);
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
+  const [category, setCategory] = useState('');
+  const [price, setPrice] = useState(0);
+  const [offerPrice, setOfferPrice] = useState(0);
+  const [mfd, setMfd] = useState('');
+  const [exp, setExp] = useState('');
+  const [manufacturer, setManufacturer] = useState('');
 
   const onSubmitHandler = async (e) => {
     try {
       e.preventDefault();
 
       const productData = {
-        name,
-        description: description.split('\n'),
+        product_name: name,
+        description,
         category,
         price,
         offerPrice,
+        instock: 1,
+        seller: manufacturer, // or seller._id or seller.name as per your backend
         mfd,
         exp,
-        manufacturer
-      }
+        isApproved: false
+      };
 
       const formData = new FormData();
-      formData.append('productData', JSON.stringify(productData));
-      for (let i = 0; i < files.length; i++) {
-        formData.append('images', files[i]);
+      formData.append('formData', JSON.stringify(productData)); // key must match backend
+      for(let i=0 ; i<files.length; i++){
+          formData.append('images', files[i]);
       }
 
-      const { data } = await axios.post('/api/product/add', formData, {
+      const { data } = await axios.post(`http://localhost:5000/product/add`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
 
-      console.log(data); // Log the response to verify its structure
       if (data.success) {
         toast.success(data.message);
         setFiles([]);
@@ -56,18 +57,15 @@ const AddProduct = () => {
         setMfd('');
         setExp('');
         setManufacturer('');
-
       } else {
         toast.error(data.message || "Product not added");
       }
-
     } catch (error) {
       toast.error("Something went wrong");
     }
   };
-    
    return (
-    <div className="!py-6 sm:!py-10 rounded-md !px-2 sm:!px-6 md:!px-10 shadow-lg !mt-2 flex flex-col justify-between bg-white">
+    <div className="!py-6 !text-black sm:!py-10 rounded-md !px-2 sm:!px-6 md:!px-10 shadow-lg !mt-2 flex flex-col justify-between bg-white">
       <form className="!p-2 sm:!p-4 md:!p-10 !space-y-5 !w-full">
         <div className="add flex flex-col md:flex-row w-full gap-6">
           {/* Left Side */}

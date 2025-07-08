@@ -56,8 +56,11 @@ export const AppProvider = ({ children }) => {
    //function for Fetchig products
     const fetchProduct =async()=>{
       try{
-        const {data} = await axios.get('/api/product'); 
+        const {data} = await axios.get('http://localhost:5000/product/'); 
+        
         if(data.success){
+          console.log(data);
+          console.log(data.products);
           setProducts(data.products);
       }
       else{
@@ -102,19 +105,17 @@ export const AppProvider = ({ children }) => {
     // } 
 
 
-    // useEffect(()=>{
+    useEffect(()=>{
 
-    //   if(isAdmin){
-    //     fetchProduct();
-    //     fetchSellers();
-    //   }
+      //fetchProduct();
+      fetchSellers();
 
-    // },[])
+    },[])
   const value = {isAdmin , setisAdmin , products , setProducts , fetchProduct , sellers , setSellers , fetchSellers , isseller , setIsSeller , axios, seller , setSeller , sellerProducts , fetchSellerProducts , fetchOrders , setOrders , orders }
 
-  useEffect(()=>{
-    fetchSellers();
-  },[])
+//  useEffect(() => {
+//     fetchSellers()
+//   }, [])
  
   return (
     <AppContext.Provider value={value}>

@@ -13,7 +13,7 @@ const SellerProducts = () => {
     fetchSellerProducts();
   },[])
 
-  const products = sellerProducts;
+  const products = sellerProducts || [];
 
 
 

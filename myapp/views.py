@@ -4,7 +4,17 @@ import json
 from mongoengine.errors import DoesNotExist, ValidationError
 from myapp.models import Product, Address, Order, Seller, Review, ProductDetail, HelpRequest
 from django.conf import settings
+from myapp.models import Product
 
+import cloudinary
+import cloudinary.uploader
+from decouple import config
+
+cloudinary.config(
+    cloud_name = config('CLOUDINARY_CLOUD_NAME'),
+    api_key = config('CLOUDINARY_API_KEY'),
+    api_secret = config('CLOUDINARY_API_SECRET')
+)
 
 def serialize_queryset(queryset):
     data = []
@@ -18,7 +28,7 @@ def serialize_queryset(queryset):
 @csrf_exempt
 def get_all_products(request):
     if request.method == 'GET':
-        return JsonResponse(serialize_queryset(Product.objects()), safe=False)
+        return JsonResponse({"success": True, "products":serialize_queryset(Product.objects())}, safe=False)
     return JsonResponse({"error": "Method not allowed"}, status=405)
 
 
@@ -26,15 +36,36 @@ def get_all_products(request):
 def create_product(request):
     if request.method == 'POST':
         try:
-            data = json.loads(request.body)
-            product = Product(**data)
+            product_data = request.POST.dict()
+            files = request.FILES.getlist('images')
+
+            # Convert types
+            product_data['price'] = float(product_data.get('price', 0))
+            product_data['offerPrice'] = float(product_data.get('offerPrice', 0))
+            product_data['instock'] = int(product_data.get('instock', 1))
+            product_data['isApproved'] = str(product_data.get('isApproved', 'false')).lower() == 'true'
+
+            # Validate required fields
+            if not product_data.get("product_name") or not product_data.get("seller"):
+                return JsonResponse({"success": False, "message": "Missing required fields"}, status=400)
+
+            # Upload images to Cloudinary
+            image_urls = []
+            for file in files:
+                result = cloudinary.uploader.upload(file)
+                image_urls.append(result['secure_url'])
+
+            product_data['image'] = image_urls
+
+            product = Product(**product_data)
             product.save()
-            return JsonResponse({"message": "Product created", "id": str(product.id)}, status=201)
+            return JsonResponse({"success": True, "message": "Product created", "id": str(product.id)}, status=201)
         except Exception as e:
-            return JsonResponse({"error": str(e)}, status=400)
-    return JsonResponse({"error": "Method not allowed"}, status=405)
-
-
+            import traceback
+            print(traceback.format_exc())
+            return JsonResponse({"success": False, "message": str(e)}, status=400)
+    return JsonResponse({"success": False, "message": "Method not allowed"}, status=405)
+    
 @csrf_exempt
 def get_all_addresses(request):
     if request.method == 'GET':
@@ -87,7 +118,18 @@ def create_order(request):
 @csrf_exempt
 def get_all_sellers(request):
     if request.method == 'GET':
-        return JsonResponse(serialize_queryset(Seller.objects()), safe=False)
+        sellers = Seller.objects()
+        sellers_data = []
+        for seller in sellers:
+            # Count products for this seller
+            product_count = Product.objects(seller=seller.id).count()
+            obj = seller.to_mongo().to_dict()
+            obj['_id'] = str(obj['_id'])
+            obj['totalproducts'] = product_count
+            obj.pop('password', None)
+            obj.pop('email', None)
+            sellers_data.append(obj)
+        return JsonResponse({"success": True, "sellers": sellers_data}, safe=False)
     return JsonResponse({"error": "Method not allowed"}, status=405)
 
 

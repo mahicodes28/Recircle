@@ -4,9 +4,7 @@ import { useAppContext } from '../context/AppProvider'
 const AllSellers = () => {
   const { sellers, fetchSellers } = useAppContext()
 
-  useEffect(() => {
-    fetchSellers()
-  }, [fetchSellers])
+ 
 // const sellers = [
 //   {
 //     _id: "s1",
@@ -110,7 +108,7 @@ const AllSellers = () => {
                 <tr key={index} className="border-t border-gray-500/20">
                   <td className="!px-2 xl:!px-4 xl:!py-6 md:!py-4 !py-5 text-center">{index + 1}</td>
                   <td className="!px-2 xl:!px-4 xl:!py-6 md:!py-4 !py-5">
-                    <span>{seller.name}</span>
+                    <span>{seller.user}</span>
                   </td>
                   <td className="!px-2 xl:!px-4 xl:!py-6 md:!py-4 !py-5 hidden sm:table-cell">
                     {seller.totalproducts}

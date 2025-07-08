@@ -3,6 +3,7 @@ from mongoengine import (
     ListField, URLField, DateTimeField, ReferenceField, EmailField,
     EmbeddedDocumentField
 )
+
 from datetime import datetime
 
 
@@ -17,8 +18,8 @@ class Product(Document):
     image = ListField(URLField())
     seller = StringField(required=True)
     isApproved = BooleanField(default=False)
-    created_at = DateTimeField(default=datetime.utcnow)
-    updated_at = DateTimeField(default=datetime.utcnow)
+    created_at = StringField()
+    updated_at = StringField()
 
 
 class ProductDetail(Document):

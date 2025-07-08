@@ -3,16 +3,26 @@ const app = express();
 import mongoose from 'mongoose';
 import SellerRoutes from './routes/seller.js'
 import productrouter from './routes/product.js'
+import cors from 'cors';
+import 'dotenv/config';
+import connectCloudinary from './config/cloudinary.js';
+
+await connectCloudinary();
 
 import dotenv from 'dotenv';
 dotenv.config();
 
 
-const PORT  = process.env.PORT || 5000;
+const PORT  =  5000;
+const allowedOrigins = ['http://localhost:5173'];
 
-
+app.use(cors({
+    origin: allowedOrigins,
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true,
+}));
 //connect this mongo from cloud 
-mongoose.connect('mongodb://127.0.0.1:27017/productdata')
+mongoose.connect('mongodb+srv://mahich:28122005@cluster0.twh2p51.mongodb.net/ReCircle?retryWrites=true&w=majority')
    .then(() => {console.log("MongoDB connected ");})
    .catch((err) => {console.log("MongoDB connection error", err);
 });
@@ -23,7 +33,7 @@ app.use(express.urlencoded({extended : true }));
 
 app.use("/api/seller",SellerRoutes);
 
-app.use("/api/product",productrouter);
+app.use("/product",productrouter);
 
 
 app.listen(PORT,()=>{
