@@ -3,9 +3,24 @@ from mongoengine import (
     ListField, URLField, DateTimeField, ReferenceField, EmailField,
     EmbeddedDocumentField
 )
+from cloudinary.models import CloudinaryField
+from django.db import models
 
 from datetime import datetime
 
+
+class Banner(Document):
+    title = StringField(required=True)
+    direction = StringField()
+    product_link = URLField()
+    old_price = FloatField(required=True)
+    new_price = FloatField(required=True)
+    image = URLField(required=True)
+
+    meta = {
+        'collection': 'banners',
+        'ordering': ['-id']
+    }
 
 # Product Models
 class Product(Document):

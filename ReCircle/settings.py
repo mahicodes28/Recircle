@@ -16,6 +16,8 @@ import os
 from dotenv import load_dotenv
 from decouple import config
 
+load_dotenv()
+
 ADMIN_EMAIL = config('ADMIN_EMAIL')
 ADMIN_PASSWORD = config('ADMIN_PASSWORD')
 # Importing CORS headers for handling cross-origin requests
@@ -40,6 +42,9 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'corsheaders',
+    'rest_framework',
+    'cloudinary',
+    'cloudinary_storage',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -48,6 +53,17 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'myapp',
 ]
+
+
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'),
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',             # ✅ must be first
@@ -151,6 +167,9 @@ from pymongo import MongoClient
 from pymongo.server_api import ServerApi
 from dotenv import load_dotenv
 import os
+from decouple import config
+
+SECRET_KEY = config('SECRET_KEY')
 
 
 # Load environment variables from .env file

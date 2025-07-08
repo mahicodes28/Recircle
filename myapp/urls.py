@@ -1,5 +1,6 @@
 from django.urls import path
 from myapp import views
+from . import views
 
 urlpatterns = [
     path('products/', views.get_all_products),
@@ -18,6 +19,8 @@ urlpatterns = [
     
      path('admmin/login', views.admin_login),
      path('admmin/logout', views.admin_logout),
+     path('admmin/banner/create',views.myapp_banner),
+     path('admmin/banner/',views.get_all_banners),
      
     path('reviews/', views.get_all_reviews),
     path('reviews/create/', views.create_review),

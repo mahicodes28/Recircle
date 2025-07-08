@@ -2,31 +2,38 @@ import Product from '../models/product.model.js'
 import { v2 as cloudinary } from 'cloudinary';
 
 export const AddProduct = async (req, res) => {
-    try {
-        console.log('BODY:', req.body);
-        if (!req.body.formData) {
-            return res.status(400).json({ success: false, message: "Missing formData in form-data" });
-        }
-        const productData = JSON.parse(req.body.formData);
-        const images = req.files;
-
-        const imageUrl = await Promise.all(
-            images.map(async (item) => {
-                const result = await cloudinary.uploader.upload(item.path, {
-                    resource_type: "image",
-                });
-                return result.secure_url;
-            })
-        );
-
-        await Product.create({ ...productData, image: imageUrl });
-
-        return res.status(200).json({ success: true, message: "Product added successfully" });
-    } catch (err) {
-        console.error(err);
-        return res.status(500).json({ success: false, message: "Internal server error" });
+  try {
+    if (!req.body.formData) {
+      return res.status(400).json({ success: false, message: "Missing formData" });
     }
-}
+
+    const productData = JSON.parse(req.body.formData);
+    const images = req.files;
+
+    const imageUrl = await Promise.all(
+      images.map(async (item) => {
+        const result = await cloudinary.uploader.upload(item.path, {
+          resource_type: "image",
+        });
+        return result.secure_url;
+      })
+    );
+
+    const sellerId = req.seller.seller_id; // 👈 from decoded JWT
+
+    const newProduct = await Product.create({ 
+      ...productData, 
+      seller: sellerId,
+      image: imageUrl 
+    });
+
+    return res.status(200).json({ success: true, message: "Product added", product: newProduct });
+
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ success: false, message: "Internal server error" });
+  }
+};
 
 export const updateproduct = async (req,res)=>{
     try {
@@ -43,14 +50,17 @@ export const updateproduct = async (req,res)=>{
 
     }
 }
-
 export const getAllProducts = async (req, res) => {
-    try {
-        const products = await Product.find({}).sort({ createdAt: -1 });
-        return res.status(200).json({ success: true, products });
-    } catch (err) {
-        console.error(err);
-        return res.status(500).json({ success: false, message: "Internal server error" });
-    }
+  try {
+    const products = await Product.find({})
+      .populate('seller', 'user') // Only fetch the `user` field from Seller
+      .sort({ createdAt: -1 });
+
+    return res.status(200).json({ success: true, products });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ success: false, message: "Internal server error" });
+  }
 };
+
 

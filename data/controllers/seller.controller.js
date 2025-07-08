@@ -6,67 +6,67 @@ import Order from '../models/order.model.js'
 //for details 
 import bcrypt from 'bcrypt';
 
-import generateToken from '../middleware/authMiddleware.js'
+//import generateToken from '../middleware/authMiddleware.js'
 
 export const sellerLogin = async (req,res)=>{
-     const {email,password}=req.body
-    try {
-        const seller = await Seller.findOne({email})
+    //  const {email,password}=req.body
+    // try {
+    //     const seller = await Seller.findOne({email})
 
-        if( await bcrypt.compare(password,seller.password)){
-            res.json({success:true , comapny :{
-                _id : seller._id,
-                name : seller.name,
-                email : seller.email
-        },
-        token:generateToken(seller._id)
-                 });
-        }else{
-            res.json({success:false,message:"invalid email and password"})
-        }
-    } catch (error) {
-            res.json({success:false,message:error.message});
+    //     if( await bcrypt.compare(password,seller.password)){
+    //         res.json({success:true , comapny :{
+    //             _id : seller._id,
+    //             name : seller.name,
+    //             email : seller.email
+    //     },
+    //     token:generateToken(seller._id)
+    //              });
+    //     }else{
+    //         res.json({success:false,message:"invalid email and password"})
+    //     }
+    // } catch (error) {
+    //         res.json({success:false,message:error.message});
 
-    }
+    // }
 }
 
 //login
 export const  sellerSignup = async (req,res)=>{
-    const {name , email , password }=req.body
+    // const {name , email , password }=req.body
 
-    if(!name || !email || !password ){
-        return res.json({success:false, message:"missing details"});
-    }
+    // if(!name || !email || !password ){
+    //     return res.json({success:false, message:"missing details"});
+    // }
 
-    try{
+    // try{
 
-        const sellerExist = await Seller.findOne({email});
+    //     const sellerExist = await Seller.findOne({email});
 
-        if(sellerExist){
-            return res.json({success:false, message:"seller already registered"});
-        }
+    //     if(sellerExist){
+    //         return res.json({success:false, message:"seller already registered"});
+    //     }
 
-        const salt = await bcrypt.genSalt(10);
-        const hashPass = await bcrypt.hash(password,salt);
+    //     const salt = await bcrypt.genSalt(10);
+    //     const hashPass = await bcrypt.hash(password,salt);
 
-        const seller = await Seller.create({
-            name,
-            email,
-            password:hashPass
-        })
+    //     const seller = await Seller.create({
+    //         name,
+    //         email,
+    //         password:hashPass
+    //     })
 
-        res.json({success:true,
-            comapny :{
-                _id : seller._id,
-                name : seller.name,
-                email : seller.email,
-        },
-        token:generateToken(seller._id)
-    });
+    //     res.json({success:true,
+    //         comapny :{
+    //             _id : seller._id,
+    //             name : seller.name,
+    //             email : seller.email,
+    //     },
+    //     token:generateToken(seller._id)
+    // });
 
-    }catch(err){
-        res.json({success:false , message : err.message});
-    }
+    // }catch(err){
+    //     res.json({success:false , message : err.message});
+    // }
 
     
 }
@@ -74,13 +74,13 @@ export const  sellerSignup = async (req,res)=>{
 //get Products
 export const getProducts = async (req,res)=>{
 
-try{ 
-    const sellerId = req.seller._id;
-    const products = await Product.find({ seller: sellerId });
-    res.json({ success: true, products });
-}catch(err){
-    res.json({ success: false, message: err.message });
-}
+// try{ 
+//     const sellerId = req.seller._id;
+//     const products = await Product.find({ seller: sellerId });
+//     res.json({ success: true, products });
+// }catch(err){
+//     res.json({ success: false, message: err.message });
+// }
 
 }
 

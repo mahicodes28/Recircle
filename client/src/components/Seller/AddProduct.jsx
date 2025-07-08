@@ -40,8 +40,13 @@ const AddProduct = () => {
           formData.append('images', files[i]);
       }
 
+      const token = localStorage.getItem("seller_token");
+
+      console.log(token);
+
       const { data } = await axios.post(`http://localhost:5000/product/add`, formData, {
         headers: {
+          'Authorization': `Bearer ${token}`,
           'Content-Type': 'multipart/form-data',
         },
       });

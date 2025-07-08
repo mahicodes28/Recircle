@@ -23,6 +23,7 @@ const SellerLogin = () => {
           { withCredentials: true});
             console.log(data);
             if (data.success) {
+              localStorage.setItem('seller_token', data.token);
                 toast.success("Login Success");
                 navigate("/seller");
                 setIsSeller(true);

@@ -8,60 +8,6 @@ const { products, fetchProduct } = useAppContext();
 useEffect(() => {
   fetchProduct();
 }, []);
-
-// const products = [
-//   {
-//     _id: "1",
-//     name: "Organic Green Tea",
-//     category: "Beverage",
-//     offerPrice: "₹199",
-//     mfd: "2025-01-15",
-//     exp: "2026-01-15",
-//     seller: "Nature's Basket",
-//     inStock: true,
-//   },
-//   {
-//     _id: "2",
-//     name: "Bluetooth Headphones",
-//     category: "Electronics",
-//     offerPrice: "₹2,499",
-//     mfd: "2024-12-01",
-//     exp: "N/A",
-//     seller: "TechZone India",
-//     inStock: false,
-//   },
-//   {
-//     _id: "3",
-//     name: "Daily Multivitamins",
-//     category: "Health",
-//     offerPrice: "₹899",
-//     mfd: "2025-03-20",
-//     exp: "2026-03-20",
-//     seller: "Wellness Co.",
-//     inStock: true,
-//   },
-//   {
-//     _id: "4",
-//     name: "Cotton T-Shirt",
-//     category: "Clothing",
-//     offerPrice: "₹499",
-//     mfd: "2025-06-01",
-//     exp: "N/A",
-//     seller: "Urban Threads",
-//     inStock: true,
-//   }
-// ];
-
-
-
-    // Dummy toggleStock for demonstration; replace with your actual function if needed
-    const toggleStock = (id, inStock) => {
-        // ...your logic here
-    };
-
-    // useEffect(()=>{
-    //     fetchProduct();
-    // },[])
     return (
         <div className="!no-scrollbar flex-1 !border-l-2 !border-gray-200 min-h-screen w-full flex flex-col justify-between">
             <div className="w-full md:p-6 !p-2 md:!p-4 xl:!p-4">
@@ -91,7 +37,7 @@ useEffect(() => {
                                     <td className="!px-2 xl:!px-4 xl:!py-4 !py-3  hidden md:table-cell">{product.offerPrice}</td>
                                     <td className="!px-2 xl:!px-4 xl:!py-4 !py-3  hidden md:table-cell">{product.mfd}</td>
                                     <td className="!px-2 xl:!px-4 xl:!py-4 !py-3  hidden md:table-cell">{product.exp}</td>
-                                    <td className="!px-2 xl:!px-4 xl:!py-4 !py-3  hidden md:table-cell">{product.seller}</td>
+                                    <td className="!px-2 xl:!px-4 xl:!py-4 !py-3  hidden md:table-cell">{product.seller.user}</td>
                                     <td className="!px-2 xl:!px-4 xl:!py-4 !py-3 ">
                                         <label className="relative flex justify-center inline-flex items-center cursor-pointer text-gray-900 gap-3">
                                             <input onClick={() => toggleStock(product._id, !product.inStock)} defaultChecked={product.inStock} type="checkbox" className="sr-only peer" />

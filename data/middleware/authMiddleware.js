@@ -1,30 +1,25 @@
+// middlewares/authSeller.js
 import jwt from 'jsonwebtoken';
-import Seller from '../models/seller.model.js';
 
-
-export const protectSeller = async (req, res, next) => {
-  const authHeader = req.headers.authorization;
-  let token;
-  if (authHeader && authHeader.startsWith('Bearer ')) {
-    token = authHeader.split(' ')[1];
-  }
-  if (!token) {
-    return res.json({ success: false, message: "Not authorized login again" });
-  }
+export const verifySellerToken = (req, res, next) => {
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-     console.log("Decoded token =", decoded); 
-    req.seller = await Seller.findById(decoded.id).select('-password');
+    const authHeader = req.headers.authorization;
+    //console.log("Auth Header:", authHeader); // ✅ Logs before verification
+
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return res.status(401).json({ success: false, message: "Unauthorized: No token provided" });
+    }
+
+    const token = authHeader.split(" ")[1];
+    //console.log("Token:", token); // ✅ See what you're decoding
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET); // ❌ Crashes here if something is wrong
+    //console.log("Decoded token:", decoded); // ❌ Not reached if verify fails
+
+    req.seller = decoded;
     next();
-  } catch (error) {
-    res.json({ success: false, message: error.message });
+
+  } catch (err) {
+    return res.status(401).json({ success: false, message: "Unauthorized: " + err.message });
   }
 };
-
-const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: '30d',
-  });
-};
-
-export default generateToken;
