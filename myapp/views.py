@@ -187,6 +187,7 @@ def create_seller(request):
 def login_seller(request):
     if request.method == 'POST':
         try:
+            print("inside try")
             data = json.loads(request.body)
             email = data.get('email')
             password = data.get('password')
@@ -198,7 +199,7 @@ def login_seller(request):
                 }, status=400)
 
             seller = Seller.objects.filter(email=email).first()
-
+              
             if not seller or seller.password != password:
                 return JsonResponse({
                     "success": False,
