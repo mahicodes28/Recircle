@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import HomeSlider from '../components/HomeSlider'
 import CatSlider from '../components/CatSlider'
 import Section from '../components/Section'
@@ -10,8 +10,12 @@ import HomeSliderV2 from '../components/HomesliderV2'
 import BannerBoxV2 from '../components/BannerBoxV2'
 import Header from "../components/header"
 import AdBannerSlider from "../components/AdsBannerSlider"
+import { AppContext } from '../context/AppProvider'
 
 function Home() {
+
+  const {productsByCategory}=useContext(AppContext);
+
   return (
     <>
       <div className="home">
@@ -30,7 +34,7 @@ function Home() {
                 <ScrollableTabs className="w-full" />
               </div>
             </div>
-            <ProductSlider items={5} />
+            <ProductSlider productsByCategory={productsByCategory}  items={5} />
           </div>
         </section>
         <section className="!py-6 !w-full px-2 md:!px-14 md:!pl-19">

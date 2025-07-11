@@ -21,6 +21,7 @@ export const AppProvider = ({ children }) => {
   const [seller , setSeller] = useState({});
   const [sellerProducts , setSellerProducts] = ([]);
   const [orders , setOrders] = ([]);
+   const [productsByCategory , setProductsByCategory ] = useState([]);
 
 
   const fetchOrders = async () => {
@@ -112,7 +113,7 @@ const { data } = await axios.get('http://localhost:5000/seller/products', {
       fetchSellers();
 
     },[])
-  const value = {isAdmin , setisAdmin , products , setProducts , fetchProduct , sellers , setSellers , fetchSellers , isseller , setIsSeller , axios, seller , setSeller , sellerProducts , fetchSellerProducts , fetchOrders , setOrders , orders }
+  const value = {isAdmin , setisAdmin , products , setProducts , fetchProduct , sellers , setSellers , fetchSellers , isseller , setIsSeller , axios, seller , setSeller , sellerProducts , fetchSellerProducts , fetchOrders , setOrders , orders ,productsByCategory,setProductsByCategory }
 
 //  useEffect(() => {
 //     fetchSellers()

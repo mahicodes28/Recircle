@@ -1,9 +1,31 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import { AppContext } from '../../context/AppProvider';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const ScrollableTabs = () => {
   const [value, setValue] = React.useState(0);
+  const {productsByCategory , setProductsByCategory} = useContext(AppContext);
+
+ const searchByCategory = async(label)=>{
+  try {
+
+      const {data} =await axios.get('api');
+
+    if(data.success){
+      setProductByCategory(data.products);
+    }else{
+      toast.error(data.error);
+    }
+    
+  } catch (error) {
+    toast.error("Something went wrong");
+  }
+ }
+
+
   const tabLabels = [
     "Fashion",
     "Groceries",
@@ -33,7 +55,7 @@ const ScrollableTabs = () => {
         TabIndicatorProps={{ style: { height: 3 } }}
       >
         {tabLabels.map((label, index) => (
-          <Tab
+          <Tab onClick={(label)=>{searchByCategory(label)}}
             key={index}
             label={label}
             className="text-xs sm:text-base !text-white md:text-lg font-medium"

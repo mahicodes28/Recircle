@@ -12,6 +12,7 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 import { MyContext } from '../../App';
 
 // Accept product as prop for API compatibility
+
 const ProductItemListView = ({
   product = {
     _id: 1,
