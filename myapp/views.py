@@ -182,6 +182,7 @@ def create_seller(request):
     return JsonResponse({"success": False, "message": "Method not allowed"}, status=405)
 
 
+
 @csrf_exempt
 def login_seller(request):
     if request.method == 'POST':
@@ -191,34 +192,47 @@ def login_seller(request):
             password = data.get('password')
 
             if not email or not password:
-                return JsonResponse({"success": False, "message": "Email and password are required"}, status=400)
+                return JsonResponse({
+                    "success": False,
+                    "message": "Email and password are required"
+                }, status=400)
 
             seller = Seller.objects.filter(email=email).first()
 
             if not seller or seller.password != password:
-                return JsonResponse({"success": False, "message": "Invalid Credentials"}, status=401)
+                return JsonResponse({
+                    "success": False,
+                    "message": "Invalid credentials"
+                }, status=401)
 
             payload = {
                 'seller_id': str(seller.id),
-                'name' : seller.user,
-                'exp': datetime.datetime.now() + datetime.timedelta(days=1),
-                'iat': datetime.datetime.now(),
+                'name': str(seller.user),  # Ensure this is a string
+                'exp': datetime.datetime.utcnow() + datetime.timedelta(days=1),
+                'iat': datetime.datetime.utcnow(),
             }
 
             token = jwt.encode(payload, settings.SECRET_KEY, algorithm='HS256')
+            token_str = token if isinstance(token, str) else token.decode('utf-8')
 
             return JsonResponse({
                 "success": True,
                 "message": "Login successful",
-                "token": token,
+                "token": token_str,
                 "seller_id": str(seller.id),
-                "user": seller.user
+                "user": str(seller.user)
             })
 
         except Exception as e:
-            return JsonResponse({"success": False, "message": str(e)}, status=500)
+            return JsonResponse({
+                "success": False,
+                "message": f"Server error: {str(e)}"
+            }, status=500)
 
-    return JsonResponse({"success": False, "message": "Method not allowed"}, status=405)
+    return JsonResponse({
+        "success": False,
+        "message": "Method not allowed"
+    }, status=405)
 
 @csrf_exempt
 def logout_seller(request):
