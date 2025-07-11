@@ -41,16 +41,17 @@ export const AppProvider = ({ children }) => {
 
     const fetchSellerProducts = async () => {
   try {
-    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-
-    const { data } = await axios.get('/api/seller/products');
+    const token = localStorage.getItem('seller_token');
+const { data } = await axios.get('http://localhost:5000/seller/products', {
+  headers: { Authorization: `Bearer ${token}` }
+});
     if (data.success) {
       setSellerProducts(data.products);
     } else {
       toast.error(data.message);
     }
   } catch (error) {
-    toast.error("Something went wrong");
+    toast.error(error);
   }
 };
    //function for Fetchig products

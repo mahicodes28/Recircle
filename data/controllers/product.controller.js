@@ -19,11 +19,14 @@ export const AddProduct = async (req, res) => {
       })
     );
 
-    const sellerId = req.seller.seller_id; // 👈 from decoded JWT
+    const sellerId = req.seller.seller_id; 
 
     const newProduct = await Product.create({ 
       ...productData, 
-      seller: sellerId,
+      seller:{
+        id: sellerId, // Assuming seller_id is the ID from Django
+        name: req.seller.name // Assuming req.seller.name is the name from Django
+      },
       image: imageUrl 
     });
 
@@ -62,5 +65,6 @@ export const getAllProducts = async (req, res) => {
     return res.status(500).json({ success: false, message: "Internal server error" });
   }
 };
+
 
 

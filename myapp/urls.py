@@ -16,12 +16,17 @@ urlpatterns = [
     path('seller/register', views.create_seller),
     path('seller/login', views.login_seller),
     path('seller/logout', views.logout_seller),
+    #  path('seller/products', views.get_seller_products),
     
      path('admmin/login', views.admin_login),
      path('admmin/logout', views.admin_logout),
      path('admmin/banner/create',views.myapp_banner),
      path('admmin/banner/',views.get_all_banners),
-     
+     path('admmin/banner/delete/<str:banner_id>/', views.delete_banner),
+    path('admmin/seller/toggle/<str:seller_id>/', views.toggle_block_seller),
+    path('admmin/seller/delete/<int:seller_id>/', views.delete_seller),
+
+
     path('reviews/', views.get_all_reviews),
     path('reviews/create/', views.create_review),
 

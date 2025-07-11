@@ -31,7 +31,7 @@ mongoose.connect('mongodb+srv://mahich:28122005@cluster0.twh2p51.mongodb.net/ReC
 app.use(express.json());
 app.use(express.urlencoded({extended : true }));
 
-app.use("/api/seller",SellerRoutes);
+app.use("/seller",SellerRoutes);
 
 app.use("/product",productrouter);
 

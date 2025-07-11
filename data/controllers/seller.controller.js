@@ -1,5 +1,5 @@
 import Seller from "../models/seller.model.js";
-//import jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken'
 import Product from '../models/product.model.js'
 //signup
 import Order from '../models/order.model.js'
@@ -141,3 +141,36 @@ try{
     return res.status(500).json({success: false , message : err.message});
 }
 }
+
+
+// GET all products of logged-in seller
+export const getSellerProducts = async (req, res) => {
+ try {
+    console.log("📥 Incoming request to /seller/products");
+
+    // Get token from header
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return res.status(401).json({ success: false, message: 'Authorization header missing or invalid' });
+    }
+
+    const token = authHeader.split(' ')[1];
+    console.log("🧾 Extracted token:", token);
+
+    // Decode token
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const sellerId = decoded.seller_id;
+    console.log("✅ Decoded payload:", decoded);
+    console.log("🔍 Searching for products with seller_id:", sellerId);
+
+    // Find products by seller ID
+    const products = await Product.find({ seller: sellerId });
+    console.log("✅ Found products:", products.length);
+
+    return res.json({ success: true, products });
+
+  } catch (error) {
+    console.error("❌ Internal server error:", error.message);
+    return res.status(500).json({ success: false, message: 'Internal Server Error', error: error.message });
+  }
+};

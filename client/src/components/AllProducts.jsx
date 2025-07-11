@@ -37,10 +37,10 @@ useEffect(() => {
                                     <td className="!px-2 xl:!px-4 xl:!py-4 !py-3  hidden md:table-cell">{product.offerPrice}</td>
                                     <td className="!px-2 xl:!px-4 xl:!py-4 !py-3  hidden md:table-cell">{product.mfd}</td>
                                     <td className="!px-2 xl:!px-4 xl:!py-4 !py-3  hidden md:table-cell">{product.exp}</td>
-                                    <td className="!px-2 xl:!px-4 xl:!py-4 !py-3  hidden md:table-cell">{product.seller.user}</td>
+                                    <td className="!px-2 xl:!px-4 xl:!py-4 !py-3  hidden md:table-cell">{product.seller.name}</td>
                                     <td className="!px-2 xl:!px-4 xl:!py-4 !py-3 ">
                                         <label className="relative flex justify-center inline-flex items-center cursor-pointer text-gray-900 gap-3">
-                                            <input onClick={() => toggleStock(product._id, !product.inStock)} defaultChecked={product.inStock} type="checkbox" className="sr-only peer" />
+                                            <input  defaultChecked={product.inStock} type="checkbox" className="sr-only peer" />
                                             <div className="w-12 h-7 bg-red-500 rounded-full peer peer-checked:bg-green-600 transition-colors duration-200"></div>
                                             <span className="dot absolute left-1 top-1 w-5 h-5 bg-white rounded-full transition-transform duration-200 ease-in-out peer-checked:translate-x-5"></span>
                                         </label>

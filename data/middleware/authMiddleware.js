@@ -17,6 +17,7 @@ export const verifySellerToken = (req, res, next) => {
     //console.log("Decoded token:", decoded); // ❌ Not reached if verify fails
 
     req.seller = decoded;
+    console.log(req.seller);
     next();
 
   } catch (err) {

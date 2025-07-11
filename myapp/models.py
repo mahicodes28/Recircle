@@ -100,6 +100,7 @@ class Seller(Document):
     user = StringField(max_length=150)
     email = StringField(required=True, unique=True)
     password = StringField(required=True)
+    is_blocked = BooleanField(default=False) 
     cartItems = ReferenceField(Order, null=True)
     created_at = DateTimeField(default=datetime.utcnow)
     updated_at = DateTimeField(default=datetime.utcnow)

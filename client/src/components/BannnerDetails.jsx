@@ -41,6 +41,20 @@ const BannerDetails = () => {
     }
   };
 
+
+  const deleteBanner = async (id) =>{
+    try {
+      const {data} = await axios.delete(`http://127.0.0.1:8000/admmin/banner/delete/${id}/`);
+      if(data.success){
+        toast.success(data.message);
+        fetchBanners();
+      }else{
+        toast.error(data.error);
+      }
+    } catch (error) {
+      toast.error("Failed to delete banner");
+    }
+  }
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -191,7 +205,7 @@ const BannerDetails = () => {
                     />
                   </td>
                   <td className="!py-3 !px-4">
-                    <button className="text-red-500 hover:underline text-sm">Delete</button>
+                    <button onClick={()=>deleteBanner(b._id)} className="text-red-500 hover:underline text-sm">Delete</button>
                   </td>
                 </tr>
               ))

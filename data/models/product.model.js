@@ -30,12 +30,11 @@ const productSchema = new mongoose.Schema({
        type : Array,
     //    required : true ,
     },
-    seller :{
-        // type : mongoose.Schema.Types.ObjectId,
-        // ref : "seller",// same (user or seller ) ke liye user 
-        // required :true ,
-        type:String
-    },
+    seller: {
+    id: { type: String, required: true },   // Django seller ID
+    name: { type: String, required: true }, // Seller name (from Django)
+    //type : String,
+  },
     mfd:{
         type:String,
     },

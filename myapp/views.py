@@ -12,6 +12,8 @@ from decouple import config
 import jwt
 import datetime
 from django.http import JsonResponse
+import traceback
+from bson import ObjectId 
 
 cloudinary.config(
     cloud_name = config('CLOUDINARY_CLOUD_NAME'),
@@ -33,6 +35,8 @@ def get_all_products(request):
     if request.method == 'GET':
         return JsonResponse({"success": True, "products":serialize_queryset(Product.objects())}, safe=False)
     return JsonResponse({"error": "Method not allowed"}, status=405)
+
+
 
 
 @csrf_exempt
@@ -158,6 +162,7 @@ def create_seller(request):
             # ✅ Generate JWT
             payload = {
                 'seller_id': str(seller.id),
+                'name' : seller.user,
                 'exp': datetime.datetime.now() + datetime.timedelta(days=1),
                 'iat': datetime.datetime.now()
             }
@@ -196,6 +201,7 @@ def login_seller(request):
 
             payload = {
                 'seller_id': str(seller.id),
+                'name' : seller.user,
                 'exp': datetime.datetime.now() + datetime.timedelta(days=1),
                 'iat': datetime.datetime.now(),
             }
@@ -399,3 +405,74 @@ def get_all_banners(request):
             return JsonResponse({"success": False, "message": str(e)}, status=500)
 
     return JsonResponse({"success": False, "message": "Method not allowed"}, status=405)
+
+@csrf_exempt
+def delete_banner(request, banner_id):
+    if request.method == 'DELETE':
+        try:
+            banner = Banner.objects.get(id=banner_id)
+            banner.delete()
+            return JsonResponse({'success': True, 'message': 'Banner deleted successfully'})
+        except Banner.DoesNotExist:
+            return JsonResponse({'success': False, 'message': 'Banner not found'}, status=404)
+    return JsonResponse({'error': 'Method not allowed'}, status=405)
+
+@csrf_exempt
+def toggle_block_seller(request, seller_id):
+    if request.method == 'PATCH':
+        try:
+            import logging
+            logging.basicConfig(level=logging.DEBUG)
+
+            body = json.loads(request.body)
+            block_status = body.get('is_blocked')
+
+            print("RAW block_status:", block_status)
+            print("Type of block_status:", type(block_status))
+
+            # Handle string "true"/"false"
+            if isinstance(block_status, str):
+                block_status = block_status.lower() == 'true'
+
+            print("Final Boolean block_status:", block_status)
+
+            seller = Seller.objects.get(id=seller_id)
+            print("Seller before update:", seller.is_blocked)
+
+            seller.is_blocked = block_status
+            seller.save()
+
+            print("Seller after update:", seller.is_blocked)
+
+            return JsonResponse({
+                'success': True,
+                'message': f"Seller {'blocked' if block_status else 'unblocked'} successfully"
+            })
+
+        except Seller.DoesNotExist:
+            return JsonResponse({'success': False, 'error': 'Seller not found'}, status=404)
+        except Exception as e:
+            return JsonResponse({'success': False, 'error': str(e)}, status=500)
+
+    return JsonResponse({'error': 'Method not allowed'}, status=405)
+
+
+@csrf_exempt
+# @require_http_methods(["DELETE"])
+def delete_seller(request, seller_id):
+    try:
+        if request.method == 'DELETE':
+            if not ObjectId.is_valid(seller_id):
+                return JsonResponse({"success": False, "message": "Invalid seller ID"}, status=400)
+
+        seller = Seller.objects(id=seller_id).first()
+        if not seller:
+            return JsonResponse({"success": False, "message": "Seller not found"}, status=404)
+
+        Product.objects(seller=seller.id).delete()
+        seller.delete()
+
+        return JsonResponse({"success": True, "message": "Seller deleted successfully"})
+
+    except Exception as e:
+        return JsonResponse({"success": False, "message": str(e)}, status=500)

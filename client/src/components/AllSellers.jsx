@@ -1,91 +1,41 @@
 import React, { useEffect } from 'react'
 import { useAppContext } from '../context/AppProvider'
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const AllSellers = () => {
-  const { sellers, fetchSellers } = useAppContext()
+  const { sellers, fetchSellers } = useAppContext();
 
- 
-// const sellers = [
-//   {
-//     _id: "s1",
-//     name: "EcoMart Retailers",
-//     totalproducts: 15
-//   },
-//   {
-//     _id: "s2",
-//     name: "Urban Threads",
-//     totalproducts: 32
-//   },
-//   {
-//     _id: "s3",
-//     name: "GreenGlow Organics",
-//     totalproducts: 12
-//   },
-//   {
-//     _id: "s4",
-//     name: "TechZone India",
-//     totalproducts: 8
-//   },
-//   {
-//     _id: "s5",
-//     name: "Wellness Co.",
-//     totalproducts: 24
-//   },
-//   {
-//     _id: "s6",
-//     name: "GadgetGarage",
-//     totalproducts: 17
-//   },
-//   {
-//     _id: "s7",
-//     name: "FreshBasket Pvt Ltd",
-//     totalproducts: 29
-//   },
-//   {
-//     _id: "s8",
-//     name: "ClothCulture",
-//     totalproducts: 11
-//   }, {
-//     _id: "s1",
-//     name: "EcoMart Retailers",
-//     totalproducts: 15
-//   },
-//   {
-//     _id: "s2",
-//     name: "Urban Threads",
-//     totalproducts: 32
-//   },
-//   {
-//     _id: "s3",
-//     name: "GreenGlow Organics",
-//     totalproducts: 12
-//   },
-//   {
-//     _id: "s4",
-//     name: "TechZone India",
-//     totalproducts: 8
-//   },
-//   {
-//     _id: "s5",
-//     name: "Wellness Co.",
-//     totalproducts: 24
-//   },
-//   {
-//     _id: "s6",
-//     name: "GadgetGarage",
-//     totalproducts: 17
-//   },
-//   {
-//     _id: "s7",
-//     name: "FreshBasket Pvt Ltd",
-//     totalproducts: 29
-//   },
-//   {
-//     _id: "s8",
-//     name: "ClothCulture",
-//     totalproducts: 11
-//   }
-// ]
+  const toggleSellerBlock = async (sellerId, isBlocked) => {
+  try {
+    const { data } = await axios.patch(`http://127.0.0.1:8000/admmin/seller/toggle/${sellerId}/`, {
+      is_blocked: !(isBlocked === true),
+    });
+    if (data.success) {
+      toast.success(data.message);
+      fetchSellers(); // refresh seller list
+    } else {
+      toast.error(data.error);
+    }
+  } catch (error) {
+    toast.error("failed to update seller status");
+  }
+};
+
+const deleteSeller = async (sellerId) => {
+  try {
+    const response = await axios.delete(`http://127.0.0.1:5000/admmin/seller/delete/${sellerId}`);
+
+    if (response.data.success) {
+      toast.success("Seller deleted successfully");
+      fetchSellers(); // refresh seller list
+    } else {
+      toast.error(response.data.message);
+    }
+  } catch (err) {
+    toast.error(err.response?.data?.message || "Something went wrong");
+  }
+};
   return (
     <div className="!no-scrollbar flex-1 !border-l-2 !border-gray-200  w-full flex flex-col justify-between">
       <div className="w-full md:p-6 !p-2 md:!p-4 xl:!p-4">
@@ -117,10 +67,10 @@ const AllSellers = () => {
                     <div className="relative inline-block text-left group">
                       <button className="text-xl font-bold text-gray-500">⋯</button>
                       <div className="z-10 hidden group-hover:block absolute top-7 right-0 w-32 bg-white border border-gray-200 rounded shadow-lg">
-                        <button className="block w-full text-left px-4 py-2 text-red-500 hover:bg-gray-100">
-                          Block
+                        <button onClick={()=>{toggleSellerBlock(seller._id , seller.is_blocked)}} className="block w-full text-left px-4 py-2 text-red-500 hover:bg-gray-100">
+                          {seller.is_blocked ? "Unblock" : "Block"}
                         </button>
-                        <button className="block w-full text-left px-4 py-2 text-red-500 hover:bg-gray-100">
+                        <button onClick={() => deleteSeller(seller._id)} className="block w-full text-left px-4 py-2 text-red-500 hover:bg-gray-100">
                           Remove
                         </button>
                       </div>
