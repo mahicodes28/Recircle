@@ -30,7 +30,19 @@ function Navigation() {
                     {/* Navigation Links */}
                     <div className="col2 w-full flex flex-col !py-2  md:w-[60%] xl:w-[60%]  flex justify-center">
                     <h1 className='text-left w-full pt-2 text-[1.5rem] font-[600] xl:hidden md:hidden'>Category</h1>
-                        <ul className='nav flex flex-nowrap !px-4 overflow-x-scroll md:overflow-x-hidden xl:overflow-x-hidden overflow-y-hidden md:flex-nowrap xl:flex-nowrap justify-center md:justify-between xl:justify-between gap-4 xl:gap-10 md:gap-10'>                            <li className='link'>
+                        <ul className='nav flex flex-nowrap !px-4 overflow-x-scroll md:overflow-x-hidden xl:overflow-x-hidden overflow-y-hidden md:flex-nowrap xl:flex-nowrap justify-center md:justify-between xl:justify-between gap-4 xl:gap-10 md:gap-10'>                  
+                            
+                               <li className='link'>
+                                <NavLink
+                                    to="/"
+                                    className={({ isActive }) =>
+                                        `text-[1rem] xl-text-[1.1vw] md:text-[1.1vw] font-[500] md:font-semibold xl:font-semibold capitalize transition duration-200 ease-in-out ${isActive ? "text-indigo-600 underline" : ""}`
+                                    }
+                                >
+                                    All
+                                </NavLink>
+                            </li>
+                                      <li className='link'>
                                 <NavLink
                                     to="/"
                                     className={({ isActive }) =>

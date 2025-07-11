@@ -8,6 +8,14 @@ from django.db import models
 
 from datetime import datetime
 
+class User(Document):
+    _id = StringField(primary_key=True, max_length=24)
+    name=StringField(max_length=150, required=True)
+    email= EmailField(required=True, unique=True)
+    password= StringField(required=True)
+    cartItems = ListField(ReferenceField('Product', reverse_delete_rule=2), default=list)
+
+
 class Seller(Document):
     user = StringField(max_length=150)
     email = StringField(required=True, unique=True)
@@ -110,7 +118,7 @@ class HelpRequest(Document):
     full_name = StringField(required=True, max_length=100)
     email = EmailField(required=True)
     message = StringField(required=True, max_length=1000)
-    created_at = DateTimeField(default=datetime.utcnow)
+    created_at = DateTimeField(default=datetime.now)
     status = StringField(default="Open", choices=["Open", "In Progress", "Resolved"])
 
     meta = {

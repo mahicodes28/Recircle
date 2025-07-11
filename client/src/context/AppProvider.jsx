@@ -62,7 +62,7 @@ const { data } = await axios.get('http://localhost:5000/seller/products', {
         
         if(data.success){
           console.log(data);
-          console.log(data.products);
+          // console.log(data.products);
           setProducts(data.products);
       }
       else{
