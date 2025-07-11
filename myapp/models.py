@@ -8,6 +8,13 @@ from django.db import models
 
 from datetime import datetime
 
+class Seller(Document):
+    user = StringField(max_length=150)
+    email = StringField(required=True, unique=True)
+    password = StringField(required=True)
+    is_blocked = BooleanField(default=False) 
+    created_at = DateTimeField(default=datetime.utcnow)
+    updated_at = DateTimeField(default=datetime.utcnow)
 
 class Banner(Document):
     title = StringField(required=True)
@@ -31,10 +38,10 @@ class Product(Document):
     offerPrice = FloatField()
     instock = IntField()
     image = ListField(URLField())
-    seller = StringField(required=True)
+    seller = ReferenceField(Seller, unique=True)
     isApproved = BooleanField(default=False)
-    created_at = StringField()
-    updated_at = StringField()
+    mfd = StringField()
+    exp = StringField()
 
 
 class ProductDetail(Document):
@@ -96,14 +103,6 @@ class Review(Document):
 
 
 # Seller Model
-class Seller(Document):
-    user = StringField(max_length=150)
-    email = StringField(required=True, unique=True)
-    password = StringField(required=True)
-    is_blocked = BooleanField(default=False) 
-    cartItems = ReferenceField(Order, null=True)
-    created_at = DateTimeField(default=datetime.utcnow)
-    updated_at = DateTimeField(default=datetime.utcnow)
 
 
 # Help Center Contact Form Model

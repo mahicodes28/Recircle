@@ -28,7 +28,7 @@ const AddProduct = () => {
         price,
         offerPrice,
         instock: 1,
-        seller: manufacturer, // or seller._id or seller.name as per your backend
+        // seller: manufacturer, // or seller._id or seller.name as per your backend
         mfd,
         exp,
         isApproved: false

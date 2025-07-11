@@ -159,7 +159,6 @@ def create_seller(request):
             seller = Seller(**data)
             seller.save()
 
-            # ✅ Generate JWT
             payload = {
                 'seller_id': str(seller.id),
                 'name' : seller.user,
