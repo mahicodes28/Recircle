@@ -1,16 +1,11 @@
 import express from 'express'
-import { getProducts, sellerLogin, sellerSignup , getOrders, toggleStock , getSellerProducts} from '../controllers/seller.controller.js'
-import { verifySellerToken } from '../middleware/authMiddleware.js';
-// import { protectSeller } from '../middleware/authMiddleware.js';
+import { loginSeller , registerSeller } from '../controllers/seller.controller.js';
 
 const router = express.Router();
 
-//router.post('/login',sellerLogin);
-//router.post('/register',sellerSignup);
-router.get('/products',verifySellerToken,getSellerProducts);
-// router.post('/add',protectSeller,addProduct);
-router.get('/getOrders', getOrders);
-router.patch('/togglestock', toggleStock);
+router.post('/login' , loginSeller);
+router.post('/register' , registerSeller);
+
 
 const SellerRoutes = router;
 export default SellerRoutes;

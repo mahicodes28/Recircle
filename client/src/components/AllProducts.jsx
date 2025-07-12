@@ -1,13 +1,41 @@
-import React, { use, useEffect } from 'react'
-import { useAppContext } from '../context/AppProvider'
+import React, { use, useContext, useEffect, useState } from 'react'
+import { AppContext, useAppContext } from '../context/AppProvider'
 import { NavLink } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
 const AllProducts = () => {
 
-const { products, fetchProduct } = useAppContext();
-useEffect(() => {
-  fetchProduct();
-}, []);
+    const {isAdmin} = useContext(AppContext);
+
+    const [products , setProducts]=useState([]);
+
+    const fetchAllProducts = async () => {
+
+        try {
+
+            const token = localStorage.getItem('adminToken');
+             const { data } = await axios.get('http://localhost:5000/admin/allproducts', {
+                 headers: {
+                        Authorization: `Bearer ${token}`,
+                 },
+            });
+
+            if(data.success){
+                setProducts(data.products);
+            }else{
+                toast.error(data.message);
+            }
+            
+        } catch (error) {
+            toast.error('Failed to fetch Products');
+        }
+    }
+
+    useEffect(()=>{
+        fetchAllProducts();
+    },[isAdmin]);
+
     return (
         <div className="!no-scrollbar flex-1 !border-l-2 !border-gray-200 min-h-screen w-full flex flex-col justify-between">
             <div className="w-full md:p-6 !p-2 md:!p-4 xl:!p-4">
@@ -23,7 +51,7 @@ useEffect(() => {
                                 <th className="!px-2 xl:!px-4 xl:!py-4 !py-3 font-semibold hidden md:table-cell">MFD</th>
                                 <th className="!px-2 xl:!px-4 xl:!py-4 !py-3 font-semibold hidden md:table-cell">Expiry Date</th>
                                 <th className="!px-2 xl:!px-4 xl:!py-4 !py-3 font-semibold hidden md:table-cell">Seller</th>
-                                <th className="!px-2 xl:!px-4 xl:!py-4 !py-3 text-left font-semibold">In Stock</th>
+                                <th className="!px-2 xl:!px-4 xl:!py-4 !py-3 text-left font-semibold">Status</th>
                             </tr>
                         </thead>
                         <tbody className="text-xs :text-sm !text-black">
@@ -39,11 +67,7 @@ useEffect(() => {
                                     <td className="!px-2 xl:!px-4 xl:!py-4 !py-3  hidden md:table-cell">{product.exp}</td>
                                     <td className="!px-2 xl:!px-4 xl:!py-4 !py-3  hidden md:table-cell">{product.seller.name}</td>
                                     <td className="!px-2 xl:!px-4 xl:!py-4 !py-3 ">
-                                        <label className="relative flex justify-center inline-flex items-center cursor-pointer text-gray-900 gap-3">
-                                            <input  defaultChecked={product.inStock} type="checkbox" className="sr-only peer" />
-                                            <div className="w-12 h-7 bg-red-500 rounded-full peer peer-checked:bg-green-600 transition-colors duration-200"></div>
-                                            <span className="dot absolute left-1 top-1 w-5 h-5 bg-white rounded-full transition-transform duration-200 ease-in-out peer-checked:translate-x-5"></span>
-                                        </label>
+                                        {product.isApproved}
                                     </td>
                                 </tr>
                             ))}

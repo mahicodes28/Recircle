@@ -15,13 +15,13 @@ const SellerLogin = () => {
     
      e.preventDefault();
         try {
-          const { data } = await axios.post(`http://127.0.0.1:8000/seller/${state}`, {
-                user:name,
+          const { data } = await axios.post(`http://127.0.0.1:5000/seller/${state}`, {
+                name,
                 email,
                 password,
             },
           { withCredentials: true});
-            console.log(data);
+           // console.log(data);
             if (data.success) {
               localStorage.setItem('seller_token', data.token);
                 toast.success("Login Success");

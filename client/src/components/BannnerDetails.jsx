@@ -32,7 +32,13 @@ const BannerDetails = () => {
 
   const fetchBanners = async () => {
     try {
-      const { data } = await axios.get('http://127.0.0.1:8000/admmin/banner/'); // adjust path
+       const token = localStorage.getItem('adminToken'); 
+      const { data } = await axios.get('http://127.0.0.1:5000/admin/banner',{
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+
+      }); // adjust path
       if (data.success) {
         setBanners(data.banners);
       }
@@ -44,7 +50,12 @@ const BannerDetails = () => {
 
   const deleteBanner = async (id) =>{
     try {
-      const {data} = await axios.delete(`http://127.0.0.1:8000/admmin/banner/delete/${id}/`);
+       const token = localStorage.getItem('adminToken');
+      const {data} = await axios.delete(`http://127.0.0.1:5000/admin/banner/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       if(data.success){
         toast.success(data.message);
         fetchBanners();
@@ -69,9 +80,11 @@ const BannerDetails = () => {
     formData.append('image', banner.image);
 
     try {
-      const { data } = await axios.post('http://127.0.0.1:8000/admmin/banner/create', formData, {
+      const token = localStorage.getItem('adminToken'); 
+      const { data } = await axios.post('http://127.0.0.1:5000/admin/banner/create', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
+           Authorization: `Bearer ${token}`,
         },
       });
       if (data.success) {

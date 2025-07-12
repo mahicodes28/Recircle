@@ -13,18 +13,10 @@ const AdminDashboard = () => {
   const navigate = useNavigate();
 
    const logout = async () => {
-        try{
-            const {data} = await axios.post('http://127.0.0.1:8000/admmin/logout');
-            if (data.success) {
-                toast.success(data.message);
-                setisAdmin(false)
-                navigate("/admin");
-            }else{
-                toast.error(data.message);
-            }
-        }catch (error) {
-            toast.error("Something went wrong");
-        }
+    localStorage.removeItem('adminToken');
+    setisAdmin(false);
+    toast.success("Logged out successfully");
+    navigate('/admin')
     }
 
 

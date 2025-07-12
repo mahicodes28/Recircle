@@ -17,9 +17,11 @@ const sellerSchema = new mongoose.Schema({
         type : String,
         required : true ,
     },
-    cartItems: {
-        type : mongoose.Schema.Types.ObjectId , ref : "Order", 
+    isBlocked :{
+        type : Boolean,
+        default : false
     },
+    createdAt: { type: Date, default: Date.now }
 },{timestamps : true});
 
 const Seller = mongoose.model("seller", sellerSchema);

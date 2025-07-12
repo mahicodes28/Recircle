@@ -11,18 +11,10 @@ const SellerDashboard = () => {
     const {seller,setIsSeller,axios} = useContext(AppContext);
     const navigate = useNavigate();
     const logout = async () => {
-        try {
-            const { data } = await axios.post('http://127.0.0.1:8000/seller/logout');
-            if (data.success) {
-                toast.success(data.message);
-                setIsSeller(false)
-                navigate("/seller");
-            } else {
-                toast.error(data.message);
-            }
-        } catch (error) {
-            toast.error("Something went wrong");
-        }
+        localStorage.removeItem('seller_token');     
+        setIsSeller(false);                         
+        toast.success("Logged out successfully");
+        navigate("/seller");
     }
 
   return (

@@ -1,70 +1,123 @@
-import Product from '../models/product.model.js'
-import { v2 as cloudinary } from 'cloudinary';
+import Product from '../models/product.model.js';
+import cloudinary from 'cloudinary';
+import { v4 as uuidv4 } from 'uuid';
 
-export const AddProduct = async (req, res) => {
+export const addProduct = async (req, res) => {
   try {
-    if (!req.body.formData) {
-      return res.status(400).json({ success: false, message: "Missing formData" });
+    const seller = req.seller; 
+   
+  if (!seller || !seller.id) {
+  return res.status(401).json({ success: false, message: "Unauthorized: Seller info missing" });
+  }
+
+    if (!req.files || req.files.length === 0) {
+      return res.status(400).json({ success: false, message: "At least one image is required." });
     }
 
-    const productData = JSON.parse(req.body.formData);
-    const images = req.files;
+    const { formData } = req.body;
+    const parsedData = JSON.parse(formData);
 
-    const imageUrl = await Promise.all(
-      images.map(async (item) => {
-        const result = await cloudinary.uploader.upload(item.path, {
-          resource_type: "image",
+    // Upload images to Cloudinary
+    const imageUrls = await Promise.all(
+      req.files.map(async (file) => {
+        const result = await cloudinary.v2.uploader.upload(file.path, {
+          folder: 'products',
+          public_id: uuidv4(),
         });
         return result.secure_url;
       })
     );
 
-    const sellerId = req.seller.seller_id; 
-
-    const newProduct = await Product.create({ 
-      ...productData, 
-      seller:{
-        id: sellerId, // Assuming seller_id is the ID from Django
-        name: req.seller.name // Assuming req.seller.name is the name from Django
+    const newProduct = new Product({
+      ...parsedData,
+      instock: true,
+      isApproved: 'pending',
+      image: imageUrls,
+      seller: {
+        id: seller.id,
+        name: seller.name,
       },
-      image: imageUrl 
     });
 
-    return res.status(200).json({ success: true, message: "Product added", product: newProduct });
+    await newProduct.save();
+
+    return res.status(201).json({
+      success: true,
+      message: "Product added successfully and is pending approval.",
+      product: newProduct,
+    });
 
   } catch (err) {
-    console.error(err);
-    return res.status(500).json({ success: false, message: "Internal server error" });
+    console.error("Product Add Error:", err);
+    return res.status(500).json({ success: false, message: "Server error while adding product." });
   }
 };
 
-export const updateproduct = async (req,res)=>{
-    try {
-       const added = await Product.findOneAndUpdate({_id : req.params.id},{isApproved:true},{new :true});
 
-       if (!added){
-        return res.status(404).json({success : false ,message : err.message});  
-         }
-
-         return res.status(200).json({success : true , added});
-    }catch(err){
-        console.log("Some error occured!");
-        return res.status(500).json({success : false , message : err.message });
-
-    }
-}
-export const getAllProducts = async (req, res) => {
+export const getSellerProducts = async (req, res) => {
   try {
-    const products = await Product.find({})
-      .populate('seller', 'user') // Only fetch the `user` field from Seller
-      .sort({ createdAt: -1 });
+    const sellerId = req.seller.id; // extracted from JWT
 
-    return res.status(200).json({ success: true, products });
+    const products = await Product.find({ 'seller.id': sellerId });
+
+    console.log(products);
+
+    return res.status(200).json({
+      success: true,
+      products,
+    });
   } catch (err) {
-    console.error(err);
-    return res.status(500).json({ success: false, message: "Internal server error" });
+    console.error("Get seller products error:", err);
+    return res.status(500).json({
+      success: false,
+      message: "Server error while fetching seller's products",
+    });
   }
 };
+export const toggleStockStatus = async (req, res) => {
+  try {
+    const productId = req.params.id;
 
+    const product = await Product.findById(productId);
 
+    if (!product) {
+      return res.status(404).json({ success: false, message: "Product not found" });
+    }
 
+    // Toggle instock value
+    product.instock = !product.instock;
+
+    await product.save();
+
+    res.status(200).json({
+      success: true,
+      message: `Product marked as ${product.instock ? "In Stock" : "Out of Stock"}`,
+    });
+  } catch (err) {
+    console.error("Toggle stock error:", err);
+    res.status(500).json({ success: false, message: "Server error while toggling stock" });
+  }
+};
+export const getProductsByCategory = async (req, res) => {
+  try {
+    const { category } = req.params;
+
+    if (!category) {
+      return res.status(400).json({ success: false, message: "Category is required." });
+    }
+
+    const products = await Product.find({
+      category: category,
+      isApproved: "accepted",
+      inStock: true,
+    }).populate('seller', 'name');
+
+    return res.status(200).json({
+      success: true,
+      products,
+    });
+  } catch (err) {
+    console.error("Error in getProductsByCategory:", err);
+    return res.status(500).json({ success: false, message: "Server Error" });
+  }
+};

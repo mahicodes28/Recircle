@@ -1,17 +1,14 @@
 import express from 'express';
-import {AddProduct , getAllProducts, updateproduct} from '../controllers/product.controller.js' ;
-import { verifySellerToken } from '../middleware/authMiddleware.js';
-import { upload } from '../config/multer.js'
+import { upload } from '../config/multer.js';
+import { verifySeller } from '../middleware/authMiddleware.js';
+import { addProduct , getSellerProducts  , toggleStockStatus , getProductsByCategory} from '../controllers/product.controller.js';
 
 const router = express.Router();
 
-//router.post('/add',verifySellerToken, upload.array("images"), AddProduct);
-router.post('/add', (req, res, next) => {
-  console.log("✅ /product/add route hit");
-  next();
-}, verifySellerToken, upload.array('images'), AddProduct);
-router.get('/',getAllProducts);
-router.patch('/approve/:id',updateproduct)
+router.post('/add', verifySeller, upload.array('images', 6), addProduct);
+router.get('/seller/products', verifySeller, getSellerProducts);
+router.patch('/toggle-stock/:id', verifySeller, toggleStockStatus);
+router.get('/category/:category', getProductsByCategory)
 
-const productrouter = router;
-export default productrouter;
+const productRouter = router;
+export default productRouter;

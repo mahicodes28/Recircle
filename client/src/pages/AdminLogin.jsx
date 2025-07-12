@@ -13,20 +13,21 @@ const AdminLogin = () => {
     const onSubmitHandler = async (e) => {
         try{
             e.preventDefault();
-            const {data} = await axios.post('http://127.0.0.1:8000/admmin/login', {
+            const {data} = await axios.post('http://127.0.0.1:5000/admin/login', {
                 email,
                 password,
 
             },{withCredentials: true});
             if (data.success) {
                 setisAdmin(true);
+                localStorage.setItem('adminToken', data.token);
                 navigate("/admin");
                 toast.success("Login Successful");
             } else {
                 toast.error(data.message);
             }
         }catch (error) {
-            toast.error("Wrong Credentials");
+            toast.error(error);
         }
        
     };

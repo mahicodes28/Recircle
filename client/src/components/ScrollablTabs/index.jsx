@@ -6,8 +6,8 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 const ScrollableTabs = () => {
-  const [value, setValue] = React.useState(0);
-  const {productsByCategory , setProductsByCategory} = useContext(AppContext);
+  const [products , setProducts] = useState([]);
+  const [value , setValue] = useState([]);
 
  const searchByCategory = async(label)=>{
   try {
@@ -15,7 +15,7 @@ const ScrollableTabs = () => {
       const {data} =await axios.get('api');
 
     if(data.success){
-      setProductByCategory(data.products);
+      setProductsByCategory(data.products);
     }else{
       toast.error(data.error);
     }
@@ -55,7 +55,7 @@ const ScrollableTabs = () => {
         TabIndicatorProps={{ style: { height: 3 } }}
       >
         {tabLabels.map((label, index) => (
-          <Tab onClick={(label)=>{searchByCategory(label)}}
+          <Tab onClick={() => { searchByCategory(label) }}
             key={index}
             label={label}
             className="text-xs sm:text-base !text-white md:text-lg font-medium"
