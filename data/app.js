@@ -3,11 +3,12 @@ const app = express();
 import mongoose from 'mongoose';
 import SellerRoutes from './routes/seller.js'
 import productrouter from './routes/product.js'
+import adminRouter from './routes/admin.js';
 import cors from 'cors';
 import 'dotenv/config';
-import connectCloudinary from './config/cloudinary.js';
+//import connectCloudinary from './config/cloudinary.js';
 
-await connectCloudinary();
+//await connectCloudinary();
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -18,7 +19,7 @@ const allowedOrigins = ['http://localhost:5173'];
 
 app.use(cors({
     origin: allowedOrigins,
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE' , 'PATCH'],
     credentials: true,
 }));
 //connect this mongo from cloud 
@@ -30,6 +31,8 @@ mongoose.connect('mongodb+srv://mahich:28122005@cluster0.twh2p51.mongodb.net/ReC
 
 app.use(express.json());
 app.use(express.urlencoded({extended : true }));
+
+app.use('/admin',adminRouter);
 
 app.use("/seller",SellerRoutes);
 

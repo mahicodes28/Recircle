@@ -19,8 +19,8 @@ export const AppProvider = ({ children }) => {
   const [sellers , setSellers] = useState([]);
   const [isseller , setIsSeller ] = useState(false);
   const [seller , setSeller] = useState({});
-  const [sellerProducts , setSellerProducts] = ([]);
-  const [orders , setOrders] = ([]);
+  const [sellerProducts , setSellerProducts] = useState([]);
+  const [orders , setOrders] = useState([]);
    const [productsByCategory , setProductsByCategory ] = useState([]);
 
 
@@ -40,21 +40,23 @@ export const AppProvider = ({ children }) => {
   };
 
 
-    const fetchSellerProducts = async () => {
-  try {
-    const token = localStorage.getItem('seller_token');
-const { data } = await axios.get('http://localhost:5000/seller/products', {
-  headers: { Authorization: `Bearer ${token}` }
-});
-    if (data.success) {
-      setSellerProducts(data.products);
-    } else {
-      toast.error(data.message);
-    }
-  } catch (error) {
-    toast.error(error);
-  }
-};
+//     const fetchSellerProducts = async () => {
+//   try {
+//     const token = localStorage.getItem('seller_token');
+// const { data } = await axios.get('http://localhost:5000/product/seller/products', {
+//   headers: { Authorization: `Bearer ${token}` }
+// });
+//     if (data.success) {
+//       console.log(data.products);
+//       setSellerProducts(data.products);
+      
+//     } else {
+//       toast.error(data.message);
+//     }
+//   } catch (error) {
+//     toast.error(error);
+//   }
+// };
    //function for Fetchig products
     const fetchProduct =async()=>{
       try{
@@ -74,22 +76,22 @@ const { data } = await axios.get('http://localhost:5000/seller/products', {
     }
 
     //fetching all seller details
-    const fetchSellers = async ()=>{
-      try{
+    // const fetchSellers = async ()=>{
+    //   try{
         
-      // const {data} = await axios.get('/api/admin/all-sellers');/
-      const {data} = await axios.get(backendUrl + '/sellers');
-        console.log(data);
-      if(data.success){
-        setSellers(data.sellers);
-      }else{
-        toast.error(data.message);
-      }
-    }catch (error) {
-      toast.error("Something went wrong");
-    }
+    //   // const {data} = await axios.get('/api/admin/all-sellers');/
+    //   const {data} = await axios.get(backendUrl + '/sellers');
+    //     console.log(data);
+    //   if(data.success){
+    //     setSellers(data.sellers);
+    //   }else{
+    //     toast.error(data.message);
+    //   }
+    // }catch (error) {
+    //   toast.error("Something went wrong");
+    // }
 
-    }
+    // }
 
 
     // const fetchSeller = async() =>{
@@ -106,14 +108,7 @@ const { data } = await axios.get('http://localhost:5000/seller/products', {
     //   }
     // } 
 
-
-    useEffect(()=>{
-
-      //fetchProduct();
-      fetchSellers();
-
-    },[])
-  const value = {isAdmin , setisAdmin , products , setProducts , fetchProduct , sellers , setSellers , fetchSellers , isseller , setIsSeller , axios, seller , setSeller , sellerProducts , fetchSellerProducts , fetchOrders , setOrders , orders ,productsByCategory,setProductsByCategory }
+  const value = {isAdmin , setisAdmin , products , setProducts , fetchProduct , sellers , setSellers  , isseller , setIsSeller , axios, seller , setSeller , sellerProducts  , fetchOrders , setOrders , orders ,productsByCategory,setProductsByCategory }
 
 //  useEffect(() => {
 //     fetchSellers()

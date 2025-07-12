@@ -1,16 +1,46 @@
-import React, { useEffect } from 'react'
-import { useAppContext } from '../context/AppProvider'
+import React, { useContext, useEffect, useState } from 'react'
+import { AppContext, useAppContext } from '../context/AppProvider'
 import { toast } from 'react-toastify';
 import axios from 'axios';
 
 const AllSellers = () => {
-  const { sellers, fetchSellers } = useAppContext();
+  
+
+  const {isAdmin} = useContext(AppContext);
+
+  const [sellers , setSellers] = useState([]);
+
+  const fetchSellers = async ()=>{
+      try{
+        const token = localStorage.getItem('adminToken');
+        const { data } = await axios.get('http://127.0.0.1:5000/admin/seller' , {
+          headers:{
+            Authorization :  `Bearer ${token}`,
+          }
+        });
+        console.log(data);
+       if (data.success) {
+         setSellers(data.sellers);
+       } else {
+         toast.error(data.message);
+       }
+     } catch (error) {
+       toast.error("Something went wrong");
+     }
+
+   }
+
 
   const toggleSellerBlock = async (sellerId, isBlocked) => {
   try {
-    const { data } = await axios.patch(`http://127.0.0.1:8000/admmin/seller/toggle/${sellerId}/`, {
+     const token = localStorage.getItem('adminToken');
+    const { data } = await axios.patch(`http://127.0.0.1:5000/admin/seller/toggle/${sellerId}/`, {
       is_blocked: !(isBlocked === true),
-    });
+    }, {
+          headers:{
+            Authorization :  `Bearer ${token}`,
+          }
+        });
     if (data.success) {
       toast.success(data.message);
       fetchSellers(); // refresh seller list
@@ -24,7 +54,12 @@ const AllSellers = () => {
 
 const deleteSeller = async (sellerId) => {
   try {
-    const response = await axios.delete(`http://127.0.0.1:5000/admmin/seller/delete/${sellerId}`);
+     const token = localStorage.getItem('adminToken');
+    const response = await axios.delete(`http://127.0.0.1:5000/admin/seller/delete/${sellerId}`, {
+          headers:{
+            Authorization :  `Bearer ${token}`,
+          }
+        });
 
     if (response.data.success) {
       toast.success("Seller deleted successfully");
@@ -36,6 +71,11 @@ const deleteSeller = async (sellerId) => {
     toast.error(err.response?.data?.message || "Something went wrong");
   }
 };
+
+
+useEffect(()=>{
+  fetchSellers();
+},[isAdmin])
   return (
     <div className="!no-scrollbar flex-1 !border-l-2 !border-gray-200  w-full flex flex-col justify-between">
       <div className="w-full md:p-6 !p-2 md:!p-4 xl:!p-4">

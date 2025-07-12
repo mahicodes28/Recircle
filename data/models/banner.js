@@ -1,26 +1,35 @@
 import mongoose from 'mongoose';
 
-const bannerSchema = new mongoose.Schema({
-    title : {
-        type:String,
-        required : true
+const bannerSchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      required: true,
     },
-    productLink : {
-        type : String,
+    direction: {
+      type: String,
     },
-    oldPrice :{
-        type: Number,
-        required: true
+    product_link: {
+      type: String, // URL, validated manually or via regex
     },
-    newPrice:{
-        type: Number,
-        required: true
+    old_price: {
+      type: Number,
+      required: true,
     },
-    image:{
-        type: String,
-        required:true
-    }
-})
+    new_price: {
+      type: Number,
+      required: true,
+    },
+    image: {
+      type: String, // URL, required
+      required: true,
+    },
+  },
+  {
+    collection: 'banners',       
+    timestamps: true,              
+  }
+);
 
-const Banner = mongoose.model('Banner' , bannerSchema);
+const Banner = mongoose.model('Banner', bannerSchema);
 export default Banner;
