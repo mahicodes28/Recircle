@@ -4,8 +4,10 @@ import mongoose from 'mongoose';
 import SellerRoutes from './routes/seller.js'
 import productrouter from './routes/product.js'
 import adminRouter from './routes/admin.js';
+import { clerkWebhooks } from './controllers/webhook.js';
 import cors from 'cors';
 import 'dotenv/config';
+import {clerkMiddleware} from '@clerk/express'
 //import connectCloudinary from './config/cloudinary.js';
 
 //await connectCloudinary();
@@ -15,8 +17,9 @@ dotenv.config();
 
 
 const PORT  =  5000;
-const allowedOrigins = ['http://localhost:5173'];
+const allowedOrigins = ['http://localhost:5173' , 'https://recircl.vercel.app'];
 
+app.use(clerkMiddleware());
 app.use(cors({
     origin: allowedOrigins,
     methods: ['GET', 'POST', 'PUT', 'DELETE' , 'PATCH'],
@@ -33,7 +36,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended : true }));
 
 app.use('/admin',adminRouter);
-
+app.use('/webhooks' , clerkWebhooks);
 app.use("/seller",SellerRoutes);
 
 app.use("/product",productrouter);
