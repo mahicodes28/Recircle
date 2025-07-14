@@ -11,7 +11,7 @@ export const assets={
     SliderImage6 : "https://res.cloudinary.com/deg0bizoi/image/upload/v1751642159/sliderImage6_gcocyv.jpg",
     SliderImage7 : "https://res.cloudinary.com/deg0bizoi/image/upload/v1751641155/sliderImage7_rupcvt.jpg",
     SliderImage8 : "https://res.cloudinary.com/deg0bizoi/image/upload/v1751642108/sliderImage8_ut2qdc.jpg",
-    SliderImage9 : "https://res.cloudinary.com/deg0bizoi/image/upload/v1751641039/sliderImage9_c0wb3r.jpg",
+    SliderVideo6 : "https://res.cloudinary.com/deg0bizoi/video/upload/v1752500625/sliderVideo03_omttai.mp4",
     sliderVideo1 : "https://res.cloudinary.com/deg0bizoi/video/upload/v1752500210/sliderVideo01_wvcn5u.mp4",
     sliderVideo2 : "https://res.cloudinary.com/deg0bizoi/video/upload/v1751641072/sliderVideo2_ppioy2.mp4",
     sliderVideo3 : "https://res.cloudinary.com/deg0bizoi/video/upload/v1751703939/sliderVideo3_aebvxs.mp4",
