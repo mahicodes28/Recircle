@@ -51,8 +51,9 @@ function Home() {
               <HomeSliderV2 width={"1/2"} />
             </div>
             <div className="part2 flex w-full md:w[30%] xl:w-[30%] xl:flex-col md:flex-col !px-0 md:!px-6 gap-4 justify-center !mt-6 md:!mt-0">
-              <BannerBoxV2  height="14vh" width={1/2} info={"right"} title="Buy Men's Footwear at low price" link={"/"} price={"$12"} src={"/public/BannerBoxV2Img1.jpg"} />
-              <BannerBoxV2 height="14vh" width={1/2} info={"left"} title="Buy Apple's Iphone" link={"/"} price={"$100"} src={"/public/BannerBoxV2Img2.jpg"} />
+            <BannerBoxV2 width={1/2} height={"14vh"} info={"left"} title="Maggie Noodles" link={"/"} price={"12"} src={"https://res.cloudinary.com/deg0bizoi/image/upload/v1752504570/IMG_1015_zwsyt4.png"} />
+
+              <BannerBoxV2 width={1/2} height="14vh" info={"left"} title="Amul Doodh 1 litre" link={"/"} price={"28"} src={"https://res.cloudinary.com/deg0bizoi/image/upload/v1752504416/IMG_1011_kfcxod.png"} />
             </div>
           </div>
         </section>

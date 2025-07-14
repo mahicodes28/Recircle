@@ -8,16 +8,17 @@ import 'swiper/css/pagination';
 
 import './styles.css';
 import { Link } from 'react-router-dom';
+import { assets } from '../../assets/asset';
 
 function CatSlider() {
   // Array of category items
   const categoryItems = [
-    { label: 'Fashion', image: '/public/Fashion.png', link: '/',color:'#7F22FE' },
-    { label: 'Electronics', image: '/public/electronics.png', link: '/',color:'#7F22FE' },
-    { label: 'Wellness', image: '/public/wellness.png', link: '/',color:'#7F22FE' },
-    { label: 'Groceries', image: '/public/groceries.png', link: '/',color:'' },
-    { label: 'Beauty', image: '/public/Beauty.png', link: '/',color:'#7F22FE' },
-    { label: 'Crafts', image: '/public/craft.webp', link: '/',color:'#7F22FE' },
+    { label: 'Fashion', image: assets.fashion, link: '/',color:'#7F22FE' },
+    { label: 'Electronics', image: assets.electronics, link: '/',color:'#7F22FE' },
+    { label: 'Wellness', image: assets.wellness, link: '/',color:'#7F22FE' },
+    { label: 'Groceries', image: assets.groceries, link: '/',color:'#7F22FE' },
+    { label: 'Beauty', image: assets.beauty, link: '/',color:'#7F22FE' },
+    { label: 'Crafts', image: assets.craft, link: '/',color:'#7F22FE' },
   ];
   return (
     <>

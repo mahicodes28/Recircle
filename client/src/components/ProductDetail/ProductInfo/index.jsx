@@ -6,15 +6,15 @@ import Rating from '@mui/material/Rating';
 const ProductInfo = ({ padding="", product }) => {
   
     if (!product || !product.image) {
-    return <div className="text-white p-4">Product not found</div>;
+    return <div className="text-black p-4">Product not found</div>;
   }
 
   const [thumbnail, setThumbnail] = useState(product.image[0]);
 
   return (
-    <div className={`flex bg-black text-white !select-none  !rounded-md !shadow-md flex-col md:flex-row gap-8 md:gap-16 xl:gap-16 ${padding}`}>
+    <div className={`flex  text-black !select-none  !rounded-md !shadow-md flex-col md:flex-row gap-8 md:gap-16 xl:gap-16 ${padding}`}>
       {/* Images Section */}
-      <div className="flex bg-black text-white flex-col md:flex-row gap-3 w-full md:w-auto">
+      <div className="flex  text-black flex-col md:flex-row gap-3 w-full md:w-auto">
         <div className="flex flex-row sm:flex-col gap-3 order-2 sm:order-1 justify-center sm:justify-start">
           {product.image.map((image, index) => (
             <div
@@ -39,7 +39,7 @@ const ProductInfo = ({ padding="", product }) => {
       </div>
 
       {/* Info Section */}
-      <div className="text-lg w-full !bg-[#27272A] md:w-1/2 flex flex-col gap-5">
+      <div className="text-lg w-full  md:w-1/2 flex flex-col gap-5">
         <div className="flex mb-4 items-center gap-0.5 mt-1">
           <Stack spacing={1}>
             <Rating
