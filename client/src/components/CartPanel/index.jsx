@@ -79,7 +79,7 @@ const CartPanel = ({ open, onClose }) => {
                   <h2 className="text-black font-[500] text-sm xl:text-base">{item.category}</h2>
                   <h3 className="text-xs xl:text-sm">
                     Qty: <span className="text-red-400">{item.qty} x</span>{" "}
-                    <span className="text-red-400">${item.price}</span>
+                    <span className="text-red-400">₹{item.price}</span>
                   </h3>
                   <MdDelete
                     className="absolute link text-black cursor-pointer text-xl xl:text-2xl top-0 right-5"
@@ -98,24 +98,24 @@ const CartPanel = ({ open, onClose }) => {
           <div className="bottomInfo !gap-3 !py-5 !px-2 xl:!px-4 flex flex-col items-center justify-between w-full">
             <div className="flex items-center w-full justify-between">
               <h1 className="text-md capitalize font-[500]">Items</h1>
-              <span>${itemsTotal.toFixed(2)}</span>
+              <span>₹{itemsTotal.toFixed(2)}</span>
             </div>
             <div className="shipping flex items-center w-full justify-between">
               <h1 className="text-md capitalize font-[500]">Shipping</h1>
-              <span>${shipping.toFixed(2)}</span>
+              <span>₹{shipping.toFixed(2)}</span>
             </div>
             <hr />
             <div className="flex border-t items-center !py-2 w-full justify-between">
               <h1 className="text-md capitalize font-[500]">Total (tax inc.)</h1>
-              <span>${totalInc.toFixed(2)}</span>
+              <span>₹{totalInc.toFixed(2)}</span>
             </div>
             <div className="flex items-center w-full justify-between">
               <h1 className="text-md capitalize font-[500]">Total (tax exc.)</h1>
-              <span>${totalExc.toFixed(2)}</span>
+              <span>₹{totalExc.toFixed(2)}</span>
             </div>
             <div className="flex border-t items-center !py-2 w-full justify-between">
               <h1 className="text-md capitalize font-[600]">Total</h1>
-              <span>${totalInc.toFixed(2)}</span>
+              <span>₹{totalInc.toFixed(2)}</span>
             </div>
           </div>
           <div className="w-full !px-0 xl:!px-5 !pb-8 !mt-2">

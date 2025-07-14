@@ -65,8 +65,8 @@ const ProductItemListView = ({product }) => {
             <Rating className='w-20 md:w-[10%]' name="half-rating-read" defaultValue={product.rating} precision={0.5} readOnly />
           </Stack>
           <div className="flex items-center gap-2 mt-1">
-            <span className='oldPrice text-zinc-400 line-through'>${product.price}</span>
-            <span className='newPrice font-semibold ml-2 text-red-500'>${product.offerPrice}</span>
+            <span className='oldPrice text-zinc-400 line-through'>₹{product.price}</span>
+            <span className='newPrice font-semibold ml-2 text-red-500'>₹{product.offerPrice}</span>
           </div>
           <Button className='link bg-blue-600 text-white mt-4 gap-2 w-full md:w-auto'>
             <MdOutlineShoppingCart />

@@ -68,7 +68,7 @@ function header() {
          <div className="flex  justify-between items-center xl:flex-row xl:w-[70%] md:w-[70%]  xl:py-none py-2">
            <div className="col1 relative h-fit w-[full] md:w-[1/4] xl:w-[1/4]  flex items-center  overflow-hidden ">
             <Link to="/" className="logo  object-fit ">
-              <img className="h-10 w-fit xl:h-20 md:h-20" src="/logo.png" alt="Logo" />
+              <img className="h-10 w-fit xl:h-20 md:h-20" src="https://res.cloudinary.com/deg0bizoi/image/upload/v1752496800/logo_vribqq.png" alt="Logo" />
             </Link>
           </div>
           <div className="col2 w-[60%] xl:w-[70%] md:w-[70%]">

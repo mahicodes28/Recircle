@@ -12,6 +12,7 @@ import './styles.css';
 // import required modules
 import { Autoplay, EffectFade, Navigation, Pagination } from 'swiper/modules';
 import { Button } from '@mui/material';
+import { assets } from '../../assets/asset';
 
 const HomeSliderV2 = () => {
   return (
@@ -34,7 +35,7 @@ const HomeSliderV2 = () => {
         <SwiperSlide>
           <div className="item w-full  rounded-md overflow-hidden relative">
             <img
-              src="public/Homsliderv2First.jpg"
+              src={assets.HomeSliderV1}
               className="w-full h-[40vw] max-h-[400px] min-h-[180px] sm:h-[28vw] sm:max-h-[500px] sm:min-h-[220px] object-cover"
               alt="slide1"
             />
@@ -46,11 +47,11 @@ const HomeSliderV2 = () => {
               bg-gradient-to-l from-black/70 via-black/40 to-transparent
               transition-all duration-1000
             '>
-              <h1 className='text-lg md:text-2xl  xl:text-[2.4vw] font-[500] text-left w-full text-white'>Big Saving Day</h1>
-              <h2 className='text-2xl md:text-4xl  md:text-5xl font-[700] mt-2 sm:mt-5 text-white w-full text-left'>Women Solid Round Green T-shirt</h2>
-              <h3 className='text-base sm:text-lg md:text-[1.3vw] mt-2 sm:mt-5 font-[500] flex items-center gap-2 text-left w-full text-white'>
+              <h1 className='text-xs md:text-2xl  xl:text-[2.4vw] font-[500] text-left w-full text-white'>Big Saving Day</h1>
+              <h2 className='text-xl md:text-4xl  md:text-5xl font-[700] mt-2 sm:mt-5 text-white w-full text-left'>Sprite Orange-Flavour</h2>
+              <h3 className='text-xs   xl:text-lg md:text-[1.3vw] mt-2 sm:mt-5 font-[500] flex items-center gap-2 text-left w-full text-white'>
                 Starting At Only
-                <span className='text-lg sm:text-xl md:text-[2.4vw] text-red-400 font-bold ml-2'>$22</span>
+                <span className='text-lg sm:text-xl md:text-[2.4vw] text-red-400 font-bold ml-2'>&#8377;22</span>
               </h3>
               <div className='w-full mt-4'>
                 <Button className='btn-org w-auto md:w-auto !text-[.7rem] xl:w-auto'>SHOP NOW</Button>
@@ -61,7 +62,7 @@ const HomeSliderV2 = () => {
         <SwiperSlide>
           <div className="item w-full rounded-md overflow-hidden relative">
             <img
-              src="public/Homesliderv2Second.jpg"
+              src={assets.HomeSliderV2}
               className="w-full h-[40vw] max-h-[400px] min-h-[180px] sm:h-[28vw] sm:max-h-[500px] sm:min-h-[220px] object-cover"
               alt="slide2"
             />
@@ -74,10 +75,10 @@ const HomeSliderV2 = () => {
               transition-all duration-1000
             '>
               <h1 className='text-lg md:text-2xl  xl:text-[2.4vw] font-[500] text-left w-full text-white'>Big Saving Day</h1>
-              <h2 className='text-2xl md:text-4xl  md:text-5xl font-[700] mt-2 sm:mt-5 text-white w-full text-left'>Women Solid Round Green T-shirt</h2>
+              <h2 className='text-2xl md:text-4xl  md:text-5xl font-[700] mt-2 sm:mt-5 text-white w-full text-left'>Kissan Mix-Fruit Jam</h2>
               <h3 className='text-base sm:text-lg md:text-[1.3vw] mt-2 sm:mt-5 font-[500] flex items-center gap-2 text-left w-full text-white'>
                 Starting At Only
-                <span className='text-lg sm:text-xl md:text-[2.4vw] text-red-400 font-bold ml-2'>$22</span>
+                <span className='text-lg sm:text-xl md:text-[2.4vw] text-red-400 font-bold ml-2'>&#8377;22</span>
               </h3>
               <div className='w-full mt-4'>
                 <Button className='btn-org w-auto md:w-auto !text-[.7rem]  xl:w-auto'>SHOP NOW</Button>

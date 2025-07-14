@@ -44,13 +44,13 @@ const AdsBannerSlider = (props) => {
           }}
         >
           <SwiperSlide>
-            <BannerBox img={"/public/Adv1.webp"} alt={"Advertisement"} Link={"/"} />
+            <BannerBox img={"https://res.cloudinary.com/deg0bizoi/image/upload/v1752503743/IMG_1010_baavwu.png"} alt={"Cadbury"} Link={"/"} />
           </SwiperSlide>
           <SwiperSlide>
-            <BannerBox img={"/public/Adv2.webp"} alt={"Advertisement"} Link={"/"} />
+            <BannerBox img={"https://res.cloudinary.com/deg0bizoi/image/upload/v1752505582/78cba1f4-76a3-4886-97ff-46d0cb991a80_bmms4b.jpg"} alt={"Advertisement"} Link={"/"} />
           </SwiperSlide>
           <SwiperSlide>
-            <BannerBox img={"/public/Adv3.webp"} alt={"Advertisement"} Link={"/"} />
+            <BannerBox img={"https://res.cloudinary.com/deg0bizoi/image/upload/v1752505881/IMG_1019_liadvz.png"} alt={"FaceWash"} Link={"/"} />
           </SwiperSlide>
           <SwiperSlide>
             <BannerBox img={"/public/Adv4.webp"} alt={"Advertisement"} Link={"/"} />

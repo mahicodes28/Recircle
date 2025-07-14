@@ -67,7 +67,7 @@ const WishListPanel = ({ open, onClose }) => {
                     </Link>
                     <h2 className="!text-black !font-[500] text-sm sm:text-base">{item.category}</h2>
                     <h3 className="!text-xs sm:!text-[.81vw]">
-                      <span className="!text-red-400">${item.price}</span>
+                      <span className="!text-red-400">₹{item.price}</span>
                     </h3>
                   </div>
                   <div className="flex items-center gap-2 w-full sm:w-auto justify-between sm:justify-end">
@@ -94,7 +94,7 @@ const WishListPanel = ({ open, onClose }) => {
             </div>
             <div className="flex items-center w-full justify-between">
               <h1 className="!text-md capitalize !font-[500]">Total</h1>
-              <span>${total.toFixed(2)}</span>
+              <span>₹{total.toFixed(2)}</span>
             </div>
           </div>
           <div className="w-full !p-2 sm:!p-5 !pb-6 sm:!pb-10 mt-2">
