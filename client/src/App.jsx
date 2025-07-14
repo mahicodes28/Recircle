@@ -33,6 +33,7 @@ import ProductListingByCate from "./pages/ProductListingByCate.jsx";
 // Create context at top-level
 import Lenis from 'lenis'
 import 'lenis/dist/lenis.css'
+import Preloader from "./components/Loader";
 const MyContext = createContext();
 
 function App() {

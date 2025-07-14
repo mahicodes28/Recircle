@@ -53,7 +53,7 @@ const AdsBannerSlider = (props) => {
             <BannerBox img={"https://res.cloudinary.com/deg0bizoi/image/upload/v1752505881/IMG_1019_liadvz.png"} alt={"FaceWash"} Link={"/"} />
           </SwiperSlide>
           <SwiperSlide>
-            <BannerBox img={"/public/Adv4.webp"} alt={"Advertisement"} Link={"/"} />
+            <BannerBox img={"https://res.cloudinary.com/deg0bizoi/image/upload/v1752509370/IMG_1021_nrwfbg.png"} alt={"Advertisement"} Link={"/"} />
           </SwiperSlide>
         </Swiper>
       </div>

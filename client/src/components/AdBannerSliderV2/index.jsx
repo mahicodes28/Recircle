@@ -56,10 +56,10 @@ const AdBannerSliderV2 = (props) => {
             <BannerBoxV2 width={props.width} height={"20vh"} info={"left"} title="Amul Doodh 1 litre" link={"/"} price={"28"} src={"https://res.cloudinary.com/deg0bizoi/image/upload/v1752504416/IMG_1011_kfcxod.png"} />
           </SwiperSlide>
           <SwiperSlide>
-            <BannerBoxV2 width={props.width} height={"20vh"} info={"right"} title="Hope-shine Repeat Beer Shampoo 2in1" link={"/"} price={"$12"} src={"https://res.cloudinary.com/deg0bizoi/image/upload/v1752505197/IMG_1016_aisvgm.png"} />
+            <BannerBoxV2 width={props.width} height={"20vh"} info={"right"} title="Hope-shine Repeat Beer Shampoo 2in1" link={"/"} price={"12"} src={"https://res.cloudinary.com/deg0bizoi/image/upload/v1752505197/IMG_1016_aisvgm.png"} />
           </SwiperSlide>
           <SwiperSlide>
-            <BannerBoxV2 width={props.width} height={"20vh"} info={"left"} title="Buy Apple's Iphone" link={"/"} price={"$100"} src={"/public/BannerBoxV2Img2.jpg"} />
+            <BannerBoxV2 width={props.width} height={"20vh"} info={"right"} title="Garniegr Clean and clear Face wash" link={"/"} price={"100"} src={"https://res.cloudinary.com/deg0bizoi/image/upload/v1752509634/IMG_1022_kjnvpa.png"} />
           </SwiperSlide>
         </Swiper>
       </div>
