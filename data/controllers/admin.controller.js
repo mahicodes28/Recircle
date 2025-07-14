@@ -15,12 +15,12 @@ export const adminLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const adminEmail = process.env.ADMIN_EMAIL;
-    const hashedPassword = process.env.ADMIN_PASSWORD;
+    const adminEmail ='ayushprajapat059@gmail.com';
+    const hashedPassword = '1405';
 
-    // Validate email
-    //console.log(email, adminEmail);
-    //console.log(hashedPassword);
+    console.log(email, password);
+    console.log(adminEmail, hashedPassword);
+
     if (email !== adminEmail) {
       return res.status(401).json({
         success: false,
@@ -28,9 +28,7 @@ export const adminLogin = async (req, res) => {
       });
     }
 
-    //console.log(email);
 
-    // Validate password
     if(password !== hashedPassword){
       return res.status(401).json({
         success: false,
@@ -68,6 +66,10 @@ export const adminLogin = async (req, res) => {
  */
 export const createBanner = async (req, res) => {
   try {
+    // Log file and body for debugging
+    console.log('req.file:', req.file);
+    console.log('req.body:', req.body);
+
     const {
       title,
       old_price,
@@ -76,7 +78,15 @@ export const createBanner = async (req, res) => {
       direction = 'left'
     } = req.body;
 
-    if (!title || !old_price || !new_price || !req.file) {
+    // Check if file was uploaded
+    if (!req.file) {
+      return res.status(400).json({
+        success: false,
+        message: 'Image file was not uploaded. Check your form and field name.',
+      });
+    }
+
+    if (!title || !old_price || !new_price) {
       return res.status(400).json({
         success: false,
         message: 'All fields including image are required',
@@ -91,6 +101,8 @@ export const createBanner = async (req, res) => {
       new_price: parseFloat(new_price),
       image: req.file.path, // Cloudinary-hosted image URL
     });
+
+    console.log(banner);
 
     res.status(201).json({
       success: true,

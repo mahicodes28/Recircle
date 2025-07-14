@@ -55,7 +55,7 @@ function Navigation() {
                             </li>
                             <li className='link relative'>
                                 <NavLink
-                                    to="/productListing"
+                                    to="/productListing/Groceries"
                                     className={({ isActive }) =>
                                         `text-[1rem] xl:text-[1.1vw] md:text-[1.1vw] font-[500] md:font-semibold xl:font-semibold capitalize transition duration-200 ease-in-out ${isActive ? "text-blue-600 underline" : ""}`
                                     }
@@ -78,7 +78,7 @@ function Navigation() {
                             </li>
                             <li className='link'>
                                 <NavLink
-                                    to="/productListing"
+                                    to="/productListing/Clothing"
                                     className={({ isActive }) =>
                                         `text-[1rem] xl:text-[1.1vw] md:text-[1.1vw] font-[500] md:font-semibold xl:font-semibold capitalize transition duration-200 ease-in-out ${isActive ? "text-blue-600 underline" : ""}`
                                     }
@@ -88,7 +88,7 @@ function Navigation() {
                             </li>
                             <li className='link'>
                                 <NavLink
-                                    to="/productListing"
+                                    to="/productListing/Electronics"
                                     className={({ isActive }) =>
                                         `text-[1rem] xl:text-[1.1vw] md:text-[1.1vw] font-[500] md:font-semibold xl:font-semibold capitalize transition duration-200 ease-in-out ${isActive ? "text-blue-600 underline" : ""}`
                                     }
@@ -98,7 +98,7 @@ function Navigation() {
                             </li>
                             <li className='link'>
                                 <NavLink
-                                    to="/productListing"
+                                    to="/productListing/Art"
                                     className={({ isActive }) =>
                                         `text-[1rem] xl:text-[1.1vw] md:text-[1.1vw] font-[500] md:font-semibold xl:font-semibold capitalize transition duration-200 ease-in-out ${isActive ? "text-blue-600 underline" : ""}`
                                     }
@@ -108,7 +108,7 @@ function Navigation() {
                             </li>
                             <li className='link'>
                                 <NavLink
-                                    to="/productListing"
+                                    to="/productListing/Wellness"
                                     className={({ isActive }) =>
                                         `text-[1rem] xl:text-[1.1vw] md:text-[1.1vw] font-[500] md:font-semibold xl:font-semibold capitalize transition duration-200 ease-in-out ${isActive ? "text-blue-600 underline" : ""}`
                                     }
@@ -118,7 +118,7 @@ function Navigation() {
                             </li>
                             <li className='link'>
                                 <NavLink
-                                    to="/productListing"
+                                    to="/productListing/Beauty"
                                     className={({ isActive }) =>
                                         `text-[1rem] xl:text-[1.1vw] md:text-[1.1vw] font-[500] md:font-semibold xl:font-semibold capitalize transition duration-200 ease-in-out ${isActive ? "text-blue-600 underline" : ""}`
                                     }
