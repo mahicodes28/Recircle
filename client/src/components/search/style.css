@@ -80,15 +80,15 @@ color: white !important;
   width: 8px;
   background: transparent !important;
 }
-.searchBox.search-results::-webkit-scrollbar-thumb {
+.search-results::-webkit-scrollbar-thumb {
   background: #fff !important;
   border-radius: 4px !important;
 }
-.searchBox.search-results::-webkit-scrollbar-track {
+.search-results::-webkit-scrollbar-track {
   background: transparent !important;
 }
 
-.searchBox.search-results {
+.search-results {
   scrollbar-width: thin !important;
   scrollbar-color: #fff transparent !important;
 }

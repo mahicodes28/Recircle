@@ -28,7 +28,7 @@ const Footer = () => {
             <div className="col group flex flex-col h-[15vh] scale-90 md,xl:scale:100 md:h-[10vw] xl:h-[10vw] items-center relative justify-center gap-none xl:gap-2 md:gap-2 w-full md:w-[100%] xl:w-[25%] !mb-0 xl:md-0 md:mb-0">
               <LiaShippingFastSolid className="text-4xl md:text-5xl absolute left-1/2 top-5 group-hover:text-[#1447E6] -translate-x-1/2 -translate-y-1/2 transition-all duration-300 group-hover:top-0" />
               <h1 className="text-xl md:text-2xl font-semibold">Free Shipping</h1>
-              <p className="text-sm text-center">Free shipping on all orders over $100</p>
+              <p className="text-sm text-center">Free shipping on all orders over ₹100</p>
             </div>
             <div className="col group flex flex-col h-[15vh] scale-90 md,xl:scale:100 md:h-[10vw] xl:h-[10vw] items-center relative justify-center gap-none xl:gap-2 md:gap-2 w-full md:w-[100%] xl:w-[25%] !mb-0 xl:md-0 md:mb-0 ">
               <RiSecurePaymentLine className="text-4xl md:text-5xl absolute left-1/2 top-5 group-hover:text-[#009689] -translate-x-1/2 -translate-y-1/2 transition-all duration-300 group-hover:top-0" />
@@ -60,7 +60,7 @@ const Footer = () => {
             <Link className="link text-lg md:text-xl text-gray-500" to="mailto:someone@example.com">sales@yourcompany.com</Link>
             <span className="text-lg md:text-xl text-red-600 mt-2 block">+91 29021-09237</span>
 <div className="image absolute w-full !top-50 left-2 xl:hidden md:hidden ">
-           <Link to={"/"}> <img src="../public/logo.png" className=" " alt="" /> </Link>
+           <Link to={"/"}> <img src="https://res.cloudinary.com/deg0bizoi/image/upload/v1752496800/logo_vribqq.png" className=" " alt="" /> </Link>
 
 </div>
             </div>
@@ -148,11 +148,11 @@ const Footer = () => {
             </ul>
             <p className="text-center text-xs md:text-base">© 2024 - ReCircle-The Sustainable Store</p>
             <div className="cards flex md:flex xl:flex hidden items-center gap-2">
-              <img src="public/carte_bleue.png" alt="" className="h-6 md:h-8" />
-              <img src="public/visa.png" alt="" className="h-6 md:h-8" />
-              <img src="public/masterCard.png" alt="" className="h-6 md:h-8" />
-              <img src="public/american_express.png" alt="" className="h-6 md:h-8" />
-              <img src="public/paypal.png" alt="" className="h-6 md:h-8" />
+              <img src="https://res.cloudinary.com/deg0bizoi/image/upload/v1752496890/carte_bleue_gtpxdz.png" alt="" className="h-6 md:h-8" />
+              <img src="https://res.cloudinary.com/deg0bizoi/image/upload/v1752496928/visa_jwjybq.png" alt="" className="h-6 md:h-8" />
+              <img src="https://res.cloudinary.com/deg0bizoi/image/upload/v1752496954/masterCard_qhvxng.png" alt="" className="h-6 md:h-8" />
+              <img src="https://res.cloudinary.com/deg0bizoi/image/upload/v1752496978/american_express_mlrzvn.png" alt="" className="h-6 md:h-8" />
+              <img src="https://res.cloudinary.com/deg0bizoi/image/upload/v1752496999/paypal_ekpwyw.png" alt="" className="h-6 md:h-8" />
             </div>
           </div>
         </div>

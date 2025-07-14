@@ -12,16 +12,16 @@ const ProductInfo = ({ padding="", product }) => {
   const [thumbnail, setThumbnail] = useState(product.image[0]);
 
   return (
-    <div className={`flex !select-none  !rounded-md !shadow-md flex-col md:flex-row gap-8 md:gap-16 xl:gap-16 ${padding}`}>
+    <div className={`flex bg-black text-white !select-none  !rounded-md !shadow-md flex-col md:flex-row gap-8 md:gap-16 xl:gap-16 ${padding}`}>
       {/* Images Section */}
-      <div className="flex flex-col md:flex-row gap-3 w-full md:w-auto">
+      <div className="flex bg-black text-white flex-col md:flex-row gap-3 w-full md:w-auto">
         <div className="flex flex-row sm:flex-col gap-3 order-2 sm:order-1 justify-center sm:justify-start">
           {product.image.map((image, index) => (
             <div
               key={index}
               onClick={() => setThumbnail(image)}
               className={`border  rounded overflow-hidden cursor-pointer w-16 h-16 sm:w-20 sm:h-20 md:w-[70px] md:h-[70px] flex items-center justify-center ${
-                thumbnail === image ? "ring-2 ring-indigo-500" : ""
+                thumbnail === image ? "" : ""
               }`}
             >
               <img
@@ -53,10 +53,10 @@ const ProductInfo = ({ padding="", product }) => {
         <h1 className="text-2xl sm:text-4xl md:text-6xl font-medium capitalize">{product.product_name}</h1>
         <div className="mt-4 sm:mt-6 px-2 sm:px-4">
           <p className="text-gray-500/70 line-through text-base sm:text-lg">
-            MRP: ${product.price}
+            MRP: ₹{product.price}
           </p>
           <p className="text-xl sm:text-2xl md:text-3xl font-medium">
-            MRP: <span className="text-red-400">${product.offerPrice} </span>
+            MRP: <span className="text-red-400">₹{product.offerPrice} </span>
           </p>
           <span className="text-gray-500/70 text-xs sm:text-base">(inclusive of all taxes)</span>
         </div>

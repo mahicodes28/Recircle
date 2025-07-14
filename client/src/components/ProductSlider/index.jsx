@@ -16,7 +16,7 @@ const ProductSlider = (props) => {
   // const products = props.products || props.productsByCategory || [];
   return (
     <>
-      <div className="productSlider  h-[50vh] select-none pt-6 sm:pt-10">
+      <div className="productSlider  h-[50vh] select-none pt-6 xl:pt-10">
         <Swiper
           // Responsive breakpoints for slidesPerView
           breakpoints={{
