@@ -6,6 +6,8 @@ import User from "../models/clerkUser.js";
 export const clerkWebhooks =async (req,res)=>{
     try{
 
+
+        console.log("request arrived");
         //svix instance with clerk secret
         const whook = new Webhook(process.env.CLERK_WEBHOOK_SECRET);
 
@@ -34,6 +36,7 @@ export const clerkWebhooks =async (req,res)=>{
                 }
 
                 await User.create(userData)
+                 console.log("user data stored");
                 res.json({})
                 break;
             }

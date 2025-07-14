@@ -10,7 +10,8 @@ function Navigation() {
     const openCatPanel = () => {
         setIsOpenCatPanel(true);
     }
-    const menuItems = ['Milk', 'Bread', 'Eggs', 'Cheese']; // you can modify this array
+    const menuItems = ['Milk', 'Bread', 'Eggs', 'Cheese'];
+    
 
     return (
         <>
@@ -34,7 +35,7 @@ function Navigation() {
                             
                                <li className='link'>
                                 <NavLink
-                                    to="/"
+                                    to="/productListing"
                                     className={({ isActive }) =>
                                         `text-[1rem] xl-text-[1.1vw] md:text-[1.1vw] font-[500] md:font-semibold xl:font-semibold capitalize transition duration-200 ease-in-out ${isActive ? "text-indigo-600 underline" : ""}`
                                     }

@@ -1,10 +1,11 @@
 import express from 'express';
 import { upload } from '../config/multer.js';
 import { verifySeller } from '../middleware/authMiddleware.js';
-import { addProduct , getSellerProducts  , toggleStockStatus , getProductsByCategory} from '../controllers/product.controller.js';
+import { addProduct , getSellerProducts  , toggleStockStatus , getProductsByCategory, getAllProducts, getProductById} from '../controllers/product.controller.js';
 
 const router = express.Router();
-
+router.get('/',getAllProducts)
+router.get('/:id',getProductById);
 router.post('/add', verifySeller, upload.array('images', 6), addProduct);
 router.get('/seller/products', verifySeller, getSellerProducts);
 router.patch('/toggle-stock/:id', verifySeller, toggleStockStatus);

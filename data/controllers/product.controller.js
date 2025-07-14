@@ -121,3 +121,37 @@ export const getProductsByCategory = async (req, res) => {
     return res.status(500).json({ success: false, message: "Server Error" });
   }
 };
+
+export const getAllProducts = async (req,res)=>{
+  try{
+    const products = await Product.find({isApproved:'accepted' , instock:true}).populate('seller', 'name');
+    if(!products || products.length === 0){
+      return res.status(404).json({success:false, message:"No products found"});
+    }
+    return res.status(200).json({success:true, products});
+  }catch(err){
+    console.error("Error in getAllProducts:", err);
+    return res.status(500).json({ success: false, message: "Server Error" });
+  }
+};
+
+export const getProductById = async (req,res)=>{
+  try {
+    
+    const prodId = req.params.id;
+    if(!prodId){
+      return res.status(400).json({success:false, message:"Product ID is required"});
+    }
+
+    const product = await Product.findById(prodId);
+   // console.log(product , prodId);
+    if(!product){
+      return res.status(404).json({success:false, message:"Product not found"});
+    }
+
+    return res.status(200).json({success:true, product:product});
+  } catch (error) {
+    console.error("Error in getProductById:", error);
+    return res.status(500).json({ success: false, message: "Server Error" });
+  }
+}

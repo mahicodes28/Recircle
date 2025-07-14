@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Filter from "../components/Filter";
 import Typography from "@mui/material/Typography";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
@@ -13,11 +13,35 @@ import { MdMenu } from "react-icons/md";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { MdOutlineShoppingCart } from "react-icons/md";
+import { toast } from "react-toastify";
+import axios from "axios";
+import { AppContext } from "../context/AppProvider";
 
 const ProductListing = () => {
   const [itemView, setItemView] = useState("grid");
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+
+  //const [products , setProducts] = useState([]);
+  const {products , fetchProduct}=useContext(AppContext);
+
+  // const fetchProduct =async()=>{
+  //     try{
+  //       const {data} = await axios.get('http://localhost:5000/product/'); 
+        
+  //       if(data.success){
+  //        // console.log(data);
+  //         // console.log(data.products);
+  //         setProducts(data.products);
+  //     }
+  //     else{
+  //       toast.error(data.message);
+  //     }
+  //   }catch (error) {
+  //     toast.error("Something went wrong");
+  //   }
+  //   }
+
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -26,6 +50,9 @@ const ProductListing = () => {
     setAnchorEl(null);
   };
 
+  useEffect(()=>{
+    fetchProduct();
+  },[]);
   return (
     <>
       <section className="   !py-5 !w-[100vw] xl:!w-full">
@@ -117,11 +144,11 @@ const ProductListing = () => {
       : "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 w-full p-4"
   }
 >
-              {[...Array(15)].map((_, idx) =>
+              {products.map((product, idx) =>
                 itemView === "list" ? (
-                  <ProductItemListView key={idx} />
+                  <ProductItemListView key={idx} product={product} />
                 ) : (
-                  <ProductItem key={idx} />
+                  <ProductItem key={idx} product={product} />
                 )
               )}
             </div>

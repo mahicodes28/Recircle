@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Breadcrumbs } from "@mui/material";
 import { data, Link } from "react-router-dom";
 import Rating from "@mui/material/Rating";
@@ -17,22 +17,23 @@ import Paper from "@mui/material/Paper";
 import { useUser } from "@clerk/clerk-react";
 import { useForm, Controller } from "react-hook-form";
 import ProductInfo from "./ProductInfo";
+import { AppContext } from "../../context/AppProvider";
 function createData(name, details) {
   return { name, details };
 }
-// table rows
-const rows = [
-  createData("weight", "159gm"),
-  createData("Color", "Black"),
-  createData("Brand", "Adidas"),
-  createData("Type", "Sports"),
-  createData("Mnufacturer", "Adidas India"),
-];
+
 
 const ProductDetails = () => {
   const { user } = useUser();
   const { register, handleSubmit, reset, control } = useForm();
   const [reviews, setReviews] = useState([]);
+
+  const {productById ,productId, fetchProductById} = useContext(AppContext);
+
+
+  useEffect(()=>{
+    fetchProductById(productId);
+  },[]);
   // review handler
   const onSubmit = (data) => {
     if (!user) return;
@@ -57,27 +58,11 @@ const ProductDetails = () => {
     setValue(newValue);
     setOpenInfo(newValue === 0); // Show description if first tab, else hide
   };
+console.log(productById);
+  const product = productById;
 
-  const product = {
-    name: "Casual Shoes",
-    category: "Sports",
-    price: 100,
-    offerPrice: 80,
-    rating: 4,
-    images: [
-      "https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/card/productImage.png",
-      "https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/card/productImage2.png",
-      "https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/card/productImage3.png",
-      "https://raw.githubusercontent.com/prebuiltui/prebuiltui/main/assets/card/productImage4.png",
-    ],
-    description: [
-      "High-quality material",
-      "Comfortable for everyday use",
-      "Available in different sizes",
-    ],
-  };
 
-  const [thumbnail, setThumbnail] = useState(product.images[0]);
+  //const [thumbnail, setThumbnail] = useState(product.images[0]);
 
   return (
     product && (
@@ -101,58 +86,80 @@ const ProductDetails = () => {
           </Link>
           <span className="text-indigo-500">{product.name}</span>
         </Breadcrumbs>
-        <ProductInfo padding="p-2 sm:p-6 md:p-8" />
+        <ProductInfo  padding="p-2 sm:p-6 md:p-8"  product={product}/>
         <Box
           className="flex flex-col w-full items-start justify-center gap-5 mt-8 sm:mt-10"
           sx={{ width: "100%", bgcolor: "background.paper" }}
         >
           <Tabs
-            value={value}
-            onChange={handleChange}
-            centered
-            variant="scrollable"
-            scrollButtons="auto"
-            className="w-full"
-            TabIndicatorProps={{ style: { height: 3 } }}
+            value={value} onChange={handleChange} variant="scrollable" scrollButtons="auto"
           >
             <Tab onClick={() => setOpenInfo(0)} label="Description" className="text-xs sm:text-base" />
             <Tab onClick={() => setOpenInfo(1)} label="Product Detail" className="text-xs sm:text-base" />
             <Tab onClick={() => setOpenInfo(2)} label={`Reviews(${reviews.length})`} className="text-xs sm:text-base" />
           </Tabs>
           <Collapse isOpened={openInfo === 0}>
-            <div className="description text-base sm:text-lg shadow-md flex flex-col gap-6 w-full rounded-md px-2 sm:px-4 py-3">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga illo ullam esse quod repellendus corporis aliquid earum cupiditate, excepturi eveniet officiis totam ratione fugiat ex iste distinctio cum maxime mollitia repellat maiores rerum. Non beatae explicabo ea sint adipisci, iusto asperiores debitis autem nam obcaecati tempora dolores harum id quos! Accusamus sequi nulla aut maiores! Blanditiis vel aperiam repudiandae beatae vitae maxime, quasi, obcaecati saepe, placeat repellat earum! Beatae modi ducimus voluptatem voluptatum, voluptate voluptas repudiandae iste praesentium, tempora, iusto magnam saepe? Nulla pariatur voluptatibus rerum maxime odio quas impedit molestias culpa, quaerat minima earum expedita sit! Laborum, quae inventore?</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga illo ullam esse quod repellendus corporis aliquid earum cupiditate, excepturi eveniet officiis totam ratione fugiat ex iste distinctio cum maxime mollitia repellat maiores rerum. Non beatae explicabo ea sint adipisci, iusto asperiores debitis autem nam obcaecati tempora dolores harum id quos! Accusamus sequi nulla aut maiores! Blanditiis vel aperiam repudiandae beatae vitae maxime, quasi, obcaecati saepe, placeat repellat earum! Beatae modi ducimus voluptatem voluptatum, voluptate voluptas repudiandae iste praesentium, tempora, iusto magnam saepe? Nulla pariatur voluptatibus rerum maxime odio quas impedit molestias culpa, quaerat minima earum expedita sit! Laborum, quae inventore?</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fuga illo ullam esse quod repellendus corporis aliquid earum cupiditate, excepturi eveniet officiis totam ratione fugiat ex iste distinctio cum maxime mollitia repellat maiores rerum. Non beatae explicabo ea sint adipisci, iusto asperiores debitis autem nam obcaecati tempora dolores harum id quos! Accusamus sequi nulla aut maiores! Blanditiis vel aperiam repudiandae beatae vitae maxime, quasi, obcaecati saepe, placeat repellat earum! Beatae modi ducimus voluptatem voluptatum, voluptate voluptas repudiandae iste praesentium, tempora, iusto magnam saepe? Nulla pariatur voluptatibus rerum maxime odio quas impedit molestias culpa, quaerat minima earum expedita sit! Laborum, quae inventore?</p>
+            <div className="description text-base sm:text-lg shadow-md flex flex-col gap-6 w-full rounded-md px-2 sm:px-4 py-3 text-black">
+              <p>{product.description}</p>
             </div>
           </Collapse>
           <Collapse isOpened={openInfo === 1}>
             <div className="productDetail text-base sm:text-lg w-full shadow-md flex flex-col gap-6 w-full rounded-md px-2 sm:px-4 py-3">
-              <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 320 }}>
-                  <TableBody>
-                    {rows.map((row) => (
-                      <TableRow
-                        key={row.name}
-                        sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
-                        }}
-                      >
-                        <TableCell
-                          className="capitalize text-base sm:text-lg text-gray-500"
-                          component="th"
-                          scope="row"
-                        >
-                          {row.name}
-                        </TableCell>
-                        <TableCell className="text-base sm:text-lg" align="right">
-                          {row.details}
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
+             <TableContainer component={Paper}>
+  <Table sx={{ minWidth: 320 }}>
+    <TableBody>
+      <TableRow>
+        <TableCell
+          className="capitalize text-base sm:text-lg text-gray-500"
+          component="th"
+          scope="row"
+        >
+          MFD
+        </TableCell>
+        <TableCell className="text-base sm:text-lg" align="right">
+          {product.mfd || "N/A"}
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell
+          className="capitalize text-base sm:text-lg text-gray-500"
+          component="th"
+          scope="row"
+        >
+          EXP
+        </TableCell>
+        <TableCell className="text-base sm:text-lg" align="right">
+          {product.exp || "N/A"}
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell
+          className="capitalize text-base sm:text-lg text-gray-500"
+          component="th"
+          scope="row"
+        >
+          Brand
+        </TableCell>
+        <TableCell className="text-base sm:text-lg" align="right">
+          {product.brand || "N/A"}
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell
+          className="capitalize text-base sm:text-lg text-gray-500"
+          component="th"
+          scope="row"
+        >
+          Type
+        </TableCell>
+        <TableCell className="text-base sm:text-lg" align="right">
+          {product.type || "N/A"}
+        </TableCell>
+      </TableRow>
+    </TableBody>
+  </Table>
+</TableContainer>
+
             </div>
           </Collapse>
           <Collapse isOpened={openInfo === 2}>

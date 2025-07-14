@@ -22,8 +22,22 @@ export const AppProvider = ({ children }) => {
   const [sellerProducts , setSellerProducts] = useState([]);
   const [orders , setOrders] = useState([]);
    const [productsByCategory , setProductsByCategory ] = useState([]);
+   const[productById , setProductById] = useState({});
+   const [productId , setProductId] = useState("");
 
 
+   const fetchProductById = async (id)=>{
+    try{
+      const {data} = await axios.get('http://localhost:5000/product/' + id);
+      if(data.success){
+        setProductById(data.product);
+      }else{
+        toast.error(data.message);
+      }
+    }catch (error) {
+      toast.error("Something went wrong");
+    }
+   }
   const fetchOrders = async () => {
     try {
       const token = localStorage.getItem('seller_token');
@@ -40,75 +54,42 @@ export const AppProvider = ({ children }) => {
   };
 
 
-//     const fetchSellerProducts = async () => {
-//   try {
-//     const token = localStorage.getItem('seller_token');
-// const { data } = await axios.get('http://localhost:5000/product/seller/products', {
-//   headers: { Authorization: `Bearer ${token}` }
-// });
-//     if (data.success) {
-//       console.log(data.products);
-//       setSellerProducts(data.products);
-      
-//     } else {
-//       toast.error(data.message);
-//     }
-//   } catch (error) {
-//     toast.error(error);
-//   }
-// };
+  const searchByCategory = async(label)=>{
+  try {
+
+      const {data} =await axios.get(`http://localhost:5000/category/${label}`);
+
+    if(data.success){
+      setProductsByCategory(data.products);
+    }else{
+      toast.error(data.error);
+    }
+    
+  } catch (error) {
+    toast.error("Something went wrong");
+  }
+ }
+
    //function for Fetchig products
-    const fetchProduct =async()=>{
-      try{
-        const {data} = await axios.get('http://localhost:5000/product/'); 
-        
-        if(data.success){
-          console.log(data);
-          // console.log(data.products);
-          setProducts(data.products);
-      }
-      else{
-        toast.error(data.message);
-      }
-    }catch (error) {
-      toast.error("Something went wrong");
-    }
-    }
-
-    //fetching all seller details
-    // const fetchSellers = async ()=>{
-    //   try{
-        
-    //   // const {data} = await axios.get('/api/admin/all-sellers');/
-    //   const {data} = await axios.get(backendUrl + '/sellers');
-    //     console.log(data);
-    //   if(data.success){
-    //     setSellers(data.sellers);
-    //   }else{
-    //     toast.error(data.message);
-    //   }
-    // }catch (error) {
-    //   toast.error("Something went wrong");
-    // }
-
-    // }
+   const fetchProduct =async()=>{
+         try{
+           const {data} = await axios.get('http://localhost:5000/product/'); 
+           
+           if(data.success){
+            // console.log(data);
+             // console.log(data.products);
+             setProducts(data.products);
+         }
+         else{
+           toast.error(data.message);
+         }
+       }catch (error) {
+         toast.error("Something went wrong");
+       }
+       }
 
 
-    // const fetchSeller = async() =>{
-    //   try {
-    //     const {data} = await axios.get('/api/seller/is-auth')
-    //     if(data.success){
-    //       setSeller(data.seller)
-    //     }else{
-    //       toast.error(data.message)
-    //     }
-        
-    //   } catch (error) {
-    //     toast.error(data.error)
-    //   }
-    // } 
-
-  const value = {isAdmin , setisAdmin , products , setProducts , fetchProduct , sellers , setSellers  , isseller , setIsSeller , axios, seller , setSeller , sellerProducts  , fetchOrders , setOrders , orders ,productsByCategory,setProductsByCategory }
+  const value = {isAdmin , setisAdmin , products , setProducts , fetchProduct , sellers , setSellers  , isseller , setIsSeller , axios, seller , setSeller , sellerProducts  , fetchOrders , setOrders , orders ,productsByCategory,setProductsByCategory,searchByCategory,productById,setProductById,fetchProductById ,setProductId ,productId,fetchProduct};
 
 //  useEffect(() => {
 //     fetchSellers()

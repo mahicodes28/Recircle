@@ -13,27 +13,17 @@ import { MyContext } from '../../App';
 
 // Accept product as prop for API compatibility
 
-const ProductItemListView = ({
-  product = {
-    _id: 1,
-    image: "/public/item1.webp",
-    brand: "Brand Name",
-    name: "Product Name",
-    description: "Product description goes here.",
-    rating: 2.5,
-    oldPrice: 50,
-    newPrice: 40,
-    link: "/product/1"
-  }
-}) => {
+const ProductItemListView = ({product }) => {
   const context = useContext(MyContext);
+
+  console.log(product);
 
   return (
     <>
       <div className="productItem  scale-100 flex flex-col xl:flex-row bg-zinc-900 hover:bg-white hover:text-black  !shadow-lg items-center w-full xl:!w-[97%] transition-all mt-5 !h-auto xl:!h-[20vw]">
         <div className="imgWrapper relative w-full md:!w-[40%] h-[50vw] max-h-[320px] md:!h-[20vw] md:max-h-none flex-shrink-0">
           <Link to={product.link || `/product/${product._id}`} className='link w-full h-full block'>
-            <img src={product.image} className='w-full rounded-lg shadow-md overflow-hidden h-full object-cover md:object-fit' alt={product.name} />
+            <img src={product.image[0]} className='w-full rounded-lg shadow-md overflow-hidden h-full object-cover md:object-fit' alt={product.product_name} />
           </Link>
           <div className="Actions  hidden md:flex opacity-0 hover:opacity-100 gap-2 absolute top-4 right-4 w-10 flex-col items-center justify-between px-2">
             <Tooltip title="Product Details" placement="left">
@@ -66,17 +56,17 @@ const ProductItemListView = ({
             <Link className='link' to={product.link || `/product/${product._id}`}>{product.brand}</Link>
           </h6>
           <h3 className='Title w-full text-left text-xl md:text-4xl transition-all'>
-            <Link className='link' to={product.link || `/product/${product._id}`}>{product.name}</Link>
+            <Link className='link capitalize' to={product.link || `/product/${product._id}`}>{product.product_name}</Link>
           </h3>
-          <h3 className='Title w-full text-left text-xs md:text-sm text-zinc-600 transition-all'>
+          <h3 className='Title w-full text-left text-xs md:text-sm text-zinc-600 transition-all capitalize'>
             <span>{product.description}</span>
           </h3>
           <Stack spacing={1}>
             <Rating className='w-20 md:w-[10%]' name="half-rating-read" defaultValue={product.rating} precision={0.5} readOnly />
           </Stack>
           <div className="flex items-center gap-2 mt-1">
-            <span className='oldPrice text-zinc-400 line-through'>${product.oldPrice}</span>
-            <span className='newPrice font-semibold ml-2 text-red-500'>${product.newPrice}</span>
+            <span className='oldPrice text-zinc-400 line-through'>${product.price}</span>
+            <span className='newPrice font-semibold ml-2 text-red-500'>${product.offerPrice}</span>
           </div>
           <Button className='link bg-blue-600 text-white mt-4 gap-2 w-full md:w-auto'>
             <MdOutlineShoppingCart />
