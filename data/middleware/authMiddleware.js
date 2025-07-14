@@ -48,3 +48,25 @@ export const verifyAdmin = (req, res, next) => {
     return res.status(401).json({ message: 'Invalid or expired token' });
   }
 };
+
+export const verifyUser = (req, res, next) => {
+  const authHeader = req.headers.authorization;
+
+  if (!authHeader?.startsWith('Bearer ')) {
+    return res.status(401).json({ success: false, message: 'Token missing or malformed' });
+  }
+
+  const token = authHeader.split(' ')[1];
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    if (decoded.role !== 'user') {
+      return res.status(403).json({ success: false, message: 'Access denied' });
+    }
+
+    req.user = decoded; // So you get req.user.id
+    next();
+  } catch (err) {
+    return res.status(401).json({ success: false, message: 'Unauthorized or token expired' });
+  }
+};

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Stack from '@mui/material/Stack';
 import Rating from '@mui/material/Rating';
 
@@ -10,6 +10,11 @@ const ProductInfo = ({ padding="", product }) => {
   }
 
   const [thumbnail, setThumbnail] = useState(product.image[0]);
+
+  // FIX: Reset thumbnail when product changes
+  useEffect(() => {
+    setThumbnail(product.image[0]);
+  }, [product.image]);
 
   return (
     <div className={`flex  text-black !select-none  !rounded-md !shadow-md flex-col md:flex-row gap-8 md:gap-16 xl:gap-16 ${padding}`}>

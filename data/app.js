@@ -8,6 +8,7 @@ import { clerkWebhooks } from './controllers/webhook.js';
 import cors from 'cors';
 import 'dotenv/config';
 import {clerkMiddleware} from '@clerk/express'
+import userRoutes from './routes/user.js';
 //import connectCloudinary from './config/cloudinary.js';
 
 //await connectCloudinary();
@@ -38,7 +39,7 @@ app.use(express.urlencoded({extended : true }));
 app.use('/admin',adminRouter);
 app.use('/webhooks' , clerkWebhooks);
 app.use("/seller",SellerRoutes);
-
+app.use('/user', userRoutes);
 app.use("/product",productrouter);
 
 
