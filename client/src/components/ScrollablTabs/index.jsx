@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 
 const ScrollableTabs = () => {
   const {productsByCategory,searchByCategory} = useContext(AppContext);
-  const [value , setValue] = useState([]);
+  const [value , setValue] = useState(0);
 
  
 

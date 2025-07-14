@@ -144,7 +144,7 @@ const ProductListing = () => {
       : "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 w-full p-4"
   }
 >
-              {products.map((product, idx) =>
+              {products?.filter(product => product && product.product_name).map((product, idx) =>
                 itemView === "list" ? (
                   <ProductItemListView key={idx} product={product} />
                 ) : (

@@ -109,7 +109,7 @@ export const getProductsByCategory = async (req, res) => {
     const products = await Product.find({
       category: category,
       isApproved: "accepted",
-      inStock: true,
+      instock: true, // fixed field name
     }).populate('seller', 'name');
 
     return res.status(200).json({
