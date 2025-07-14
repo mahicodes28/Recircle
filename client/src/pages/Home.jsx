@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import HomeSlider from '../components/HomeSlider'
 import CatSlider from '../components/CatSlider'
 import Section from '../components/Section'
@@ -14,7 +14,15 @@ import { AppContext } from '../context/AppProvider'
 
 function Home() {
 
-  const {productsByCategory}=useContext(AppContext);
+  const {productsByCategory, productId, productById, fetchProductById, products, fetchProduct} = useContext(AppContext);
+
+  useEffect(()=>{
+    fetchProduct(); // fetch all products for the slider
+    fetchProductById(productId);
+  },[])
+
+  // Sort products by createdAt descending
+  const sortedProducts = (products || []).slice().sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
   return (
     <>
@@ -53,8 +61,10 @@ function Home() {
       </div>
       <section className="container bg-black !mb-[-50%] xl:!mb-0 sm:!mb-0 md:!mb-0 !pt-5 px-2 md:!px-10 !w-full mx-auto">
         <h1 className="text-2xl xl:text-5xl md:text-5xl text-left font-semibold !px-6 xl:!px-8 md:!px-7">Latest Products</h1>
-        <ProductSlider items={5} />
+        <ProductSlider productsByCategory={sortedProducts} items={5} />
       </section>
+      {/* New section for all products sorted by createdAt */}
+
       <section className="!pt-2 px-2 md:!px-6 shadow-lg bg-black rounded-b-[2vw] !w-full mx-auto">
         <AdBannerSliderV2 width={"full"} items={[2]} spaceBetween={5} />
       </section>

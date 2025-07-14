@@ -57,7 +57,7 @@ export const AppProvider = ({ children }) => {
   const searchByCategory = async(label)=>{
   try {
 
-      const {data} =await axios.get(`http://localhost:5000/category/${label}`);
+      const {data} =await axios.get(`http://localhost:5000/product/category/${label}`);
 
     if(data.success){
       setProductsByCategory(data.products);

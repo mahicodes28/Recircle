@@ -12,6 +12,7 @@ import { MyContext } from '../../../App';
 import { AppContext } from '../../../context/AppProvider';
 
 const ProductItem = ({product}) => {
+  if (!product) return null;
   const context = useContext(MyContext);
   console.log(product);
   const {fetchProductById , setProductId} = useContext(AppContext);

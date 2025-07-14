@@ -45,7 +45,7 @@ function CatSlider() {
         >
           {categoryItems.map((item, index) => (
             <SwiperSlide key={index} className={`!w-fit bg-[${item.color}] scale-90`}>
-              <Link to={item.link} className="block">
+              <Link to={`/productListing/${item.label}`} className="block">
                 <div className={`item  hover:scale-105 hover:text-white hover:bg-[#7F22FE] p-2 xl:!p-3 h-[80px] w-[80px] md:h-[13vw] md:w-[13vw] xl:h-[14vw] xl:w-[14vw]  rounded-sm flex flex-col items-center justify-center transition-all`}>
                   <img
                     className="w-[36px] h-[36px]  select-none hover:scale-110 transition-all object-cover mb-2"

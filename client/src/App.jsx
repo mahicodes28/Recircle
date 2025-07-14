@@ -29,6 +29,7 @@ import SeeOrders from './components/Seller/SeeOrders.jsx'
 import AddProduct from './components/Seller/AddProduct.jsx'
 import BannnerDetails from "./components/BannnerDetails.jsx";
 import { ToastContainer , toast } from "react-toastify";
+import ProductListingByCate from "./pages/ProductListingByCate.jsx";
 // Create context at top-level
 const MyContext = createContext();
 
@@ -78,6 +79,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart/>}/>
           <Route path="/productListing" element={<ProductListing />} />
+          <Route path="/productListing/:category" element={<ProductListingByCate />} />
           <Route path="/productDetails" element={<ProductDetails />} />
           <Route path="/help-center" element={<HelpCenter />} />
           <Route path="/Order-tracking" element={<MyOrders/>}/>
