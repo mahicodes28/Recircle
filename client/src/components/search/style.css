@@ -74,3 +74,21 @@ color: white !important;
   border-radius: 17.5px !important;
   
 }
+
+/* Custom scrollbar for search results */
+.searchBox.search-results::-webkit-scrollbar {
+  width: 8px;
+  background: transparent !important;
+}
+.searchBox.search-results::-webkit-scrollbar-thumb {
+  background: #fff !important;
+  border-radius: 4px !important;
+}
+.searchBox.search-results::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+.searchBox.search-results {
+  scrollbar-width: thin !important;
+  scrollbar-color: #fff transparent !important;
+}
