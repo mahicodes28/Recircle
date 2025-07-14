@@ -27,7 +27,7 @@ const slideImages =[
   // assets.SliderImage2,
   // assets.SliderImage3,
   assets.SliderVideo5,
-  // assets.SliderImage5,
+  assets.SliderVideo6,
   // assets.SliderImage6,
   // assets.SliderImage7,
   // assets.SliderImage8,
